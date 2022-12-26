@@ -23,15 +23,7 @@ wd.get("https://parcoesposizioninovegro.it/biglietti/festival-del-fumetto-web-1g
 
 list_projects = wd.find_elements(by=By.CSS_SELECTOR, value="p")
 
-date=list_projects[0].text
-date
-for nome in list_projects:
-    testo=nome.text
-    test=testo.split(" ")
-    if (test[0]=="Abbonamento" or test[0]=="Ingresso"):
-        print(test)
-
-
+## Costo e tipologia dei biglietti
 biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
 for nome in list_projects:
     testo=nome.text
@@ -62,4 +54,22 @@ for nome in list_projects:
         row=pd.DataFrame([[tipologia,prezzo]],columns=["Tipologia","Prezzo"])    
         biglietti=pd.concat([biglietti,row])
 
+# data e luogo
+#indirizzo
+for nome in list_projects:
+    testo=nome.text
+    test=testo.split(" ")   
+    if len(test)>=2:
+        if test[1]=="OPERATIVA\nParco":
+            luogo=test[1].split("\n")[1]+" "+test[2]+" "+test[3].split("\n")[0]+" - "+test[3].split("\n")[1]+" "+test[4]+" "+test[6]+" "+test[7].split("\n")[0]
+            print(luogo)
 
+
+#data
+date=list_projects[0].text
+date
+for nome in list_projects:
+    testo=nome.text
+    test=testo.split(" ")
+    if (test[0]=="Abbonamento" or test[0]=="Ingresso"):
+        print(test)
