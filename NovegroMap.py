@@ -64,7 +64,5 @@ print("Route 2 is", route2_length, "meters and takes", route2_time, "seconds.")
 fig, ax = ox.plot_graph_routes(G, routes=[route1, route2], route_colors=["r", "y"], route_linewidth=6, node_size=0)
 
 import folium
-m2 = ox.plot_route_folium(G, route1, weight=10)
-
-
-ox.plot_graph(ox.project_graph(G))
+%matplotlib inline
+m1 = ox.plot_graph_folium(G, popup_attribute="name", weight=2, color="#8b0000")
