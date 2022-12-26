@@ -32,18 +32,34 @@ for nome in list_projects:
         print(test)
 
 
+biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
 for nome in list_projects:
     testo=nome.text
     test=testo.split(" ")
     if (test[0]=="Abbonamento" or test[0]=="Ingresso") and test[1]!="ridotto" and len(test)>7 and test[1]!="gratuito:" :
-        tipologia=test[0]+" "+test[1]+" "+test[2]+" "+test[3]
-        prezzo=test[4]+" "+test[6]+" "+test[7]+" "+test[8]
-        print(tipologia,prezzo)
+        tipologia=test[0]+" "+test[1]+" "+test[2]+" "+test[3].replace(":","")
+        prezzo=test[4]+" "+test[6]+" "+test[7]
+        row=pd.DataFrame([[tipologia,prezzo]],columns=["Tipologia","Prezzo"])
+        biglietti=pd.concat([biglietti,row])
     elif (test[0]=="Abbonamento" or test[0]=="Ingresso") and test[1]!="ridotto" and test[1]!="gratuito:" :
-        tipologia=test[0]+" "+test[2]+" "+test[3]+" "+test[4]
-        prezzo=test[5]+" "+test[6]
-        print(tipologia,prezzo)
-    elif (test[0]=="Abbonamento" or test[0]=="Ingresso") and test[1]=="ridotto" and len(test)>7 and test[1]!="gratuito:" :
-        print(test)
+        tipologia=test[0]+" "+test[2]+" "+test[3]+" "+test[4].replace(":","")
+        prezzo=test[5]+" "
+        row=pd.DataFrame([[tipologia,prezzo]],columns=["Tipologia","Prezzo"])
+        biglietti=pd.concat([biglietti,row])
+    elif (test[0]=="Abbonamento" or test[0]=="Ingresso") and test[1]=="ridotto" and len(test)>8 and test[1]!="gratuito:" :
+        tipologia=test[0]+" "+test[1]+" "+test[2]+" "+test[3]+" "+test[4].replace("*","").replace(":","")
+        prezzo=test[5]+"  "+test[7]+"  "+test[8]
+        row=pd.DataFrame([[tipologia,prezzo]],columns=["Tipologia","Prezzo"])
+        biglietti=pd.concat([biglietti,row])
     elif (test[0]=="Abbonamento" or test[0]=="Ingresso") and test[1]=="ridotto" and test[1]!="gratuito:" :
-        print(test)
+        tipologia=test[0]+" "+test[1]+" "+test[3]+" "+test[3]+" "+test[5].replace("*","").replace(":","")
+        prezzo=test[6]
+        row=pd.DataFrame([[tipologia,prezzo]],columns=["Tipologia","Prezzo"])
+        biglietti=pd.concat([biglietti,row])
+    elif (test[0]=="Abbonamento" or test[0]=="Ingresso") and test[1]=="gratuito:" :
+        tipologia=test[0]+" "+test[1].replace("*","").replace(":","")+" "+test[4]+" "+test[6]+"-"+test[8]+" "+test[9]+" e "+test[12]+" con "+test[14]+" "+test[16].replace("l’","")+"-"+test[19].replace(".","")+ " e accompagnatore"
+        prezzo="0"
+        row=pd.DataFrame([[tipologia,prezzo]],columns=["Tipologia","Prezzo"])    
+        biglietti=pd.concat([biglietti,row])
+
+
