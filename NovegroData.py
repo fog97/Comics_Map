@@ -53,7 +53,6 @@ for nome in list_projects:
         prezzo="0"
         row=pd.DataFrame([[tipologia,prezzo]],columns=["Tipologia","Prezzo"])    
         biglietti=pd.concat([biglietti,row])
-
 # data e luogo
 #indirizzo
 for nome in list_projects:
