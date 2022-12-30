@@ -6,3 +6,4 @@ IPython.display
 folium
 geopy
 geopy.geocoders
+Nominatim
