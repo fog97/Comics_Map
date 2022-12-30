@@ -1,7 +1,8 @@
 from pickle import TRUE
 import streamlit as st
 import pandas as pd
-import geopy.geocoders
+import geopy
+from geopy.geocoders import Nominatim
 import osmnx as ox
 import networkx as nx
 import numpy as np
