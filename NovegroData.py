@@ -65,10 +65,4 @@ for nome in list_projects:
 
 
 #data
-date=list_projects[0].text
-date
-for nome in list_projects:
-    testo=nome.text
-    test=testo.split(" ")
-    if (test[0]=="Abbonamento" or test[0]=="Ingresso"):
-        print(test)
+
