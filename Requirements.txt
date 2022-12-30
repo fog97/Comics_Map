@@ -1,3 +1,4 @@
+geopandas
 pandas
 osmnx
 networkx
@@ -9,5 +10,4 @@ matplotlib
 Nominatim
 time
 base64
-geopandas
 plotly_express
