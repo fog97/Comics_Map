@@ -5,3 +5,4 @@ numpy
 IPython.display
 folium
 geopy
+geopy.geocoders
