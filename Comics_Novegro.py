@@ -2,9 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-
-df = pd.DataFrame(
-    np.array(45.4688535,9.2776371),
-    columns=['lat', 'lon'])
+location = {'lat': 45.4688535, 'lon': 9.2776371 }
+df = pd.DataFrame(data=location)
 
 st.map(df)
