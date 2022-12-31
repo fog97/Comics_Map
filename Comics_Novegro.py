@@ -9,7 +9,7 @@ from shapely.geometry import Point
 from shapely.geometry import shape
 import pydeck as pdk
 
-path='/app/comics_map'
+path='/app/comics_map/'
 
 st.markdown("# Novegro comics")
 
