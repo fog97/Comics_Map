@@ -1,0 +1,14 @@
+geopandas
+pandas
+osmnx
+networkx
+numpy
+IPython.display
+folium
+geopy
+matplotlib
+Nominatim
+time
+base64
+plotly_express
+matplotlib  
