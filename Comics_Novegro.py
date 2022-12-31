@@ -47,7 +47,7 @@ with col2:
 
     with open("presenze.csv", "a") as file1:
         # Writing data to a file
-        file1.write(df_pres)
+        file1.write(infopres)
 
 
 
