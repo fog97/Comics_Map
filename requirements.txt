@@ -1,6 +1,8 @@
-py2neo
-neo4j
-pandas
+joblib
+sklearn
+statsmodels
+geopy
+pyshp
+shapely
 matplotlib
-networkx
-datetime
+pydeck
