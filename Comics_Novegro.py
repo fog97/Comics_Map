@@ -29,3 +29,27 @@ dic={"lat":start_lat,"lon":start_lng}
 df=pd.DataFrame(dic,index=[1])
 
 st.map(df)
+
+st.markdown("## Presenze")
+
+col1, col2 = st.columns(2)
+from datetime import datetime
+with col1:
+    st.text_input("Nome ", key="eadd")
+    add_e=st.session_state.eadd
+
+with col2:
+    st.text_input("Data Presenza ", key="padd")
+    add_p=st.session_state.padd
+
+infopres={"Nome":add_e,"Data":add_p}
+df_pres=pd.DataFrame(infopres,index=[1])
+
+with open("presenze.csv", "a") as file1:
+    # Writing data to a file
+    file1.write(df_pres)
+
+
+
+presenze=pd.read_csv(path+"presenze.csv")
+st.write(presenze.loc[:, ["Nome","Data"]])
