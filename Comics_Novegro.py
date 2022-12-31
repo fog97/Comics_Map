@@ -42,12 +42,12 @@ with col2:
     st.text_input("Data Presenza ", key="padd")
     add_p=st.session_state.padd
 
-infopres={"Nome":add_e,"Data":add_p}
-df_pres=pd.DataFrame(infopres,index=[1])
+    infopres={"Nome":add_e,"Data":add_p}
+    df_pres=pd.DataFrame(infopres,index=[1])
 
-with open("presenze.csv", "a") as file1:
-    # Writing data to a file
-    file1.write(df_pres)
+    with open("presenze.csv", "a") as file1:
+        # Writing data to a file
+        file1.write(df_pres)
 
 
 
