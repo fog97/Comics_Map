@@ -11,3 +11,4 @@ Nominatim
 time
 base64
 plotly_express
+matplotlib
