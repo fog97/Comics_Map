@@ -15,7 +15,7 @@ locator = Nominatim(user_agent = "myapp")
 location = locator.geocode("Via Novegro 20090 Segrate")
 start_lat=location.latitude 
 start_lng=location.longitude
-dic={"lat":start_lat,"lon":"start_lng"}
+dic={"lat":start_lat,"lon":start_lng}
 df=pd.DataFrame(dic,index=[1])
 
 st.map(df)
