@@ -16,10 +16,10 @@ st.markdown("# Novegro comics")
 st.markdown("## Biglietti")
 
 biglietti=pd.read_csv(path+"biglietti_novegro.csv",sep=";")
-st.write(biglietti)
+st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
 
 
-
+st.markdown("## Mappa")
 from geopy.geocoders import Nominatim
 locator = Nominatim(user_agent = "myapp")
 location = locator.geocode("Via Novegro 20090 Segrate")
