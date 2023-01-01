@@ -49,6 +49,17 @@ with col1:
         infopres.to_csv(path+"presenze_novegro.csv", mode='a', index = False, header=False)
 
 with col2:
-    if st.button("Rimuovi Presenza"):
-        presenze=pd.read_csv(path+"presenze_novegro.csv")
-        st.write(presenze)
+    if st.button("Aggiungi Presenza"):   
+        old=pd.read_csv(path+"presenze_novegro.csv")
+        old2=old[(old["Nome"] !=add_e) & (old["Data"] !=add_p)]
+        new=pd.DataFrame(columns=["Nome","Data"])
+        final=pd.concat([new,old2] , ignore_index=True)
+        final.to_csv(path+"presenze_novegro.csv", mode='w', index = False, header=True)
+                
+
+
+
+
+if st.button("Vedi Presenze"):
+    presenze=pd.read_csv(path+"presenze_novegro.csv")
+    st.write(presenze)
