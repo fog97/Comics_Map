@@ -47,10 +47,7 @@ with col1:
     if st.button("Aggiungi Presenza"):
         info_dict={"Nome":add_e,"Data":add_p}
         infopres=pd.DataFrame(info_dict,index=[1])
-        with open(path+"presenze_novegro.csv", "a") as file1:
-            for line in infopres:
-                file1.write(line)
-                st.write(line)
+        df.to_csv(path+"presenze_novegro.csv", mode='a', index = False, header=False)
 
 with col2:
     if st.button("Rimuovi Presenza"):
