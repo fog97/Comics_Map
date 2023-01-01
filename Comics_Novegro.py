@@ -39,16 +39,18 @@ add_e=st.session_state.eadd
 st.text_input("Data Presenza ", key="padd")
 add_p=st.session_state.padd
 
-info_dict={"Nome":add_e,"Data":add_p}
-infopres=pd.DataFrame(info_dict,index=[1])
+
 
 
 col1, col2 = st.columns(2)
 with col1:
     if st.button("Aggiungi Presenza"):
+        info_dict={"Nome":add_e,"Data":add_p}
+        infopres=pd.DataFrame(info_dict,index=[1])
         with open(path+"presenze_novegro.csv", "a") as file1:
             for line in infopres:
                 file1.write(line)
+                st.write("presenza aggiunta")
 
 with col2:
     if st.button("Rimuovi Presenza"):
