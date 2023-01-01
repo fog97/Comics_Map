@@ -32,22 +32,31 @@ st.map(df)
 
 st.markdown("## Presenze")
 
+st.text_input("Nome ", key="eadd")
+add_e=st.session_state.eadd
+
+
+st.text_input("Data Presenza ", key="padd")
+add_p=st.session_state.padd
+
+info_dict={"Nome":add_e,"Data":add_p}
+infopres=pd.DataFrame(info_dict,index=[1])
+
+
 col1, col2 = st.columns(2)
-from datetime import datetime
 with col1:
-    st.text_input("Nome ", key="eadd")
-    add_e=st.session_state.eadd
+    if st.button("Aggiungi Presenza"):
+            with open(path+"presenze.csv", "a") as file1:
+                file1.write(infopres)
 
 with col2:
-    st.text_input("Data Presenza ", key="padd")
-    add_p=st.session_state.padd
-
-    infopres={"Nome":add_e,"Data":add_p}
-    df_pres=pd.DataFrame(infopres,index=[1])
-
-    with open("presenze.csv", "a") as file1:
-        # Writing data to a file
-        file1.write(infopres)
+    if st.button("Rimuovi Presenza"):
+        import csv
+        with open('first.csv', 'rb') as inp, open(path+'first_edit.csv', 'wb') as out:
+            writer = csv.writer(out)
+            for row in csv.reader(inp):
+                if row[0] != add_e:
+                    writer.writerow(row)
 
 
 
