@@ -50,7 +50,7 @@ with col1:
         with open(path+"presenze_novegro.csv", "a") as file1:
             for line in infopres:
                 file1.write(line)
-                st.write("presenza aggiunta")
+                st.write(line)
 
 with col2:
     if st.button("Rimuovi Presenza"):
