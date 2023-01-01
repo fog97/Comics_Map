@@ -49,7 +49,7 @@ with col1:
         infopres.to_csv(path+"presenze_novegro.csv", mode='a', index = False, header=False)
 
 with col2:
-    if st.button("Aggiungi Presenza"):   
+    if st.button("Elimina Presenza"):   
         old=pd.read_csv(path+"presenze_novegro.csv")
         old2=old[(old["Nome"] !=add_e) & (old["Data"] !=add_p)]
         new=pd.DataFrame(columns=["Nome","Data"])
