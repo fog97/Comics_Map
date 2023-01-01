@@ -39,15 +39,14 @@ add_e=st.session_state.eadd
 st.text_input("Data Presenza ", key="padd")
 add_p=st.session_state.padd
 
-
+info_dict={"Nome":add_e,"Data":add_p}
+infopres=pd.DataFrame(info_dict,index=[1])
 
 
 col1, col2 = st.columns(2)
 with col1:
     if st.button("Aggiungi Presenza"):
-        info_dict={"Nome":add_e,"Data":add_p}
-        infopres=pd.DataFrame(info_dict,index=[1])
-        df.to_csv(path+"presenze_novegro.csv", mode='a', index = False, header=False)
+        infopres.to_csv(path+"presenze_novegro.csv", mode='a', index = False, header=False)
 
 with col2:
     if st.button("Rimuovi Presenza"):
