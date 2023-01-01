@@ -50,5 +50,5 @@ with col1:
 
 with col2:
     if st.button("Rimuovi Presenza"):
-        presenze=pd.read_csv(path+"presenze_novegro.csv", header=0)
+        presenze=pd.read_csv(path+"presenze_novegro.csv")
         st.write(presenze)
