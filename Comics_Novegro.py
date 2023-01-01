@@ -46,14 +46,9 @@ infopres=pd.DataFrame(info_dict,index=[1])
 col1, col2 = st.columns(2)
 with col1:
     if st.button("Aggiungi Presenza"):
-            with open(path+"presenze.csv", "a") as file1:
-                file1.write(infopres)
+        with open(path+"presenze.csv", "a") as file1:
+            file1.write(infopres)
 
 with col2:
     if st.button("Rimuovi Presenza"):
-
-
-
-
-presenze=pd.read_csv(path+"presenze.csv")
-st.write(presenze.loc[:, ["Nome","Data"]])
+        presenze=pd.read_csv(path+"presenze.csv", "a")
