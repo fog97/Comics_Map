@@ -51,12 +51,7 @@ with col1:
 
 with col2:
     if st.button("Rimuovi Presenza"):
-        import csv
-        with open('first.csv', 'rb') as inp, open(path+'first_edit.csv', 'wb') as out:
-            writer = csv.writer(out)
-            for row in csv.reader(inp):
-                if row[0] != add_e:
-                    writer.writerow(row)
+
 
 
 
