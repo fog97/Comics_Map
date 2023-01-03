@@ -62,6 +62,6 @@ view_state=pdk.ViewState(longitude=locations_tomap.lon,latitude=locations_tomap.
 st.pydeck_chart(pdk.Deck(layers=[icon_layer], initial_view_state=view_state,tooltip={'text':'{Nome}'}))
 
 
-with st.expander('Vedi Presenze :',False):
+with st.expander('Vedi Presenze :',True):
     presenze=pd.read_csv(path+"presenze_novegro.csv")
     st.write(presenze)
