@@ -49,7 +49,7 @@ INITIAL_VIEW_STATE=pdk.ViewState(
   bearing=0
 )
 
-ScatterplotLayer=[pdk.Layer(
+ScatterplotLayer=pdk.Layer(
     'ScatterplotLayer',
     chart_data,
     get_position=['lon', 'lat'],
