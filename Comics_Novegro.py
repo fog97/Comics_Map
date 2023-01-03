@@ -29,10 +29,34 @@ dic={"lat":start_lat,"lon":start_lng}
 df=pd.DataFrame(dic,index=[1])
 
 #st.map(df)
-locations_tomap=pd.read_csv(path+"locations_tomap.csv")
-icon_layer=pdk.Layer('IconLayer',data=locations_tomap,get_icon='icona',get_position=['lon','lat'],get_size=60,pickable=True)
-view_state=pdk.ViewState(longitude=locations_tomap.lon,latitude=locations_tomap.lat,zoom=14)
-st.pydeck_chart(pdk.Deck(layers=[icon_layer], initial_view_state=view_state))
+
+import pandas as pd
+import numpy as np
+import pydeck as pdk
+
+chart_data = pd.read_csv(path+"locations_tomap.csv")
+
+st.pydeck_chart(pdk.Deck(
+    map_style="openstreetmap",
+    initial_view_state=pdk.ViewState(
+        latitude=start_lat,
+        longitude=start_lng,
+        zoom=11,
+        pitch=50,
+    ),
+    layers=[
+        pdk.Layer(
+            'ScatterplotLayer',
+            data=chart_data,
+            get_position='[lon, lat]',
+            get_color='[200, 30, 0, 160]',
+            get_radius=200,
+        ),
+    ],
+))
+
+
+
 st.markdown("## Presenze")
 
 st.text_input("Nome ", key="eadd")
