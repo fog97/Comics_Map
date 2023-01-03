@@ -38,7 +38,7 @@ chart_data = pd.read_csv(path+"locations_tomap.csv")
 
 chart_data=chart_data[["lat","lon"]]
 
-
+  
 
 INITIAL_VIEW_STATE=pdk.ViewState(
   latitude=start_lat,
