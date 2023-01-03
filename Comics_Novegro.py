@@ -86,6 +86,6 @@ with col2:
 
 
 
-if st.button("Elimina Presenza"): 
+if st.button("Vedi Presenze"): 
     presenze=pd.read_csv(path+"presenze_novegro.csv")
     st.write(presenze)
