@@ -40,7 +40,7 @@ chart_data=chart_data[["lat","lon"]]
 
 
 
-INITIAL_VIEW_STATE=pydeck.ViewState(
+INITIAL_VIEW_STATE=pdk.ViewState(
   latitude=start_lat,
   longitude=start_lng,
   zoom=11,
@@ -59,7 +59,7 @@ ScatterplotLayer=[
         )]
 
 
-st.pydeck_chart(pydeck.Deck(
+st.pydeck_chart(pdk.Deck(
     layers=[ScatterplotLayer],
     initial_view_state=INITIAL_VIEW_STATE))
 
