@@ -50,7 +50,7 @@ st.pydeck_chart(pdk.Deck(
             'ScatterplotLayer',
             data=chart_data,
             get_position='[lon, lat]',
-            get_color='[200, 30, 0, 160]',
+            get_color=[180, 0, 200, 140],
             get_radius=200,
         ),
     ],
