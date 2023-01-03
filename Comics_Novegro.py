@@ -39,12 +39,11 @@ chart_data = pd.read_csv(path+"locations_tomap.csv")
 chart_data=chart_data[["lat","lon"]]
 
 st.pydeck_chart(pdk.Deck(
-    map_style="openstreetmap",
+    map_style=None,
     initial_view_state=pdk.ViewState(
         latitude=start_lat,
         longitude=start_lng,
         zoom=11,
-        pitch=50,
     ),
     layers=[
         pdk.Layer(
