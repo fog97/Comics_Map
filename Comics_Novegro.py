@@ -49,7 +49,7 @@ INITIAL_VIEW_STATE=pdk.ViewState(
   bearing=0
 )
 
-ScatterplotLayer=[pdk.Layer('IconLayer',data=chart_data,get_icon='icona',get_position=['lon','lat'],get_size=60,pickable=True)]
+ScatterplotLayer=[pdk.Layer('IconLayer',data=chart_data,get_icon='icona',get_position=['lon','lat'])]
 
 
 st.pydeck_chart(pdk.Deck(
