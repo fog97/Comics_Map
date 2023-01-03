@@ -28,7 +28,12 @@ start_lng=location.longitude
 dic={"lat":start_lat,"lon":start_lng}
 df=pd.DataFrame(dic,index=[1])
 
-st.map(df)
+#st.map(df)
+
+locations_tomap=pd.read_csv(path+"locations_tomap.csv")
+icon_layer=pdk.Layer('IconLayer',data=locations_tomap,get_icon='icona',get_position=['lon','lat'],get_size=60,pickable=True)
+view_state=pdk.ViewState(longitude=locations_tomap.lon,latitude=locations_tomap.lat,zoom=14)
+st.pydeck_chart(pdk.Deck(layers=[icon_layer], initial_view_state=view_state,tooltip={'text':'{Nome}'}))
 
 st.markdown("## Presenze")
 
@@ -56,12 +61,9 @@ with col2:
         final=pd.concat([new,old2] , ignore_index=True)
         final.to_csv(path+"presenze_novegro.csv", mode='w', index = False, header=True)
                 
-locations_tomap=pd.read_csv(path+"locations_tomap.csv")
-icon_layer=pdk.Layer('IconLayer',data=locations_tomap,get_icon='icona',get_position=['lon','lat'],get_size=60,pickable=True)
-view_state=pdk.ViewState(longitude=locations_tomap.lon,latitude=locations_tomap.lat,zoom=14)
-st.pydeck_chart(pdk.Deck(layers=[icon_layer], initial_view_state=view_state,tooltip={'text':'{Nome}'}))
 
 
-with st.expander('Vedi Presenze :',True):
+
+if st.button("Elimina Presenza"): 
     presenze=pd.read_csv(path+"presenze_novegro.csv")
     st.write(presenze)
