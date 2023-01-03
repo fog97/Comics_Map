@@ -36,7 +36,7 @@ import pydeck as pdk
 
 chart_data = pd.read_csv(path+"locations_tomap.csv")
 
-chart_data=chart_data[["lat","lon"]]
+chart_data=chart_data[["lat","lon","icona"]]
 
 
 
@@ -49,14 +49,7 @@ INITIAL_VIEW_STATE=pdk.ViewState(
   bearing=0
 )
 
-ScatterplotLayer=[
-        pdk.Layer(
-            'ScatterplotLayer',
-            data=chart_data,
-            get_position='[lon, lat]',
-            get_color=[180, 0, 200, 140],
-            get_radius=200,
-        )]
+ScatterplotLayer=[pdk.Layer('IconLayer',data=chart_data,get_icon='icona',get_position=['lon','lat'],get_size=60,pickable=True)]
 
 
 st.pydeck_chart(pdk.Deck(
