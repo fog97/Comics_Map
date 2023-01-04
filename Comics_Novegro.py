@@ -34,11 +34,6 @@ import pandas as pd
 import numpy as np
 import pydeck as pdk
 
-chart_data = pd.read_csv(path+"locations_tomap.csv")
-
-chart_data=chart_data[["lat","lon"]]
-
-  
 
 INITIAL_VIEW_STATE = pdk.ViewState(
   latitude=45.47185532715593, 
