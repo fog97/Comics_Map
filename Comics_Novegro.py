@@ -99,6 +99,8 @@ st.pydeck_chart(pdk.Deck(
 
 st.markdown("## Presenze")
 
+
+
 st.text_input("Nome ", key="eadd")
 add_e=st.session_state.eadd
 
@@ -108,6 +110,8 @@ add_p=st.session_state.padd
 
 info_dict={"Nome":add_e,"Data":add_p}
 infopres=pd.DataFrame(info_dict,index=[1])
+
+
 
 
 col1, col2 = st.columns(2)
