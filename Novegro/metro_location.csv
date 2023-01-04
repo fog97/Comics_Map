@@ -1,0 +1,21 @@
+,index,name,public_transport,geometry,subway,railway,lat,lon
+23,23,Duomo,station,POINT (9.1885548 45.4641385),yes,station,45.4641385,9.1885548
+26,26,Bisceglie,station,POINT (9.1129252 45.4553979),yes,station,45.4553979,9.1129252
+27,27,Famagosta,station,POINT (9.1681331 45.4368888),yes,station,45.4368888,9.1681331
+29,29,Rogoredo FS,station,POINT (9.2380577 45.4335776),yes,station,45.4335776,9.2380577
+49,49,Stazione Forlanini,station,POINT (9.2363556 45.4643154),yes,station,45.4643154,9.2363556
+50,50,Repetti,station,POINT (9.2403893 45.4620064),yes,station,45.4620064,9.2403893
+51,51,San Donato,station,POINT (9.2563154 45.429086),yes,station,45.429086,9.2563154
+58,58,Missori,station,POINT (9.1893681 45.4599554),yes,station,45.4599554,9.1893681
+63,63,Piola,station,POINT (9.2252588 45.4808531),yes,station,45.4808531,9.2252588
+67,67,Crescenzago,station,POINT (9.2477628 45.5048602),yes,station,45.5048602,9.2477628
+68,68,Cimiano,station,POINT (9.2407696 45.499541),yes,station,45.499541,9.2407696
+73,73,Porta Genova FS,station,POINT (9.1693602 45.4520244),yes,station,45.4520244,9.1693602
+76,76,Cadorna FN,station,POINT (9.176463 45.4682326),yes,station,45.4682326,9.176463
+77,77,Cadorna FN,station,POINT (9.1771272 45.4681452),yes,station,45.4681452,9.1771272
+95,95,Molino Dorino,station,POINT (9.0933177 45.5051543),yes,station,45.5051543,9.0933177
+109,109,San Siro Stadio,station,POINT (9.1183538 45.4762325),yes,station,45.4762325,9.1183538
+111,111,Segesta,station,POINT (9.1379391 45.476243),yes,station,45.476243,9.1379391
+125,125,Dateo,station,POINT (9.2184474 45.4680015),yes,station,45.4680015,9.2184474
+126,126,Argonne,station,POINT (9.2319078 45.4680832),yes,station,45.4680832,9.2319078
+127,127,Susa,station,POINT (9.2248739 45.4680673),yes,station,45.4680673,9.2248739

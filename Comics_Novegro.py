@@ -9,7 +9,7 @@ from shapely.geometry import Point
 from shapely.geometry import shape
 import pydeck as pdk
 
-path='/app/comics_map/'
+path='/app/comics_map/Novegro/'
 
 st.markdown("# Novegro comics")
 
@@ -40,27 +40,65 @@ chart_data=chart_data[["lat","lon"]]
 
   
 
-INITIAL_VIEW_STATE=pdk.ViewState(
-  latitude=start_lat,
-  longitude=start_lng,
+INITIAL_VIEW_STATE = pdk.ViewState(
+  latitude=45.47185532715593, 
+  longitude=9.275071955673953,
   zoom=11,
   max_zoom=16,
   pitch=45,
   bearing=0
 )
 
-ScatterplotLayer=pdk.Layer(
+
+origin=pd.DataFrame({"lon":9.275071955673953,"lat":45.47185532715593}, index=[0])
+Origin_layer = pdk.Layer(
     'ScatterplotLayer',
-    chart_data,
+    origin,
     get_position=['lon', 'lat'],
     auto_highlight=True,
-    get_radius=1000,
-    get_fill_color='[180, 0, 200, 140]',
+    get_radius=100,
+    get_color='[39, 71, 245,140]',
     pickable=True)
 
 
+train2=pd.read_csv(path+"train_latlon.csv")
+train2["lat"]=train2["lat"].apply(lambda x : float(x))
+train2["lon"]=train2["lon"].apply(lambda x : float(x))
+Train_Layer = pdk.Layer(
+    'ScatterplotLayer',
+    train2,
+    get_position=['lon', 'lat'],
+    auto_highlight=True,
+    get_radius=50,
+    get_color='[20, 232, 62, 140]',
+    pickable=True)
+
+metro2=pd.read_csv(path+"metro_latlon.csv")
+metro2["lat"]=metro2["lat"].apply(lambda x : float(x))
+metro2["lon"]=metro2["lon"].apply(lambda x : float(x))
+Metro_Layer = pdk.Layer(
+    'ScatterplotLayer',
+    metro2,
+    get_position=['lon', 'lat'],
+    auto_highlight=True,
+    get_radius=50,
+    get_color='[225, 232, 21, 140]',
+    pickable=True)
+
+bus2=pd.read_csv(path+"bus_latlon.csv")
+bus2["lat"]=bus2["lat"].apply(lambda x : float(x))
+bus2["lon"]=bus2["lon"].apply(lambda x : float(x))
+Bus_Layer = pdk.Layer(
+    'ScatterplotLayer',
+    bus2,
+    get_position=['lon', 'lat'],
+    auto_highlight=True,
+    get_radius=50,
+    get_color='[180, 0, 200, 140]',
+    pickable=True)
+
 st.pydeck_chart(pdk.Deck(
-    layers=[ScatterplotLayer],
+    layers=[Origin_layer,Bus_Layer,Metro_Layer,Train_Layer],
     initial_view_state=INITIAL_VIEW_STATE))
 
 
