@@ -79,7 +79,7 @@ bus_layer = pdk.Layer(
 ## Train
 import pydeck as pdk
 import pandas as pd
-train=pd.read_csv(path+"train_location")
+train=pd.read_csv(path+"train_location.csv")
 
 # Data from OpenStreetMap, accessed via osmpy
 
@@ -120,7 +120,7 @@ train_layer = pdk.Layer(
 ## Metro
 import pydeck as pdk
 import pandas as pd
-metro=pd.read_csv(path+"metro_location")
+metro=pd.read_csv(path+"metro_location.csv")
 # Data from OpenStreetMap, accessed via osmpy
 
 ICON_URL = "https://upload.wikimedia.org/wikipedia/commons/5/57/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Subway_%E2%80%93_Transportation_%E2%80%93_Light.png"
