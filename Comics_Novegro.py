@@ -96,7 +96,7 @@ icon_data = {
 train["lat"]=train["lat"].apply(lambda x : float(x))
 train["lon"]=train["lon"].apply(lambda x : float(x))
 
-data=metro
+data=train
 
 data["icon_data"] = None
 for i in data.index:
