@@ -197,7 +197,6 @@ parking_layer = pdk.Layer(
 )
 ## Origin
 import pandas as pd
-import geopandas
 import folium
 import matplotlib.pyplot as plt
 import pydeck as pdk
