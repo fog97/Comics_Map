@@ -196,10 +196,7 @@ parking_layer = pdk.Layer(
     pickable=True,
 )
 ## Origin
-import pandas as pd
-import folium
-import matplotlib.pyplot as plt
-import pydeck as pdk
+
 INITIAL_VIEW_STATE = pdk.ViewState(
   latitude=45.47185532715593, 
   longitude=9.275071955673953,
