@@ -135,9 +135,8 @@ icon_data = {
 
 data=origin
 
-data["icon_data"] = None
-for i in data.index:
-    data["icon_data"][i] = icon_data
+data["icon_data"] = icon_data
+
 
 data=data[["lat","lon","name","icon_data"]]
 
