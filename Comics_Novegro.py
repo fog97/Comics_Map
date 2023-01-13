@@ -28,46 +28,68 @@ start_lng=location.longitude
 dic={"lat":start_lat,"lon":start_lng}
 df=pd.DataFrame(dic,index=[1])
 
-#st.map(df)
+map_data=pd.read_csv(path+"Comics_Novegro.csv",dtype=object, index_col=0)
 
 import pandas as pd
 import numpy as np
 import pydeck as pdk
 
+Bus_icon = "https://upload.wikimedia.org/wikipedia/commons/b/b3/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Bus_Stop_%E2%80%93_Transportation_%E2%80%93_Light.png"
 
-## BUS
-import pydeck as pdk
-import pandas as pd
-bus=pd.read_csv(path+"bus_location.csv")
+Bus_icon_data = {
 
-# Data from OpenStreetMap, accessed via osmpy
-
-ICON_URL = "https://upload.wikimedia.org/wikipedia/commons/b/b3/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Bus_Stop_%E2%80%93_Transportation_%E2%80%93_Light.png"
-
-icon_data = {
-
-    "url": ICON_URL,
+    "url": Bus_icon,
     "width": 32,
     "height": 37,
     "anchorY": 'auto',
 }
 
-bus["lat"]=bus["lat"].apply(lambda x : float(x))
-bus["lon"]=bus["lon"].apply(lambda x : float(x))
+Metro_icon = "https://upload.wikimedia.org/wikipedia/commons/5/57/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Subway_%E2%80%93_Transportation_%E2%80%93_Light.png"
 
-data=bus
+Metro_icon_data = {
 
+    "url": Metro_icon,
+    "width": 32,
+    "height": 37,
+    "anchorY": 'auto',
+}
 
-data["icon_data"] = None
-for i in data.index:
-    data["icon_data"][i] = icon_data
+Train_icon = "https://upload.wikimedia.org/wikipedia/commons/1/16/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Train_%E2%80%93_Transportation_%E2%80%93_Light.png"
 
-data=data[["lat","lon","name","icon_data"]]
+Train_icon_data = {
 
+    "url": Train_icon,
+    "width": 32,
+    "height": 37,
+    "anchorY": 'auto',
+}
 
-bus_layer = pdk.Layer(
+Parcheggi_icon = "https://upload.wikimedia.org/wikipedia/commons/c/c7/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Parking_%E2%80%93_Transportation_%E2%80%93_Light.png"
+
+Parcheggi_icon_data = {
+
+    "url": Parcheggi_icon,
+    "width": 32,
+    "height": 37,
+    "anchorY": 'auto',
+}
+
+icon_data = []
+for index,row in map_data.iterrows():
+  if row["Classe"]=="Parcheggio":
+    icon_data.append(Parcheggi_icon_data)
+  elif row["Classe"]=="Bus":
+    icon_data.append(Bus_icon_data)
+  elif row["Classe"]=="Train":
+    icon_data.append(Train_icon_data)
+  elif row["Classe"]=="Metro":
+    icon_data.append(Metro_icon_data)   
+
+map_data["icon_data"]=icon_data
+
+Nav_Points = pdk.Layer(
     type="IconLayer",
-    data=data,
+    data=map_data,
     get_icon="icon_data",
     get_size=10,
     size_scale=3,
@@ -76,143 +98,31 @@ bus_layer = pdk.Layer(
 )
 
 
-## Train
-import pydeck as pdk
 import pandas as pd
-train=pd.read_csv(path+"train_location.csv")
-
-# Data from OpenStreetMap, accessed via osmpy
-
-ICON_URL = "https://upload.wikimedia.org/wikipedia/commons/1/16/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Train_%E2%80%93_Transportation_%E2%80%93_Light.png"
-
-icon_data = {
-
-    "url": ICON_URL,
-    "width": 32,
-    "height": 37,
-    "anchorY": 'auto',
-}
-
-train["lat"]=train["lat"].apply(lambda x : float(x))
-train["lon"]=train["lon"].apply(lambda x : float(x))
-
-data=train
-
-data["icon_data"] = None
-for i in data.index:
-    data["icon_data"][i] = icon_data
-
-data=data[["lat","lon","name","icon_data"]]
-
-
-train_layer = pdk.Layer(
-    type="IconLayer",
-    data=data,
-    get_icon="icon_data",
-    get_size=10,
-    size_scale=3,
-    get_position=["lon", "lat"],
-    pickable=True,
-)
-
-
-
-## Metro
+import geopandas
+import folium
+import matplotlib.pyplot as plt
 import pydeck as pdk
-import pandas as pd
-metro=pd.read_csv(path+"metro_location.csv")
-# Data from OpenStreetMap, accessed via osmpy
-
-ICON_URL = "https://upload.wikimedia.org/wikipedia/commons/5/57/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Subway_%E2%80%93_Transportation_%E2%80%93_Light.png"
-
-icon_data = {
-
-    "url": ICON_URL,
-    "width": 32,
-    "height": 37,
-    "anchorY": 'auto',
-}
-
-metro["lat"]=metro["lat"].apply(lambda x : float(x))
-metro["lon"]=metro["lon"].apply(lambda x : float(x))
-
-data=metro
-
-data["icon_data"] = None
-for i in data.index:
-    data["icon_data"][i] = icon_data
-
-data=data[["lat","lon","name","icon_data"]]
-
-
-metro_layer = pdk.Layer(
-    type="IconLayer",
-    data=data,
-    get_icon="icon_data",
-    get_size=10,
-    size_scale=3,
-    get_position=["lon", "lat"],
-    pickable=True,
-)
-
-
-#Parcheggio
-import pydeck as pdk
-import pandas as pd
-parcheggi_complete=pd.read_csv(path+"parcheggi_location.csv")
-
-# Data from OpenStreetMap, accessed via osmpy
-
-ICON_URL = "https://upload.wikimedia.org/wikipedia/commons/c/c7/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Parking_%E2%80%93_Transportation_%E2%80%93_Light.png"
-
-icon_data = {
-
-    "url": ICON_URL,
-    "width": 32,
-    "height": 37,
-    "anchorY": 'auto',
-}
-
-parcheggi_complete["lat"]=parcheggi_complete["lat"].apply(lambda x : float(x))
-parcheggi_complete["lon"]=parcheggi_complete["lon"].apply(lambda x : float(x))
-
-data=parcheggi_complete
-
-
-data["icon_data"] = None
-for i in data.index:
-    data["icon_data"][i] = icon_data
-
-data=data[["lat","lon","name","icon_data"]]
-
-
-parking_layer = pdk.Layer(
-    type="IconLayer",
-    data=data,
-    get_icon="icon_data",
-    get_size=10,
-    size_scale=3,
-    get_position=["lon", "lat"],
-    pickable=True,
-)
-## Origin
-
 INITIAL_VIEW_STATE = pdk.ViewState(
   latitude=45.47185532715593, 
   longitude=9.275071955673953,
-  zoom=11,
+  zoom=10,
   max_zoom=16,
   pitch=45,
   bearing=0
 )
 
+
+
+
+origin=pd.DataFrame({"lon":9.275071955673953,"lat":45.47185532715593,"name":"Esposizioni Novegro"}, index=[0])
 import pydeck as pdk
 import pandas as pd
 
 
 # Data from OpenStreetMap, accessed via osmpy
 
-ICON_URL = "https://upload.wikimedia.org/wikipedia/commons/7/78/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Temple_%E2%80%93_Tourism_%E2%80%93_Light.png"
+ICON_URL = "https://upload.wikimedia.org/wikipedia/commons/9/9e/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Pin_%E2%80%93_Tourism_%E2%80%93_Light.png"
 
 icon_data = {
 
@@ -222,11 +132,6 @@ icon_data = {
     "anchorY": 'auto',
 }
 
-
-origin=pd.DataFrame({"lat":45.47185532715593,"lon":9.275071955673953,"name":"Esposizioni Novegro"}, index=[0])
-
-origin["lat"]=origin["lat"].apply(lambda x : float(x))
-origin["lon"]=origin["lon"].apply(lambda x : float(x))
 
 data=origin
 
@@ -250,11 +155,8 @@ origin_layer = pdk.Layer(
     pickable=True,
 )
 
-## MAP
 
-st.pydeck_chart(pdk.Deck(layers=[parking_layer,train_layer,bus_layer,metro_layer,origin_layer], initial_view_state=view_state, tooltip={"text": "{name}"}))
-
-
+pdk.Deck(layers=[Nav_Points,origin_layer], map_style='road',initial_view_state=INITIAL_VIEW_STATE, tooltip={"text": "{name}"})
 
 st.markdown("## Presenze")
 
