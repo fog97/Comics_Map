@@ -28,7 +28,7 @@ start_lng=location.longitude
 dic={"lat":start_lat,"lon":start_lng}
 df=pd.DataFrame(dic,index=[1])
 
-map_data=pd.read_csv(path+"Comics_Novegro.csv",dtype=object, index_col=0)
+map_data=pd.read_csv(path+"map_data.csv",dtype=object, index_col=0)
 
 import pandas as pd
 import numpy as np
