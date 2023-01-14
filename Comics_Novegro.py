@@ -228,8 +228,8 @@ run = st.button('Aggiungi')
 delete = st.button('Elimina')
                 
 
-#if "mdf" not in st.session_state:
-#    st.session_state.mdf = pd.DataFrame(columns=['Nome', 'Data'])
+if "mdf" not in st.session_state:
+    st.session_state.mdf = pd.DataFrame(columns=['Nome', 'Data'])
 
 
 dizionario = {nome:data_def}
@@ -244,4 +244,22 @@ if delete:
 
 st.write(st.session_state.mdf)
 
-st.session_state
+#Uso mongoDB
+from pymongo import MongoClient
+
+@st.experimental_singleton(suppress_st_warning=True)
+def init_connection():
+    return MongoClient("mongodb+srv://st.secrets.db_username:st.secrets.db_pswd@st.secrets.cluster_name.n4ycr4f.mongodb.net/?retryWrites=true&w=majority")
+
+
+client = init_connection()
+@st.experimental_memo(ttl=60)
+def get_data():
+    db = client.PresenzeComics #establish connection to the 'sample_guide' db
+    items = db.Novegro.find() # return all result from the 'planets' collection
+    items = list(items)        
+    return items
+data = get_data()
+
+
+
