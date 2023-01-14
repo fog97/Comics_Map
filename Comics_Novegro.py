@@ -216,7 +216,7 @@ data = data.strftime("%m/%d/%Y")
 data_def=data
 data_to=''
 with st.expander("Inserire più giorni"):
-    data_to = st.date_input("Data Presenza",
+    data_to = st.date_input("Data Fine Presenza",
         datetime.now())
     data_to = "-"+data_to.strftime("%m/%d/%Y")
 
