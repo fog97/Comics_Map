@@ -109,8 +109,7 @@ dic={"lat":start_lat,"lon":start_lng,"name":"Esposizioni Novegro"}
 origin=pd.DataFrame(dic,index=[1])
 
 import pandas as pd
-import geopandas
-import folium
+
 import matplotlib.pyplot as plt
 import pydeck as pdk
 INITIAL_VIEW_STATE = pdk.ViewState(
