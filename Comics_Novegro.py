@@ -205,10 +205,14 @@ st.markdown("# Presenze")
 col0, col1= st.columns(2)
 
 nome = col0.text_input('Nome' )
-import datetime
+
+from datetime import datetime
+
+
+
 data = st.date_input(
     "Data Presenza",
-    datetime.now())
+    datetime.today().strftime('%Y-%m-%d'))
 data=str(data)
 
 
