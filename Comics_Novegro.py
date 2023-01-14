@@ -201,6 +201,28 @@ st.markdown("# Presenze")
 
 
 
+#Uso mongoDB
+from pymongo import MongoClient
+
+us_name=st.secrets["mongo"]["db_username"]
+us_pw=st.secrets["mongo"]["db_pswd"]
+cl_name=st.secrets["mongo"]["cluster_name"]
+
+
+@st.experimental_singleton(suppress_st_warning=True)
+def init_connection():
+    return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
+
+
+client = init_connection()
+@st.experimental_memo(ttl=60)
+def get_data():
+    db = client.PresenzeComics #establish connection to the 'sample_guide' db
+    items = db.Novegro.find() # return all result from the 'planets' collection
+    items = list(items)        
+    return items
+data = get_data()
+
 
 col0, col1= st.columns(2)
 
@@ -226,47 +248,14 @@ col0, col1= st.columns(2)
 
 run = st.button('Aggiungi')
 delete = st.button('Elimina')
-                
-
-if "mdf" not in st.session_state:
-    st.session_state.mdf = pd.DataFrame(columns=['Nome', 'Data'])
 
 
-dizionario = {nome:data_def}
-df_new = pd.DataFrame({'Nome': list(dizionario.keys()), 'Data': list(dizionario.values())})
-   
-        
+     
 if run:
-    st.session_state.mdf =st.session_statepd.concat([st.session_state.mdf, df_new], axis=0)
+    mydict = { "Nome": "nome", "Data": data_def }
+    mycol = db["Novegro"]
+    x = mycol.insert_one(mydict)
+
 
 if delete:
     st.session_state.mdf=st.session_state.mdf.loc[(st.session_state.mdf["Nome"] != nome) & (st.session_state.mdf["Data"] != data_def)]
-
-st.write(st.session_state.mdf)
-
-#Uso mongoDB
-from pymongo import MongoClient
-
-us_name=st.secrets["mongo"]["db_username"]
-us_pw=st.secrets["mongo"]["db_pswd"]
-cl_name=st.secrets["mongo"]["cluster_name"]
-
-
-@st.experimental_singleton(suppress_st_warning=True)
-def init_connection():
-    return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
-
-
-client = init_connection()
-@st.experimental_memo(ttl=60)
-def get_data():
-    db = client.PresenzeComics #establish connection to the 'sample_guide' db
-    items = db.Novegro.find() # return all result from the 'planets' collection
-    items = list(items)        
-    return items
-data = get_data()
-
-#mydict = { "Nome": "nome", "Data": data_def }
-#mycol = db["Novegro"]
-#x = mycol.insert_one(mydict)
-
