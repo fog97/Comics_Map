@@ -9,4 +9,4 @@ pydeck
 datetime
 pydeck
 GitPython
-pymongo
+pymongo>=3.1
