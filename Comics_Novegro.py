@@ -172,19 +172,7 @@ origin_layer = pdk.Layer(
 
 st.pydeck_chart(pdk.Deck(layers=[Nav_Points,origin_layer], map_style='road',initial_view_state=INITIAL_VIEW_STATE, tooltip={"text": "{name}"}))
 
-st.markdown("## Presenze")
-
-
-
-st.text_input("Nome ", key="eadd")
-add_e=st.session_state.eadd
-
-
-st.text_input("Data Presenza ", key="padd")
-add_p=st.session_state.padd
-
-info_dict={"Nome":add_e,"Data":add_p}
-infopres=pd.DataFrame(info_dict,index=[1])
+st.markdown("# Presenze")
 
 
 
