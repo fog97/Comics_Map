@@ -241,3 +241,5 @@ if delete:
     st.session_state.mdf=st.session_state.mdf.loc[(st.session_state.mdf["Nome"] != nome) & (st.session_state.mdf["Data"] != data_def)]
 
 st.write(st.session_state.mdf)
+
+st.session_state
