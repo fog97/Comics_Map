@@ -9,4 +9,4 @@ pydeck
 datetime
 pydeck
 GitPython
-pymongo[srv]
+pymongo
