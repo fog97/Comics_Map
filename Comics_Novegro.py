@@ -210,10 +210,17 @@ from datetime import datetime
 
 
 
-data = st.date_input(
-    "Data Presenza",
+data = st.date_input("Data Presenza",
     datetime.now())
 data = data.strftime("%m/%d/%Y")
+data_def=data
+data_to=''
+with st.expander("Inserire più giorni"):
+    data_to = st.date_input("Data Presenza",
+        datetime.now())
+    data_to = "-"+data_to.strftime("%m/%d/%Y")
+
+data_def=data_def+data_to
 
 col0, col1= st.columns(2)
 
@@ -223,7 +230,7 @@ delete = st.button('Elimina')
 
 if "mdf" not in st.session_state:
     st.session_state.mdf = pd.DataFrame(columns=['Nome', 'Data'])
-dizionario = {nome:data}
+dizionario = {nome:data_def}
 df_new = pd.DataFrame({'Nome': list(dizionario.keys()), 'Data': list(dizionario.values())})
    
         
@@ -231,6 +238,6 @@ if run:
     st.session_state.mdf = pd.concat([st.session_state.mdf, df_new], axis=0)
 
 if delete:
-    st.session_state.mdf=st.session_state.mdf.loc[(st.session_state.mdf["Nome"] != nome) & (st.session_state.mdf["Data"] != data)]
+    st.session_state.mdf=st.session_state.mdf.loc[(st.session_state.mdf["Nome"] != nome) & (st.session_state.mdf["Data"] != data_def)]
 
 st.write(st.session_state.mdf)
