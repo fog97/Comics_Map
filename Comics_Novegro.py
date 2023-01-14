@@ -189,7 +189,7 @@ infopres=pd.DataFrame(info_dict,index=[1])
 
 
 
-col0, col1= st.columns(10)
+col0, col1= st.columns(2)
 
 nome = col0.text_input('Nome' )
 data = col1.text_input('Data' )
