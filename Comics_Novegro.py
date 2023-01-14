@@ -254,7 +254,6 @@ st.write(st.secrets.cluster_name)
 def init_connection():
     return MongoClient(f"mongodb+srv://{st.secrets.db_username}:{st.secrets.db_pswd}@{st.secrets.cluster_name}.zisso.mongodb.net/test")
 
-mongodb+srv://luca:luca@cluster0.zisso.mongodb.net/test
 
 client = init_connection()
 @st.experimental_memo(ttl=60)
