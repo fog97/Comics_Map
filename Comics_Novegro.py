@@ -205,7 +205,11 @@ st.markdown("# Presenze")
 col0, col1= st.columns(2)
 
 nome = col0.text_input('Nome' )
-data = col1.text_input('Data' )
+import datetime
+data = st.date_input(
+    "Data Presenza",
+    date.today()
+
 col0, col1= st.columns(2)
 
 run = st.button('Aggiungi')
