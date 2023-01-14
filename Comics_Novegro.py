@@ -215,7 +215,7 @@ def init_connection():
 
 
 client = init_connection()
-@st.experimental_memo(ttl=60)
+
 
 
 
@@ -256,7 +256,7 @@ if run:
 if delete:
     st.session_state.mdf=st.session_state.mdf.loc[(st.session_state.mdf["Nome"] != nome) & (st.session_state.mdf["Data"] != data_def)]
 
-
+@st.experimental_memo(ttl=60)
 def get_data():
     db = client.PresenzeComics #establish connection to the 'sample_guide' db
     items = db.Novegro.find() # return all result from the 'planets' collection
