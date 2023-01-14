@@ -247,14 +247,14 @@ st.write(st.session_state.mdf)
 #Uso mongoDB
 from pymongo import MongoClient
 
-st.write(st.secrets["mongo"]["cluster_name"])
+st.write(st.secrets.cluster_name)
 
 
 @st.experimental_singleton(suppress_st_warning=True)
 def init_connection():
-    return MongoClient("mongodb+srv://st.secrets.db_username:st.secrets.db_pswd@st.secrets.cluster_name.zisso.mongodb.net/test")
+    return MongoClient(f"mongodb+srv://{st.secrets.db_username}:{st.secrets.db_pswd}@{st.secrets.cluster_name}.zisso.mongodb.net/test")
 
-
+mongodb+srv://luca:luca@cluster0.zisso.mongodb.net/test
 
 client = init_connection()
 @st.experimental_memo(ttl=60)
