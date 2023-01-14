@@ -230,6 +230,8 @@ delete = st.button('Elimina')
 
 if "mdf" not in st.session_state:
     st.session_state.mdf = pd.DataFrame(columns=['Nome', 'Data'])
+
+
 dizionario = {nome:data_def}
 df_new = pd.DataFrame({'Nome': list(dizionario.keys()), 'Data': list(dizionario.values())})
    
