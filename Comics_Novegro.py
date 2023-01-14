@@ -108,6 +108,19 @@ start_lng=location.longitude
 dic={"lat":start_lat,"lon":start_lng,"name":"Esposizioni Novegro"}
 origin=pd.DataFrame(dic,index=[1])
 
+import pandas as pd
+import geopandas
+import folium
+import matplotlib.pyplot as plt
+import pydeck as pdk
+INITIAL_VIEW_STATE = pdk.ViewState(
+  latitude=45.47185532715593, 
+  longitude=9.275071955673953,
+  zoom=10,
+  max_zoom=16,
+  pitch=45,
+  bearing=0
+)
 
 origin_url = "https://upload.wikimedia.org/wikipedia/commons/9/9e/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Pin_%E2%80%93_Tourism_%E2%80%93_Light.png"
 
@@ -119,6 +132,8 @@ origin_icon = {
     "anchorY": 'auto',
 }
 
+
+origin=pd.DataFrame({"lon":9.275071955673953,"lat":45.47185532715593,"name":"Esposizioni Novegro"}, index=[0])
 import pydeck as pdk
 import pandas as pd
 
@@ -129,24 +144,10 @@ for index,row in origin.iterrows():
 
 origin["icon_data"]=icon_data
 
+
+
+
 data=origin[["lat","lon","name","icon_data"]]
-
-
-
-
-INITIAL_VIEW_STATE = pdk.ViewState(
-  latitude=start_lat, 
-  longitude=start_lng,
-  zoom=10,
-  max_zoom=16,
-  pitch=45,
-  bearing=0
-)
-
-
-import pydeck as pdk
-import pandas as pd
-
 
 view_state = INITIAL_VIEW_STATE
 
@@ -159,6 +160,15 @@ origin_layer = pdk.Layer(
     get_position=["lon", "lat"],
     pickable=True,
 )
+
+
+
+
+
+
+
+
+
 
 
 st.pydeck_chart(pdk.Deck(layers=[Nav_Points,origin_layer], map_style='road',initial_view_state=INITIAL_VIEW_STATE, tooltip={"text": "{name}"}))
