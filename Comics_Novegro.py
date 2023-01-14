@@ -194,5 +194,3 @@ df_new = pd.DataFrame({'Nome': list(dizionario.values()), 'Data': list(dizionari
 if run:
     st.session_state.mdf = pd.concat([st.session_state.mdf, df_new], axis=0)
     st.dataframe(st.session_state.mdf)
-
-st.write(st.session_state.mdf)
