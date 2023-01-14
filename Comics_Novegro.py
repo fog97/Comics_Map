@@ -249,7 +249,8 @@ from pymongo import MongoClient
 
 @st.experimental_singleton(suppress_st_warning=True)
 def init_connection():
-    return MongoClient("mongodb+srv://st.secrets.db_username:st.secrets.db_pswd@st.secrets.cluster_name.n4ycr4f.mongodb.net/?retryWrites=true&w=majority")
+    return MongoClient("mongodb+srv://st.secrets.db_username:st.secrets.db_pswd@st.secrets.cluster_name.zisso.mongodb.net/test")
+
 
 
 client = init_connection()
