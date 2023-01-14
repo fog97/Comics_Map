@@ -20,15 +20,11 @@ st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
 
 
 st.markdown("## Mappa")
-from geopy.geocoders import Nominatim
-locator = Nominatim(user_agent = "myapp")
-location = locator.geocode("Via Novegro 20090 Segrate")
-start_lat=location.latitude 
-start_lng=location.longitude
-dic={"lat":start_lat,"lon":start_lng}
-df=pd.DataFrame(dic,index=[1])
 
-map_data=pd.read_csv(path+"map_data.csv",dtype=object, index_col=0)
+
+map_data=pd.read_csv(path+"map_data.csv", keep_default_na=False,index_col=0)
+map_data['lat'] = map_data['lat'].astype(float)
+map_data['lon'] = map_data['lon'].astype(float)
 
 import pandas as pd
 import numpy as np
@@ -103,9 +99,19 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 import pydeck as pdk
+
+from geopy.geocoders import Nominatim
+locator = Nominatim(user_agent = "myapp")
+location = locator.geocode("Via Novegro 20090 Segrate")
+start_lat=location.latitude 
+start_lng=location.longitude
+dic={"lat":start_lat,"lon":start_lng}
+origin=pd.DataFrame(dic,index=[1])
+
+
 INITIAL_VIEW_STATE = pdk.ViewState(
-  latitude=45.47185532715593, 
-  longitude=9.275071955673953,
+  latitude=start_lat, 
+  longitude=start_lng,
   zoom=10,
   max_zoom=16,
   pitch=45,
@@ -113,9 +119,6 @@ INITIAL_VIEW_STATE = pdk.ViewState(
 )
 
 
-
-
-origin=pd.DataFrame({"lon":9.275071955673953,"lat":45.47185532715593,"name":"Esposizioni Novegro"}, index=[0])
 import pydeck as pdk
 import pandas as pd
 
@@ -132,7 +135,7 @@ icon_data = {
     "anchorY": 'auto',
 }
 
-
+origin["name"]="Esposizioni Novegro"
 data=origin
 
 data["icon_data"] = icon_data
