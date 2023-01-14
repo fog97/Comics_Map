@@ -209,13 +209,12 @@ nome = col0.text_input('Nome' )
 from datetime import datetime
 
 from datetime import date
-today = date.today()
-today_time = today.strftime("%m/%d/%Y")
+today = date.today().strftime("%m/%d/%Y")
 
 
 data = st.date_input(
     "Data Presenza",
-    today_time)
+    today)
 data=str(data)
 
 
