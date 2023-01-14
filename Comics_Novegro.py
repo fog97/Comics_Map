@@ -181,14 +181,16 @@ col0, col1= st.columns(2)
 
 nome = col0.text_input('Nome' )
 data = col1.text_input('Data' )
+col0, col1= st.columns(2)
 
-run = st.button('Submit')
+run = col0.st.button('Aggiungi')
+run = col1.st.button('Elimina')
                 
 
 if "mdf" not in st.session_state:
     st.session_state.mdf = pd.DataFrame(columns=['Nome', 'Data'])
 dizionario = {nome:data}
-df_new = pd.DataFrame({'Nome': list(dizionario.values()), 'Data': list(dizionario.keys())})
+df_new = pd.DataFrame({'Nome': list(dizionario.keys()), 'Data': list(dizionario.values())})
    
         
 if run:
