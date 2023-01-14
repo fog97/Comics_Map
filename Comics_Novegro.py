@@ -210,10 +210,12 @@ from datetime import datetime
 
 from datetime import date
 today = date.today()
+today_time = today.strftime("%m/%d/%Y")
+
 
 data = st.date_input(
     "Data Presenza",
-    today)
+    today_time)
 data=str(data)
 
 
