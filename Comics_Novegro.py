@@ -105,8 +105,33 @@ locator = Nominatim(user_agent = "myapp")
 location = locator.geocode("Via Novegro 20090 Segrate")
 start_lat=location.latitude 
 start_lng=location.longitude
-dic={"lat":start_lat,"lon":start_lng}
+dic={"lat":start_lat,"lon":start_lng,"name":"Esposizioni Novegro"}
 origin=pd.DataFrame(dic,index=[1])
+
+
+origin_url = "https://upload.wikimedia.org/wikipedia/commons/9/9e/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Pin_%E2%80%93_Tourism_%E2%80%93_Light.png"
+
+origin_icon = {
+
+    "url": origin_url,
+    "width": 32,
+    "height": 37,
+    "anchorY": 'auto',
+}
+
+import pydeck as pdk
+import pandas as pd
+
+icon_data = []
+for index,row in origin.iterrows():
+  if index==0:
+    icon_data.append(origin_icon)
+
+origin["icon_data"]=icon_data
+
+data=origin[["lat","lon","name","icon_data"]]
+
+
 
 
 INITIAL_VIEW_STATE = pdk.ViewState(
@@ -121,28 +146,6 @@ INITIAL_VIEW_STATE = pdk.ViewState(
 
 import pydeck as pdk
 import pandas as pd
-
-
-# Data from OpenStreetMap, accessed via osmpy
-
-ICON_URL = "https://upload.wikimedia.org/wikipedia/commons/9/9e/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Pin_%E2%80%93_Tourism_%E2%80%93_Light.png"
-
-icon_data = {
-
-    "url": ICON_URL,
-    "width": 32,
-    "height": 37,
-    "anchorY": 'auto',
-}
-
-origin["name"]="Esposizioni Novegro"
-data=origin
-
-data["icon_data"] = icon_data
-
-
-data=data[["lat","lon","name","icon_data"]]
-
 
 
 view_state = INITIAL_VIEW_STATE
