@@ -211,8 +211,7 @@ from datetime import datetime
 
 
 data = st.date_input(
-    "Data Presenza",
-    datetime.today().strftime('%Y-%m-%d'))
+    "Data Presenza")
 data=str(data)
 
 
