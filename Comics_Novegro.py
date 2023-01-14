@@ -208,7 +208,7 @@ nome = col0.text_input('Nome' )
 import datetime
 data = st.date_input(
     "Data Presenza",
-    datetime.today())
+    datetime.now())
 data=str(data)
 
 
