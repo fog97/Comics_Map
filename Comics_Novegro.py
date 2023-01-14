@@ -261,5 +261,7 @@ def get_data():
     return items
 data = get_data()
 
-
+#mydict = { "Nome": "nome", "Data": data_def }
+#mycol = db["Novegro"]
+#x = mycol.insert_one(mydict)
 
