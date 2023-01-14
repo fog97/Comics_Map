@@ -183,8 +183,8 @@ nome = col0.text_input('Nome' )
 data = col1.text_input('Data' )
 col0, col1= st.columns(2)
 
-run = col0.st.button('Aggiungi')
-run = col1.st.button('Elimina')
+run = st.button('Aggiungi')
+delete = st.button('Elimina')
                 
 
 if "mdf" not in st.session_state:
