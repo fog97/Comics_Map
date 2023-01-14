@@ -260,3 +260,4 @@ if delete:
 db = client.PresenzeComics #establish connection to the 'sample_guide' db
 collection = db.Novegro # return all result from the 'planets' collection
 df = pd.DataFrame(list(collection.find()))
+st.write(df)
