@@ -208,10 +208,12 @@ nome = col0.text_input('Nome' )
 
 from datetime import datetime
 
-
+from datetime import date
+today = date.today()
 
 data = st.date_input(
-    "Data Presenza")
+    "Data Presenza",
+    today)
 data=str(data)
 
 
