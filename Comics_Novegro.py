@@ -252,7 +252,7 @@ delete = st.button('Elimina')
 
      
 if run:
-    mydict = { "Nome": "nome", "Data": data_def }
+    mydict = { "Nome": nome, "Data": data_def }
     db = client.PresenzeComics
     mycol = db["Novegro"]
     x = mycol.insert_one(mydict)
