@@ -26,6 +26,31 @@ map_data=pd.read_csv(path+"map_data.csv", keep_default_na=False,index_col=0)
 map_data['lat'] = map_data['lat'].astype(float)
 map_data['lon'] = map_data['lon'].astype(float)
 
+
+#['Parcheggio', 'Bus', 'Train', 'Metro']
+bus = st.checkbox('Bus')
+bus_l=''
+if bus:
+    bus_l="Bus"
+
+parcheggio = st.checkbox('Parcheggio')
+parcheggio_l=''
+if parcheggio:
+    parcheggio_l="Parcheggio"
+
+treno = st.checkbox('Treno')
+treno_l=''
+if treno:
+    treno_l="Train"
+
+metro = st.checkbox('Metro')
+metro_l=''
+if metro:
+    metro_l="Metro"
+
+list_values=[metro_l,parcheggio_l,treno_l,bus_l]
+map_data=map_data[map_data.Classe.isin(list_values)]
+
 import pandas as pd
 import numpy as np
 import pydeck as pdk
