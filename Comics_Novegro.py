@@ -196,4 +196,7 @@ df_new = pd.DataFrame({'Nome': list(dizionario.keys()), 'Data': list(dizionario.
 if run:
     st.session_state.mdf = pd.concat([st.session_state.mdf, df_new], axis=0)
 
+if delete:
+    st.session_state.mdf.loc[(st.session_state.mdf["Nome"] != nome) & (st.session_state.mdf["Data"] != data)]
+
 st.write(st.session_state.mdf)
