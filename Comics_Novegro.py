@@ -275,11 +275,11 @@ for index, row in presenze.iterrows():
         db = client.PresenzeComics
         mycol = db["Novegro"]
         mycol.delete_one(mydict)
+        db = client.PresenzeComics
+        collection = db.Novegro 
         presenze = pd.DataFrame(list(collection.find()))
 
-db = client.PresenzeComics
-collection = db.Novegro 
-presenze = pd.DataFrame(list(collection.find()))
+
 
 
 
