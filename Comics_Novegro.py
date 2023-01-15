@@ -271,7 +271,7 @@ for index, row in presenze.iterrows():
     button_phold = col3.empty() 
     do_action = button_phold.button(key=index,label="Delete")
     if do_action:
-        mydict = { "Nome": row['Nome'][index], "Data": row['Data'][index] }
+        mydict = {"_id":row["_id"]}
         db = client.PresenzeComics
         mycol = db["Novegro"]
         mycol.delete_one(mydict)
