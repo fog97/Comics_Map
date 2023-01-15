@@ -239,10 +239,9 @@ with st.expander("Inserire più giorni"):
 if data_def!=data_to:
     data_def=data_def+"-"+data_to
 
-col0, col1= st.columns(2)
+
 
 add = st.button('Aggiungi')
-delete = st.button('Elimina')
 
 
      
@@ -253,19 +252,15 @@ if add:
     mycol.insert_one(mydict)
 
 
-if delete:
-    mydict = { "Nome": nome, "Data": data_def }
-    db = client.PresenzeComics
-    mycol = db["Novegro"]
-    mycol.delete_one(mydict)
-
-
 db = client.PresenzeComics
 collection = db.Novegro 
 presenze = pd.DataFrame(list(collection.find()))
 
 for index, row in presenze.iterrows():
     col1, col2,col3 = st.columns((10, 10, 10))
+    col1.write('Nome')
+    col2.write('Data')
+    col3.write('Elimina Presenza')
     col1.write(row['Nome'])
     col2.write(row['Data'])  
     button_phold = col3.empty() 
