@@ -17,6 +17,9 @@ st.markdown("## Biglietti")
 
 biglietti=pd.read_csv(path+"biglietti_novegro.csv",sep=";")
 #st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
+col1, col2 = st.columns((10, 10))
+col1.write('Tipologia')
+col2.write('Prezzo (€)')
 for index, row in biglietti.iterrows():
     col1, col2 = st.columns((10, 10))
     col1.write(row['Tipologia'])
@@ -286,4 +289,4 @@ for index, row in presenze.iterrows():
 
 
 
-st.markdown("Refresh della pagina per verificare l'effettiva cancellazione")
+st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
