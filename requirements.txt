@@ -10,3 +10,4 @@ datetime
 pydeck
 GitPython
 PyMongo
+PIL

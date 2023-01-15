@@ -8,8 +8,12 @@ import shapefile
 from shapely.geometry import Point
 from shapely.geometry import shape
 import pydeck as pdk
+from PIL import Image
 path='/app/comics_map/'
 
 st.markdown("# Come Together ")
 
 st.image(path+"copertina.jpg")
+
+image = Image.open('copertina.jpg')
+st.image(image)
