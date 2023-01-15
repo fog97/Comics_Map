@@ -256,11 +256,13 @@ db = client.PresenzeComics
 collection = db.Novegro 
 presenze = pd.DataFrame(list(collection.find()))
 
+col1, col2,col3 = st.columns((10, 10, 10))
+col1.write('Nome')
+col2.write('Data')
+col3.write('Elimina Presenza')
+
 for index, row in presenze.iterrows():
     col1, col2,col3 = st.columns((10, 10, 10))
-    col1.write('Nome')
-    col2.write('Data')
-    col3.write('Elimina Presenza')
     col1.write(row['Nome'])
     col2.write(row['Data'])  
     button_phold = col3.empty() 
