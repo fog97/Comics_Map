@@ -12,8 +12,8 @@ from PIL import Image
 path='/app/comics_map/'
 
 st.markdown("# Come Together ")
+st.image(image.imread(path+'copertina.jng'))
 
-st.image(path+"copertina.jpg")
 
 image = Image.open('copertina.jpg')
 st.image(image)
