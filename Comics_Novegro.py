@@ -241,20 +241,23 @@ if data_def!=data_to:
 
 col0, col1= st.columns(2)
 
-run = st.button('Aggiungi')
+add = st.button('Aggiungi')
 delete = st.button('Elimina')
 
 
      
-if run:
+if add:
     mydict = { "Nome": nome, "Data": data_def }
     db = client.PresenzeComics
     mycol = db["Novegro"]
-    x = mycol.insert_one(mydict)
+    mycol.insert_one(mydict)
 
 
 if delete:
-    st.session_state.mdf=st.session_state.mdf.loc[(st.session_state.mdf["Nome"] != nome) & (st.session_state.mdf["Data"] != data_def)]
+    mydict = { "Nome": nome, "Data": data_def }
+    db = client.PresenzeComics
+    mycol = db["Novegro"]
+    mycol.delete_one(mydict)
 
 
 db = client.PresenzeComics #establish connection to the 'sample_guide' db
