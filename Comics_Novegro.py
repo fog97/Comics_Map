@@ -252,9 +252,12 @@ if add:
     mycol.insert_one(mydict)
 
 
+ 
 db = client.PresenzeComics
 collection = db.Novegro 
 presenze = pd.DataFrame(list(collection.find()))
+
+
 
 col1, col2,col3 = st.columns((10, 10, 10))
 col1.write('Nome')
@@ -274,6 +277,9 @@ for index, row in presenze.iterrows():
         mycol.delete_one(mydict)
         presenze = pd.DataFrame(list(collection.find()))
 
+db = client.PresenzeComics
+collection = db.Novegro 
+presenze = pd.DataFrame(list(collection.find()))
 
 
 
