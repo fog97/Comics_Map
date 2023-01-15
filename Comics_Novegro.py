@@ -260,8 +260,8 @@ if delete:
     mycol.delete_one(mydict)
 
 
-db = client.PresenzeComics #establish connection to the 'sample_guide' db
-collection = db.Novegro # return all result from the 'planets' collection
+db = client.PresenzeComics
+collection = db.Novegro 
 presenze = pd.DataFrame(list(collection.find()))
 
 for index, row in presenze.iterrows():
@@ -275,6 +275,7 @@ for index, row in presenze.iterrows():
         db = client.PresenzeComics
         mycol = db["Novegro"]
         mycol.delete_one(mydict)
+        presenze = pd.DataFrame(list(collection.find()))
 
 
 
