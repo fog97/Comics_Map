@@ -251,12 +251,27 @@ for uploaded_file in uploaded_files:
     st.write("filename:", uploaded_file.name)
     st.write(bytes_data)
 
+import gridfs
+
+db = client.PresenzeComics
+
+#Create an object of GridFs for the above database.
+fs = gridfs.GridFS(db)
+
+#define an image object with the location.
+file = uploaded_files
+
+#Open the image in read-only format.
+with open(file, 'rb') as f:
+    contents = f.read()
+
+
 add = st.button('Aggiungi')
 
 
      
 if add:
-    mydict = { "Nome": nome, "Data": data_def,"Foto":uploaded_files }
+    mydict = { "Nome": nome, "Data": data_def,"Foto":contents }
     db = client.PresenzeComics
     mycol = db["Novegro"]
     mycol.insert_one(mydict)
