@@ -12,7 +12,7 @@ from PIL import Image
 path='/app/comics_map/'
 
 st.markdown("# Come Together ")
-st.image(image.imread(path+'copertina.jpg'))
+st.image(image.imread(path+'Copertina.jpg'))
 
 
 image = Image.open('copertina.jpg')
