@@ -283,3 +283,4 @@ for index, row in presenze.iterrows():
 
 
 
+st.markdown("Refresh della pagina per verificare l'effettiva cancellazione")
