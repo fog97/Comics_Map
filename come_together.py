@@ -14,4 +14,4 @@ path='/app/comics_map/'
 st.markdown("# Come Together ")
 st.image(image.imread(path+'Copertina.jpg'))
 
-st.markdown("# Quale Convention ti interessa? ")
+st.markdown("## Quale Convention ti interessa? ")

@@ -16,8 +16,11 @@ st.markdown("# Novegro comics")
 st.markdown("## Biglietti")
 
 biglietti=pd.read_csv(path+"biglietti_novegro.csv",sep=";")
-st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
-
+#st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
+for index, row in biglietti.iterrows():
+    col1, col2 = st.columns((10, 10))
+    col1.write(row['Tipologia'])
+    col2.write(row['Prezzo'])  
 
 st.markdown("## Mappa")
 
