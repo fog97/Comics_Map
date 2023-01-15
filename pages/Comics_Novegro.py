@@ -245,14 +245,18 @@ with st.expander("Inserire più giorni"):
 if data_def!=data_to:
     data_def=data_def+"-"+data_to
 
-
+uploaded_files = st.file_uploader("Carica la foto del tuo cosplay", accept_multiple_files=True)
+for uploaded_file in uploaded_files:
+    bytes_data = uploaded_file.read()
+    st.write("filename:", uploaded_file.name)
+    st.write(bytes_data)
 
 add = st.button('Aggiungi')
 
 
      
 if add:
-    mydict = { "Nome": nome, "Data": data_def }
+    mydict = { "Nome": nome, "Data": data_def,"Foto":uploaded_files }
     db = client.PresenzeComics
     mycol = db["Novegro"]
     mycol.insert_one(mydict)
@@ -265,16 +269,18 @@ presenze = pd.DataFrame(list(collection.find()))
 
 
 
-col1, col2,col3 = st.columns((10, 10, 10))
+col1, col2,col3,col4 = st.columns((10, 10, 10,10))
 col1.write('Nome')
 col2.write('Data')
-col3.write('Elimina Presenza')
+col3.write('Cosplay')
+col4.write('Elimina Presenza')
 
 for index, row in presenze.iterrows():
-    col1, col2,col3 = st.columns((10, 10, 10))
+    col1, col2,col3,col4 = st.columns((10, 10, 10,10))
     col1.write(row['Nome'])
-    col2.write(row['Data'])  
-    button_phold = col3.empty() 
+    col2.write(row['Data'])
+    col2.image(row['Foto'])  
+    button_phold = col4.empty() 
     do_action = button_phold.button(key=index,label="Delete")
     if do_action:
         mydict = {"_id":row["_id"]}
