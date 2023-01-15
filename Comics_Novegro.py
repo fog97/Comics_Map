@@ -264,4 +264,18 @@ db = client.PresenzeComics #establish connection to the 'sample_guide' db
 collection = db.Novegro # return all result from the 'planets' collection
 presenze = pd.DataFrame(list(collection.find()))
 
-st.write(presenze[["Nome","Data"]])
+for index, row in presenze.iterrows():
+    col1, col2,col3 = st.columns((10, 10, 10))
+    col1.write(row['Nome'][index])
+    col2.write(row['Data'][index])  
+    button_phold = col3.empty() 
+    do_action = button_phold.button(key=index,label="Delete")
+    if do_action:
+        mydict = { "Nome": row['Nome'][index], "Data": row['Data'][index] }
+        db = client.PresenzeComics
+        mycol = db["Novegro"]
+        mycol.delete_one(mydict)
+
+
+
+
