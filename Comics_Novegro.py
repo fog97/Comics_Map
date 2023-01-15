@@ -266,8 +266,8 @@ presenze = pd.DataFrame(list(collection.find()))
 
 for index, row in presenze.iterrows():
     col1, col2,col3 = st.columns((10, 10, 10))
-    col1.write(row['Nome'][index])
-    col2.write(row['Data'][index])  
+    col1.write(row['Nome'])
+    col2.write(row['Data'])  
     button_phold = col3.empty() 
     do_action = button_phold.button(key=index,label="Delete")
     if do_action:
