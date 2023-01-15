@@ -235,9 +235,9 @@ data_to=''
 with st.expander("Inserire più giorni"):
     data_to = st.date_input("Data Fine Presenza",
         datetime.now())
-    data_to = "-"+data_to.strftime("%m/%d/%Y")
+    data_to = data_to.strftime("%m/%d/%Y")
 if data_def!=data_to:
-    data_def=data_def+data_to
+    data_def=data_def+"-"+data_to
 
 col0, col1= st.columns(2)
 
