@@ -293,7 +293,7 @@ col3.write('Cosplay')
 col4.write('Elimina Presenza')
 
 for index, row in presenze.iterrows():
-    col1, col2,col3,col4 = st.columns((10, 10, 10,10))
+    col1, col2,col3,col4 = st.columns((10, 10, 30,10))
     col1.write(row['Nome'])
     col2.write(row['Data'])
     if row['Foto']!='':
@@ -311,8 +311,6 @@ for index, row in presenze.iterrows():
         db = client.PresenzeComics
         collection = db.Novegro 
         presenze = pd.DataFrame(list(collection.find()))
-
-st.table(presenze)
 
 
 
