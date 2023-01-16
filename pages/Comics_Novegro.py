@@ -271,7 +271,7 @@ add = st.button('Aggiungi')
 #,"Foto":contents
      
 if add:
-    mydict = { "Nome": nome, "Data": data_def }
+    mydict = { "Nome": nome, "Data": data_def, "Foto":'' }
     db = client.PresenzeComics
     mycol = db["Novegro"]
     mycol.insert_one(mydict)
