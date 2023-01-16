@@ -10,4 +10,3 @@ datetime
 pydeck
 GitPython
 PyMongo
-st_aggrid

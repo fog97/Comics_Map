@@ -8,7 +8,6 @@ import shapefile
 from shapely.geometry import Point
 from shapely.geometry import shape
 import pydeck as pdk
-from st_aggrid import AgGrid
 
 path='/app/comics_map/Novegro/'
 
