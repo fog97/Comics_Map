@@ -312,6 +312,7 @@ for index, row in presenze.iterrows():
         collection = db.Novegro 
         presenze = pd.DataFrame(list(collection.find()))
 
+st.table(presenze)
 
 
 
