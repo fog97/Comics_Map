@@ -298,7 +298,7 @@ for index, row in presenze.iterrows():
     col1.write(row['Nome'])
     col2.write(row['Data'])
     if row['Foto']!='':
-        col3.image(row['Foto'],use_column_width=True, width=150)
+        col3.image(row['Foto'], width=150)
     else:
         with st.container():
             col3.write(row['Foto'])  
