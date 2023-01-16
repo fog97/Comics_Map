@@ -11,5 +11,6 @@ import pydeck as pdk
 from PIL import Image
 path='/app/comics_map/'
 
-st.markdown("# Come Together ")
+st.header(' :red[_Come Together_] ')
+
 st.image(image.imread(path+'Copertina.jpg'))
