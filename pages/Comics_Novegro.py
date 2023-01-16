@@ -258,7 +258,6 @@ db = client.PresenzeComics
 #Create an object of GridFs for the above database.
 fs = gridfs.GridFS(db)
 file = uploaded_files
-file
 
 #Open the image in read-only format.
 with BytesIO(bytes_data) as f:
