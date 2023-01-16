@@ -259,12 +259,15 @@ db = client.PresenzeComics
 fs = gridfs.GridFS(db)
 
 immagine=''
-if len(bytes_data)>0:
-#Open the image in read-only format.
+try:
     with BytesIO(bytes_data) as f:
         contents = f.read()
         st.image(contents, caption='Immagine Caricata')
         immagine=contents
+except NameError:
+    immagine=''
+
+    
 
 
 add = st.button('Aggiungi')
