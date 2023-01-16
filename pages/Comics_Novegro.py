@@ -288,7 +288,7 @@ presenze = pd.DataFrame(list(collection.find()))
 
 
 
-col1, col2,col3,col4 = st.columns((10, 10, 10,10))
+col1, col2,col3,col4 = st.columns((10, 10, 30,10))
 col1.write('Nome')
 col2.write('Data')
 col3.write('Cosplay')
