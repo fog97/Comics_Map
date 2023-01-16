@@ -263,7 +263,7 @@ file = uploaded_files
 with BytesIO(bytes_data) as f:
     contents = f.read()
 
-st.write(type(contents))
+st.image(contents)
 
 add = st.button('Aggiungi')
 
