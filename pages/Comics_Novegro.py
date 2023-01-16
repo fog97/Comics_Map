@@ -260,8 +260,8 @@ fs = gridfs.GridFS(db)
 file = uploaded_files
 file
 #Open the image in read-only format.
-#with open(file, 'rb') as f:
-#    contents = f.read()
+with open(file, 'rb') as f:
+    contents = f.read()
 
 add = st.button('Aggiungi')
 
