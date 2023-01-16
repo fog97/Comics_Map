@@ -35,27 +35,26 @@ map_data['lon'] = map_data['lon'].astype(float)
 
 
 #['Parcheggio', 'Bus', 'Train', 'Metro']
-with st.sidebar:
 
-    bus = st.checkbox('Bus')
-    bus_l=''
-    if bus:
-        bus_l="Bus"
+bus = st.checkbox('Bus')
+bus_l=''
+if bus:
+    bus_l="Bus"
 
-    parcheggio = st.checkbox('Parcheggio')
-    parcheggio_l=''
-    if parcheggio:
-        parcheggio_l="Parcheggio"
+parcheggio = st.checkbox('Parcheggio')
+parcheggio_l=''
+if parcheggio:
+    parcheggio_l="Parcheggio"
 
-    treno = st.checkbox('Treno')
-    treno_l=''
-    if treno:
-        treno_l="Train"
+treno = st.checkbox('Treno')
+treno_l=''
+if treno:
+    treno_l="Train"
 
-    metro = st.checkbox('Metro')
-    metro_l=''
-    if metro:
-        metro_l="Metro"
+metro = st.checkbox('Metro')
+metro_l=''
+if metro:
+    metro_l="Metro"
 
 list_values=[metro_l,parcheggio_l,treno_l,bus_l]
 map_data=map_data[map_data.Classe.isin(list_values)]
