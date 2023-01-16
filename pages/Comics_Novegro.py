@@ -230,7 +230,7 @@ col0, col1= st.columns(2)
 nome = col0.text_input('Nome' )
 
 from datetime import datetime
-
+from io import StringIO
 
 
 data = st.date_input("Data Presenza",
@@ -248,6 +248,7 @@ if data_def!=data_to:
 uploaded_files = st.file_uploader("Carica la foto del tuo cosplay", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
     bytes_data = uploaded_file.read()
+    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
 
 import gridfs
 
@@ -260,8 +261,12 @@ fs = gridfs.GridFS(db)
 file = uploaded_files
 file
 #Open the image in read-only format.
-with open(file, 'rb') as f:
+with open(stringio, 'rb') as f:
     contents = f.read()
+
+
+contents
+
 
 add = st.button('Aggiungi')
 
