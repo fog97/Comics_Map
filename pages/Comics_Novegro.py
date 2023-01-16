@@ -262,16 +262,16 @@ fs = gridfs.GridFS(db)
 file = uploaded_files
 
 #Open the image in read-only format.
-with open(file, 'rb') as f:
-    contents = f.read()
+#with open(file, 'rb') as f:
+#    contents = f.read()
 
 
 add = st.button('Aggiungi')
 
-
+#,"Foto":contents
      
 if add:
-    mydict = { "Nome": nome, "Data": data_def,"Foto":contents }
+    mydict = { "Nome": nome, "Data": data_def }
     db = client.PresenzeComics
     mycol = db["Novegro"]
     mycol.insert_one(mydict)
