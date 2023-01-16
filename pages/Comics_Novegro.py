@@ -248,8 +248,8 @@ if data_def!=data_to:
 uploaded_files = st.file_uploader("Carica la foto del tuo cosplay", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
     bytes_data = uploaded_file.read()
-    string_data = bytes_data.read()
-    st.write(string_data)
+
+
 import gridfs
 
 db = client.PresenzeComics
