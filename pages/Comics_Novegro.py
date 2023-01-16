@@ -248,7 +248,7 @@ if data_def!=data_to:
 uploaded_files = st.file_uploader("Carica la foto del tuo cosplay", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
     bytes_data = uploaded_file.read()
-st.write(len(bytes_data))
+
 
 import gridfs
 from io import BytesIO
@@ -257,13 +257,15 @@ db = client.PresenzeComics
 
 #Create an object of GridFs for the above database.
 fs = gridfs.GridFS(db)
-file = uploaded_files
 
+immagine=''
+if len(bytes_data)>0:
 #Open the image in read-only format.
-with BytesIO(bytes_data) as f:
-    contents = f.read()
+    with BytesIO(bytes_data) as f:
+        contents = f.read()
+        st.image(contents, caption='Immagine Caricata')
+        immagine=contents
 
-st.image(contents)
 
 add = st.button('Aggiungi')
 
@@ -294,7 +296,10 @@ for index, row in presenze.iterrows():
     col1, col2,col3,col4 = st.columns((10, 10, 10,10))
     col1.write(row['Nome'])
     col2.write(row['Data'])
-    col2.write(row['Foto'])  
+    if row['Foto']!='':
+        col2.image(row['Foto'])
+    else:
+        col2.write(row['Foto'])  
     button_phold = col4.empty() 
     do_action = button_phold.button(key=index,label="Delete")
     if do_action:
