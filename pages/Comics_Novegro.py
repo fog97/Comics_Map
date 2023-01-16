@@ -293,7 +293,7 @@ for index, row in presenze.iterrows():
     col1, col2,col3,col4 = st.columns((10, 10, 10,10))
     col1.write(row['Nome'])
     col2.write(row['Data'])
-    col2.image(row['Foto'])  
+    col2.write(row['Foto'])  
     button_phold = col4.empty() 
     do_action = button_phold.button(key=index,label="Delete")
     if do_action:
