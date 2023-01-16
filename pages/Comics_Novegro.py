@@ -260,7 +260,7 @@ fs = gridfs.GridFS(db)
 
 #define an image object with the location.
 file = uploaded_files
-
+file
 #Open the image in read-only format.
 #with open(file, 'rb') as f:
 #    contents = f.read()
@@ -268,9 +268,10 @@ file = uploaded_files
 add = st.button('Aggiungi')
 
 #,"Foto":contents
-     
+    
+immagine=''
 if add:
-    mydict = { "Nome": nome, "Data": data_def, "Foto":'' }
+    mydict = { "Nome": nome, "Data": data_def, "Foto":immagine }
     db = client.PresenzeComics
     mycol = db["Novegro"]
     mycol.insert_one(mydict)
