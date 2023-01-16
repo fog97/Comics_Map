@@ -251,6 +251,7 @@ for uploaded_file in uploaded_files:
 
 
 import gridfs
+from io import BytesIO
 
 db = client.PresenzeComics
 
@@ -261,7 +262,7 @@ fs = gridfs.GridFS(db)
 file = uploaded_files
 file
 #Open the image in read-only format.
-with open(bytes_data, 'rb') as f:
+with BytesIO(bytes_data) as f:
     contents = f.read()
 
 
