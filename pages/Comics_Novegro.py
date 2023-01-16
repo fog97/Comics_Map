@@ -248,8 +248,8 @@ if data_def!=data_to:
 uploaded_files = st.file_uploader("Carica la foto del tuo cosplay", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
     bytes_data = uploaded_file.read()
-    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-
+    string_data = bytes_data.read()
+    st.write(string_data)
 import gridfs
 
 db = client.PresenzeComics
@@ -261,7 +261,7 @@ fs = gridfs.GridFS(db)
 file = uploaded_files
 file
 #Open the image in read-only format.
-with open(stringio, 'rb') as f:
+with open(bytes_data, 'rb') as f:
     contents = f.read()
 
 
