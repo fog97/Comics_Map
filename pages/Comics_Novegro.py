@@ -265,7 +265,7 @@ file = uploaded_files
 #with open(file, 'rb') as f:
 #    contents = f.read()
 
-
+file
 add = st.button('Aggiungi')
 
 #,"Foto":contents
