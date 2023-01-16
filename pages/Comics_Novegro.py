@@ -299,7 +299,8 @@ for index, row in presenze.iterrows():
     if row['Foto']!='':
         col2.image(row['Foto'])
     else:
-        col2.write(row['Foto'])  
+        with st.container():
+            col2.write(row['Foto'])  
     button_phold = col4.empty() 
     do_action = button_phold.button(key=index,label="Delete")
     if do_action:
