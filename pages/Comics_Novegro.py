@@ -297,10 +297,10 @@ for index, row in presenze.iterrows():
     col1.write(row['Nome'])
     col2.write(row['Data'])
     if row['Foto']!='':
-        col2.image(row['Foto'])
+        col3.image(row['Foto'])
     else:
         with st.container():
-            col2.write(row['Foto'])  
+            col3.write(row['Foto'])  
     button_phold = col4.empty() 
     do_action = button_phold.button(key=index,label="Delete")
     if do_action:
