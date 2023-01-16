@@ -288,18 +288,18 @@ presenze = pd.DataFrame(list(collection.find()))
 
 
 
-col1, col2,col3,col4 = st.columns((10, 10, 30,10))
+col1, col2,col3,col4 = st.columns((10, 10, 15,10))
 col1.write('Nome')
 col2.write('Data')
 col3.write('Cosplay')
 col4.write('Elimina Presenza')
 
 for index, row in presenze.iterrows():
-    col1, col2,col3,col4 = st.columns((10, 10, 30,10))
+    col1, col2,col3,col4 = st.columns((10, 10, 15,10))
     col1.write(row['Nome'])
     col2.write(row['Data'])
     if row['Foto']!='':
-        col3.image(row['Foto'], width=100)
+        col3.image(row['Foto'], use_column_width=True)
     else:
         with st.container():
             col3.write(row['Foto'])  
