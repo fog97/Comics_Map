@@ -248,8 +248,6 @@ if data_def!=data_to:
 uploaded_files = st.file_uploader("Carica la foto del tuo cosplay", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
     bytes_data = uploaded_file.read()
-    st.write("filename:", uploaded_file.name)
-    st.write(bytes_data)
 
 import gridfs
 
