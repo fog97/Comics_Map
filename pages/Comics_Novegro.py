@@ -8,6 +8,7 @@ import shapefile
 from shapely.geometry import Point
 from shapely.geometry import shape
 import pydeck as pdk
+from st_aggrid import AgGrid
 
 path='/app/comics_map/Novegro/'
 
@@ -17,13 +18,15 @@ st.markdown("## Biglietti")
 
 biglietti=pd.read_csv(path+"biglietti_novegro.csv",sep=";")
 #st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
-col1, col2 = st.columns((10, 10))
-col1.write('Tipologia')
-col2.write('Prezzo (€)')
-for index, row in biglietti.iterrows():
-    col1, col2 = st.columns((10, 10))
-    col1.write(row['Tipologia'])
-    col2.write(row['Prezzo'])  
+AgGrid(biglietti)
+
+#col1, col2 = st.columns((10, 10))
+#col1.write('Tipologia')
+#col2.write('Prezzo (€)')
+#for index, row in biglietti.iterrows():
+#    col1, col2 = st.columns((10, 10))
+#    col1.write(row['Tipologia'])
+#    col2.write(row['Prezzo'])  
 
 st.markdown("## Mappa")
 
