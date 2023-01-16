@@ -269,9 +269,6 @@ if len(bytes_data)>0:
 
 add = st.button('Aggiungi')
 
-#,"Foto":contents
-    
-immagine=''
 if add:
     mydict = { "Nome": nome, "Data": data_def, "Foto":immagine }
     db = client.PresenzeComics
