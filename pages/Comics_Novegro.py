@@ -12,14 +12,18 @@ import pydeck as pdk
 path='/app/comics_map/Novegro/'
 
 st.markdown("# Novegro comics")
-info=pd.read_csv(path+"info_novegro.csv",sep=";")
-col1, col2 = st.columns((10, 10))
-col1.write('Date')
-col2.write('Indirizzo')
-for index, row in info.iterrows():
+
+
+with st.container():
+    st.markdown("## Info")
+    info=pd.read_csv(path+"info_novegro.csv",sep=";")
     col1, col2 = st.columns((10, 10))
-    col1.write(row['data'])
-    col2.write(row['luogo'])  
+    col1.write('Date')
+    col2.write('Indirizzo')
+    for index, row in info.iterrows():
+        col1, col2 = st.columns((10, 10))
+        col1.write(row['data'])
+        col2.write(row['luogo'])  
 
 
 st.markdown("## Biglietti")
