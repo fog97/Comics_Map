@@ -13,4 +13,4 @@ path='/app/comics_map/'
 
 st.header(' :red[_Come Together_] ')
 
-st.image(image.imread(path+'Copertina.jpg'))
+st.image(image.imread(path+'Copertina2.jpg'))
