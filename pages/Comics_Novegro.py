@@ -200,7 +200,7 @@ with st.container():
         type="IconLayer",
         data=data,
         get_icon="icon_data",
-        get_size=10,
+        get_size=15,
         size_scale=3,
         get_position=["lon", "lat"],
         pickable=True,
