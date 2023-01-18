@@ -19,3 +19,7 @@ st.set_page_config(
 st.header(" _Come Together_ ")
 
 st.image(image.imread(path+'Copertina2.jpg'))
+
+with st.sidebar:
+    st.markdown("#### Powered By _Foggy_")
+st.sidebar.image(image.imread(path+'profilo.jpg'), use_column_width=True)
