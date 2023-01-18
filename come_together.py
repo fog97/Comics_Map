@@ -22,4 +22,4 @@ st.image(image.imread(path+'Copertina2.jpg'))
 
 with st.sidebar:
     st.markdown("#### Powered By _Foggy_")
-st.sidebar.image(image.imread(path+'profilo.jpg'), use_column_width=True)
+st.sidebar.image(image.imread(path+'profilo.jpg'), width=100)
