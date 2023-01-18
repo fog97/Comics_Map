@@ -19,7 +19,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-
+st.header(" _Comics Novegro_ ")
 
 
 with st.container():
