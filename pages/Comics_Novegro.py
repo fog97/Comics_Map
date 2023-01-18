@@ -11,7 +11,15 @@ import pydeck as pdk
 
 path='/app/comics_map/Novegro/'
 
-st.markdown("# Novegro comics")
+import streamlit as st
+
+st.set_page_config(
+    page_title="Novegro comics",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+
 
 
 with st.container():

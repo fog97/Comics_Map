@@ -11,6 +11,11 @@ import pydeck as pdk
 from PIL import Image
 path='/app/comics_map/'
 
-st.header(' :red[_Come Together_] ')
+st.set_page_config(
+    page_title="Come Together",
+    layout="wide",
+    initial_sidebar_state="expanded")
+
+
 
 st.image(image.imread(path+'Copertina2.jpg'))
