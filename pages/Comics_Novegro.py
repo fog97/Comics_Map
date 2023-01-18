@@ -344,4 +344,4 @@ st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
 
 with st.sidebar:
     st.markdown("#### Powered By _Foggy_")
-    st.image(image.imread(path+'profilo.jpg'))
+st.sidebar.image(path+'profilo.jpg', use_column_width=True)
