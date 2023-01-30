@@ -231,7 +231,7 @@ with st.container():
 
 
 # Al punto di interesse vicino
-st.markdown("# Indicazioni Stradali")
+
 
 
 
@@ -291,6 +291,7 @@ restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
 
 
 if len(set(list_values))>1:
+    st.markdown("# Indicazioni Stradali")
     col1, col2,col3 = st.columns((10, 10, 15))
     col1.write('Tipo')
     col2.write('Nome')
@@ -303,7 +304,8 @@ if len(set(list_values))>1:
         button_phold = col3.empty() 
         do_action = button_phold.button(key=index,label="Info")
         if do_action:
-            ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5)
+            st.map(ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5))
+            
 
 
 
