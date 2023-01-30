@@ -11,3 +11,4 @@ pydeck
 GitPython
 PyMongo
 networkx
+osmnx

@@ -288,20 +288,20 @@ restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
 
 
 
-
-col1, col2,col3 = st.columns((10, 10, 15))
-col1.write('Tipo')
-col2.write('Nome')
-col3.write('Mostra Indicazioni')
-
-for index, row in restricted_db2.iterrows():
+if len(set(list_values))>1:
     col1, col2,col3 = st.columns((10, 10, 15))
-    col1.write(row['Classe'])
-    col2.write(row['name'])
-    button_phold = col3.empty() 
-    do_action = button_phold.button(key=index,label="Info")
-    if do_action:
-        ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5)
+    col1.write('Tipo')
+    col2.write('Nome')
+    col3.write('Mostra Indicazioni')
+
+    for index, row in restricted_db2.iterrows():
+        col1, col2,col3 = st.columns((10, 10, 15))
+        col1.write(row['Classe'])
+        col2.write(row['name'])
+        button_phold = col3.empty() 
+        do_action = button_phold.button(key=index,label="Info")
+        if do_action:
+            ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5)
 
 
 
