@@ -307,7 +307,7 @@ if len(set(list_values))>1:
         if do_action:
             mappa=ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5)
             mappa.save(path+"mappa_novegro.html")
-            IFrame(path+"mappa_novegro.html", width=600, height=500)
+            components.html(path+"mappa_novegro.html", width=600, height=500)
 
 
 
