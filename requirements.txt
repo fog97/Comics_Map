@@ -14,4 +14,4 @@ PyMongo
 networkx
 osmnx
 folium
-IPython.display
+ipython
