@@ -350,7 +350,7 @@ with st.expander("Inserire più giorni"):
     data_to = st.date_input("Data Fine Presenza",
         datetime.now())
     data_to = data_to.strftime("%m/%d/%Y")
-if data_to!='':
+if data_to!='' and data_to!=data_def:
     data_def=data_def+"-"+data_to
 
 uploaded_files = st.file_uploader("Carica la foto del tuo cosplay", accept_multiple_files=True)
