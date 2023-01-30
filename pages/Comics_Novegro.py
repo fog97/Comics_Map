@@ -299,8 +299,8 @@ if len(set(list_values))>1:
 
     for index, row in restricted_db2.iterrows():
         col1, col2,col3 = st.columns((10, 10, 15))
-        col1.write(row[index]['Classe'])
-        col2.write(row[index]['name'])
+        col1.write(row['Classe'])
+        col2.write(row['name'])
         button_phold = col3.empty()
         chiave=str(index)+"a"
         do_action = button_phold.button(key=chiave,label="Info")
