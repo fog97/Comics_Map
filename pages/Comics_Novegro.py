@@ -304,8 +304,8 @@ if len(set(list_values))>1:
         button_phold = col3.empty() 
         do_action = button_phold.button(key=index,label="Info")
         if do_action:
-            st.map(ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5))
-            
+            mappa=ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5)
+
 
 
 
