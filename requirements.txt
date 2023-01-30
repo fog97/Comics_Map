@@ -13,3 +13,4 @@ GitPython
 PyMongo
 networkx
 osmnx
+folium
