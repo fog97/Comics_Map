@@ -226,6 +226,89 @@ with st.container():
 
     st.pydeck_chart(pdk.Deck(layers=[Nav_Points,origin_layer], map_style='road',initial_view_state=INITIAL_VIEW_STATE, tooltip={"text": "{name}"}))
 
+
+# Al punto di interesse vicino
+st.markdown("# Indicazioni Stradali")
+
+
+
+
+
+
+
+import geopy.distance
+
+origin_lat=45.47185532715593
+orining_lon=9.275071955673953
+
+map_data["Distance"]=""
+
+for index,row in map_data.iterrows():
+  distance=round(geopy.distance.geodesic((row["lat"],row["lon"]), (origin_lat,orining_lon)).km,3)
+  map_data.loc[index,"Distance"]=distance
+
+restricted_db=pd.DataFrame(columns=map_data.columns)
+for classe in map_data["Classe"].unique():
+  temp=map_data[map_data.Classe==classe].sort_values(by="Distance",ascending=True)
+  restricted_db=pd.concat([restricted_db,temp.head()])
+
+
+import networkx as nx
+import osmnx as ox
+from IPython.display import IFrame
+
+
+ox.__version__
+G = ox.graph_from_place('Segrate,Lombardy,Italy', network_type='all')
+
+import osmnx as ox
+ox.config(use_cache=True, log_console=True)
+orig = ox.nearest_nodes(G,9.275052098501694,45.47263035712089)
+orig2 = ox.nearest_nodes(G, 9.274823410506643 ,45.468221381796994)
+restricted_db["node"]=''
+restricted_db["route"]=''
+route_list=[]
+route_list2=[]
+for index,row in restricted_db.iterrows():
+  dest = ox.nearest_nodes(G,row["lon"],row["lat"])
+  route = ox.shortest_path(G, orig, dest, weight='travel_time')
+  len_route=nx.shortest_path_length(G, orig, dest)
+  restricted_db.loc[index,"node"]=dest
+  route2 = ox.shortest_path(G, orig2, dest, weight='travel_time')
+  len_route2=nx.shortest_path_length(G, orig, dest)
+  if len_route2>len_route:
+    route_list.append(route2)
+  else:
+    route_list.append(route)
+restricted_db["route"]=route_list
+
+restricted_db=restricted_db.reset_index()
+
+restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
+
+
+
+
+col1, col2,col3 = st.columns((10, 10, 15))
+col1.write('Tipo')
+col2.write('Nome')
+col3.write('Mostra Indicazioni')
+
+for index, row in restricted_db2.iterrows():
+    col1, col2,col3 = st.columns((10, 10, 15))
+    col1.write(row['Classe'])
+    col2.write(row['name'])
+    button_phold = col3.empty() 
+    do_action = button_phold.button(key=index,label="Info")
+    if do_action:
+        ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5)
+
+
+
+
+
+
+
 st.markdown("# Presenze")
 
 
