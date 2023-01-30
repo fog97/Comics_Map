@@ -297,13 +297,13 @@ if len(set(list_values))>1:
     col2.write('Nome')
     col3.write('Mostra Indicazioni')
 
-    for index, row in enumerate(restricted_db2):
+    for index, row in restricted_db2.iterrows():
         col1, col2,col3 = st.columns((10, 10, 15))
         col1.write(row[index]['Classe'])
         col2.write(row[index]['name'])
         button_phold = col3.empty()
-        chiave=index+100 
-        do_action = button_phold.button(key=chiave-100,label="Info")
+        chiave=str(index)+"a"
+        do_action = button_phold.button(key=chiave,label="Info")
         if do_action:
             mappa=ox.plot_route_folium(G,row[index]["route"], route_color='#0000ff', opacity=0.5)
             mappa.save(path+"mappa_novegro.html")
