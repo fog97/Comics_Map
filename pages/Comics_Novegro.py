@@ -258,7 +258,7 @@ for classe in map_data["Classe"].unique():
 
 import networkx as nx
 import osmnx as ox
-#from IPython.display import IFrame
+from IPython.display import IFrame
 
 
 G = ox.graph_from_place('Segrate,Lombardy,Italy', network_type='all')
@@ -305,6 +305,8 @@ if len(set(list_values))>1:
         do_action = button_phold.button(key=index,label="Info")
         if do_action:
             mappa=ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5)
+            mappa.save(path+"mappa_novegro.html")
+            IFrame(path+"mappa_novegro.html", width=600, height=500)
 
 
 
