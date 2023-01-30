@@ -21,6 +21,9 @@ st.set_page_config(
 
 st.header(" _Comics Novegro_ ")
 
+with st.sidebar:
+    st.markdown("#### Powered By _Foggy_")
+st.sidebar.image(image.imread('/app/comics_map/profilo.jpg'), width=300)
 
 with st.container():
     st.markdown("## Info")
@@ -255,7 +258,7 @@ for classe in map_data["Classe"].unique():
 
 import networkx as nx
 import osmnx as ox
-from IPython.display import IFrame
+#from IPython.display import IFrame
 
 
 ox.__version__
@@ -425,6 +428,3 @@ st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
 
 
 
-with st.sidebar:
-    st.markdown("#### Powered By _Foggy_")
-st.sidebar.image(image.imread('/app/comics_map/profilo.jpg'), width=300)
