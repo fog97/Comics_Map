@@ -38,7 +38,7 @@ with st.container():
 
 with st.container():
     st.markdown("## Biglietti")
-    biglietti=pd.read_csv(path+"biglietti_Torino.csv",sep=";")
+    biglietti=pd.read_csv(path+"biglietti_torino.csv",sep=";")
     #st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
 
     col1, col2 = st.columns((10, 10))
