@@ -75,12 +75,8 @@ with st.container():
     if treno:
         treno_l="Train"
 
-    metro = st.checkbox('Metro')
-    metro_l=''
-    if metro:
-        metro_l="Metro"
 
-    list_values=[metro_l,parcheggio_l,treno_l,bus_l]
+    list_values=[parcheggio_l,treno_l,bus_l]
     map_data=map_data[map_data.Classe.isin(list_values)]
 
     import pandas as pd
