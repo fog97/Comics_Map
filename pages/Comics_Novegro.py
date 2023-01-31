@@ -357,7 +357,7 @@ try:
 except KeyError:
     passwords_list = []
 
-if input_pas in passwords_list:
+if input_pas not in passwords_list:
     st.write("Buona Password ✓")
 else:
     st.write("Password Usata")
