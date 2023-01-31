@@ -344,7 +344,7 @@ input_pas=st.session_state.password
 from pymongo import MongoClient
 import pandas as pd
 def init_connection():
-    return MongoClient("mongodb+srv://luca:luca@cluster0.zisso.mongodb.net/test")
+    return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
 client = init_connection()
 import gridfs
 from io import BytesIO
