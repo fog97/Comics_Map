@@ -250,7 +250,7 @@ import osmnx as ox
 from IPython.display import IFrame
 import streamlit.components.v1 as components
 
-G = ox.graph_from_place('Segrate,Lombardy,Italy', network_type='all')
+G = ox.graph_from_place('Turin,Italy', network_type='all')
 
 import osmnx as ox
 ox.config(use_cache=True, log_console=True)
