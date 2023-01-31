@@ -9,17 +9,17 @@ from shapely.geometry import Point
 from shapely.geometry import shape
 import pydeck as pdk
 
-path='/app/comics_map/Novegro/'
+path='/app/comics_map/Torino/'
 
 import streamlit as st
 
 st.set_page_config(
-    page_title="Novegro comics",
+    page_title="Torino comics",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-st.header(" _Comics Novegro_ ")
+st.header(" _Comics Torino_ ")
 
 with st.sidebar:
     st.markdown("#### Powered By _Foggy_")
@@ -27,7 +27,7 @@ st.sidebar.image(image.imread('/app/comics_map/profilo.jpg'), width=300)
 
 with st.container():
     st.markdown("## Info")
-    info=pd.read_csv(path+"info_novegro.csv",sep=";")
+    info=pd.read_csv(path+"info_torino.csv",sep=";")
     col1, col2 = st.columns((10, 10))
     col1.write('Date')
     col2.write('Indirizzo')
@@ -38,7 +38,7 @@ with st.container():
 
 with st.container():
     st.markdown("## Biglietti")
-    biglietti=pd.read_csv(path+"biglietti_novegro.csv",sep=";")
+    biglietti=pd.read_csv(path+"biglietti_Torino.csv",sep=";")
     #st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
 
     col1, col2 = st.columns((10, 10))
@@ -157,13 +157,6 @@ with st.container():
     import matplotlib.pyplot as plt
     import pydeck as pdk
 
-    from geopy.geocoders import Nominatim
-    locator = Nominatim(user_agent = "myapp")
-    location = locator.geocode("Via Novegro 20090 Segrate")
-    start_lat=location.latitude 
-    start_lng=location.longitude
-    dic={"lat":start_lat,"lon":start_lng,"name":"Esposizioni Novegro"}
-    origin=pd.DataFrame(dic,index=[1])
 
     import pandas as pd
 
@@ -189,7 +182,7 @@ with st.container():
     }
 
 
-    origin=pd.DataFrame({"lon":9.275071955673953,"lat":45.47185532715593,"name":"Esposizioni Novegro"}, index=[0])
+    origin=pd.DataFrame({"lon":9.275071955673953,"lat":45.47185532715593,"name":"Esposizioni Torino"}, index=[0])
     import pydeck as pdk
     import pandas as pd
 
@@ -306,8 +299,8 @@ if len(set(list_values))>1:
         do_action = button_phold.button(key=chiave,label="Info")
         if do_action:
             mappa=ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5)
-            mappa.save(path+"mappa_novegro.html")
-            p=open(path+"mappa_novegro.html")
+            mappa.save(path+"mappa_Torino.html")
+            p=open(path+"mappa_Torino.html")
             components.html(p.read())
 
 
@@ -350,7 +343,7 @@ import gridfs
 from io import BytesIO
 db = client.PresenzeComics
 fs = gridfs.GridFS(db)
-collection = db.Novegro 
+collection = db.Torino 
 passwords = pd.DataFrame(list(collection.find()))
 try:
     passwords_list = passwords['Password'].tolist()
@@ -416,13 +409,13 @@ add = st.button('Aggiungi')
 if add:
     mydict = { "Nome": nome, "Data": data_def, "Foto":immagine,"Password":input_pas }
     db = client.PresenzeComics
-    mycol = db["Novegro"]
+    mycol = db["Torino"]
     mycol.insert_one(mydict)
 
 
  
 db = client.PresenzeComics
-collection = db.Novegro 
+collection = db.Torino 
 presenze = pd.DataFrame(list(collection.find()))
 
 text_pass = st.text_input("Password per Eliminazione",key='1AB') 
@@ -448,10 +441,10 @@ for index, row in presenze.iterrows():
         if text_pass==row["Password"]:
             mydict = {"_id":row["_id"]}
             db = client.PresenzeComics
-            mycol = db["Novegro"]
+            mycol = db["Torino"]
             mycol.delete_one(mydict)
             db = client.PresenzeComics
-            collection = db.Novegro 
+            collection = db.Torino 
             presenze = pd.DataFrame(list(collection.find()))
         else:
             st.write("Password Errata")
