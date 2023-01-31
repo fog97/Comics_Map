@@ -163,8 +163,8 @@ with st.container():
     import matplotlib.pyplot as plt
     import pydeck as pdk
     INITIAL_VIEW_STATE = pdk.ViewState(
-    latitude=45.47185532715593, 
-    longitude=9.275071955673953,
+    latitude=45.02891677040412, 
+    longitude=7.664243711338131,
     zoom=10,
     max_zoom=16,
     pitch=45,
@@ -182,7 +182,7 @@ with st.container():
     }
 
 
-    origin=pd.DataFrame({"lon":9.275071955673953,"lat":45.47185532715593,"name":"Esposizioni Torino"}, index=[0])
+    origin=pd.DataFrame({"lon":7.664243711338131,"lat":45.02891677040412,"name":"Esposizioni Torino"}, index=[0])
     import pydeck as pdk
     import pandas as pd
 
@@ -234,8 +234,8 @@ with st.container():
 
 import geopy.distance
 
-origin_lat=45.47185532715593
-orining_lon=9.275071955673953
+origin_lat=45.02891677040412
+orining_lon=7.664243711338131
 
 map_data["Distance"]=""
 
@@ -258,8 +258,7 @@ G = ox.graph_from_place('Segrate,Lombardy,Italy', network_type='all')
 
 import osmnx as ox
 ox.config(use_cache=True, log_console=True)
-orig = ox.nearest_nodes(G,9.275052098501694,45.47263035712089)
-orig2 = ox.nearest_nodes(G, 9.274823410506643 ,45.468221381796994)
+orig = ox.nearest_nodes(G,7.664243711338131,45.02891677040412)
 restricted_db["node"]=''
 restricted_db["route"]=''
 route_list=[]
@@ -269,12 +268,7 @@ for index,row in restricted_db.iterrows():
   route = ox.shortest_path(G, orig, dest, weight='travel_time')
   len_route=nx.shortest_path_length(G, orig, dest)
   restricted_db.loc[index,"node"]=dest
-  route2 = ox.shortest_path(G, orig2, dest, weight='travel_time')
-  len_route2=nx.shortest_path_length(G, orig, dest)
-  if len_route2>len_route:
-    route_list.append(route2)
-  else:
-    route_list.append(route)
+  route_list.append(route)
 restricted_db["route"]=route_list
 
 restricted_db=restricted_db.reset_index()
