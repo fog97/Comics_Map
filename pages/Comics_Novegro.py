@@ -359,6 +359,8 @@ except KeyError:
 
 if input_pas not in passwords_list:
     st.write("Buona Password ✓")
+elif input_pas=='':
+    input_pas=''
 else:
     st.write("Password Usata")
     del(input_pas)
