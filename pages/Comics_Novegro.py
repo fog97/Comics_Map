@@ -334,14 +334,38 @@ def init_connection():
     return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
 
 
-client = init_connection()
-
-
-
-
 col0, col1= st.columns(2)
 
 nome = col0.text_input('Nome' )
+
+st.text_input("Password ", key="password")
+input_pas=st.session_state.password
+
+from pymongo import MongoClient
+import pandas as pd
+def init_connection():
+    return MongoClient("mongodb+srv://luca:luca@cluster0.zisso.mongodb.net/test")
+client = init_connection()
+import gridfs
+from io import BytesIO
+db = client.PresenzeComics
+fs = gridfs.GridFS(db)
+collection = db.Novegro 
+passwords = pd.DataFrame(list(collection.find()))
+try:
+    passwords_list = passwords['Password'].tolist()
+except KeyError:
+    passwords_list = []
+
+if input_pas in passwords_list:
+    st.write("Buona Password ✓")
+else:
+    st.write("Password Usata")
+    del(input_pas)
+
+
+st.markdown("*La password serve per eliminare la presenza*")
+
 
 from datetime import datetime
 from io import StringIO
@@ -387,7 +411,7 @@ except NameError:
 add = st.button('Aggiungi')
 
 if add:
-    mydict = { "Nome": nome, "Data": data_def, "Foto":immagine }
+    mydict = { "Nome": nome, "Data": data_def, "Foto":immagine,"Password":input_pas }
     db = client.PresenzeComics
     mycol = db["Novegro"]
     mycol.insert_one(mydict)
@@ -407,24 +431,29 @@ col3.write('Cosplay')
 col4.write('Elimina Presenza')
 
 for index, row in presenze.iterrows():
-    col1, col2,col3,col4 = st.columns((10, 10, 15,10))
+    col1, col2,col3,col4,col5 = st.columns((10, 10, 15,10,10))
     col1.write(row['Nome'])
     col2.write(row['Data'])
     if row['Foto']!='':
         col3.image(row['Foto'], width=100)
     else:
         with st.container():
-            col3.write(row['Foto'])  
+            col3.write(row['Foto'])
+    text_pass = col5.text_input("Third input")      
     button_phold = col4.empty() 
     do_action = button_phold.button(key=index,label="Delete")
     if do_action:
-        mydict = {"_id":row["_id"]}
-        db = client.PresenzeComics
-        mycol = db["Novegro"]
-        mycol.delete_one(mydict)
-        db = client.PresenzeComics
-        collection = db.Novegro 
-        presenze = pd.DataFrame(list(collection.find()))
+        if text_pass==row["Password"]:
+            mydict = {"_id":row["_id"]}
+            db = client.PresenzeComics
+            mycol = db["Novegro"]
+            mycol.delete_one(mydict)
+            db = client.PresenzeComics
+            collection = db.Novegro 
+            presenze = pd.DataFrame(list(collection.find()))
+        else:
+            st.write("Password Errata")
+
 
 
 
