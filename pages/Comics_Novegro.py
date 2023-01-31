@@ -439,7 +439,7 @@ for index, row in presenze.iterrows():
     else:
         with st.container():
             col3.write(row['Foto'])
-    text_pass = col5.text_input("PWD", key="Text_password")      
+    text_pass = col5.text_input()    
     button_phold = col4.empty() 
     do_action = button_phold.button(key=index,label="Delete")
     if do_action:
