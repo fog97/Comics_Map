@@ -422,7 +422,7 @@ db = client.PresenzeComics
 collection = db.Novegro 
 presenze = pd.DataFrame(list(collection.find()))
 
-
+text_pass = st.text_input("Password per Eliminazione",key='1AB') 
 
 col1, col2,col3,col4 = st.columns((10, 10, 15,10))
 col1.write('Nome')
@@ -431,15 +431,14 @@ col3.write('Cosplay')
 col4.write('Elimina Presenza')
 
 for index, row in presenze.iterrows():
-    col1, col2,col3,col4,col5 = st.columns((10, 10, 15,10,10))
+    col1, col2,col3,col4 = st.columns((10, 10, 15,10))
     col1.write(row['Nome'])
     col2.write(row['Data'])
     if row['Foto']!='':
         col3.image(row['Foto'], width=100)
     else:
         with st.container():
-            col3.write(row['Foto'])
-    text_pass = col5.text_input("Pass",key='1AB')    
+            col3.write(row['Foto'])   
     button_phold = col4.empty() 
     do_action = button_phold.button(key=index,label="Delete")
     if do_action:
