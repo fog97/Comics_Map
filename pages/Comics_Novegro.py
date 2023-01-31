@@ -359,11 +359,12 @@ except KeyError:
 
 if input_pas not in passwords_list:
     st.write("Buona Password ✓")
-elif input_pas=='':
-    input_pas=''
-else:
+elif input_pas in passwords_list:
     st.write("Password Usata")
     del(input_pas)
+else:
+    pass
+
 
 
 st.markdown("*La password serve per eliminare la presenza*")
