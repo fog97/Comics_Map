@@ -95,10 +95,3 @@ for nome in list_projects:
             print(luogo)
 
 
-#data
-data=list_projects[0].text
-
-#infoevento
-infodict={'data':data,"luogo":luogo}
-infodf=pd.DataFrame(infodict,index=[1])
-infodf.to_csv("info_novegro.csv",sep=";")
