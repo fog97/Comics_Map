@@ -272,6 +272,7 @@ restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
 
 if len(set(list_values))>1:
     st.markdown("# Indicazioni Stradali")
+    st.markdown("*Sono indicati solo i parcheggi vicini ma esterni alla fiera*")
     col1, col2,col3 = st.columns((10, 10, 15))
     col1.write('Tipo')
     col2.write('Nome')
