@@ -252,7 +252,7 @@ from IPython.display import IFrame
 import streamlit.components.v1 as components
 
 import pandas as pd
-restricted_db=pd.read_csv("restricted_db.csv", keep_default_na=False,index_col=0)
+restricted_db=pd.read_csv(path+"restricted_db.csv", keep_default_na=False,index_col=0)
 restricted_db['lat'] = restricted_db['lat'].astype(float)
 restricted_db['lon'] = restricted_db['lon'].astype(float)
 
