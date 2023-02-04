@@ -50,7 +50,7 @@ luogo=testo[0].replace("© ","")+" "+testo[1].replace(",","")
 #infoevento
 infodict={'data':data,"luogo":luogo}
 infodf=pd.DataFrame(infodict,index=[1])
-infodf.to_csv("info_torino.csv",sep=";")
+infodf.to_csv("info_torino.csv",sep=";",replace=True)
 
 ## Costo e tipologia dei biglietti
 biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
