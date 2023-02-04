@@ -37,7 +37,7 @@ with st.container():
         if len(biglietti)>0:
             col1.write(row['data'])
         else:
-            st.markdown("* Date non dipsonibili*")
+            st.markdown("*Date non dipsonibili*")
         col2.write(row['luogo'])  
 
 with st.container():
@@ -52,7 +52,7 @@ with st.container():
             col1.write(row['Tipologia'])
             col2.write(row['Prezzo'])
     else:
-        st.markdown("* Biglietteria non dipsonibile*")
+        st.markdown("*Biglietteria non dipsonibile*")
 
 with st.container():
     st.markdown("## Mappa")
@@ -262,7 +262,7 @@ from IPython.display import IFrame
 import streamlit.components.v1 as components
 
 import pandas as pd
-restricted_db=pd.read_csv("restricted_db.csv", keep_default_na=False,index_col=0)
+restricted_db=pd.read_csv(path+"restricted_db.csv", keep_default_na=False,index_col=0)
 restricted_db['lat'] = restricted_db['lat'].astype(float)
 restricted_db['lon'] = restricted_db['lon'].astype(float)
 
