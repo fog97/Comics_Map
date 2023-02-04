@@ -37,7 +37,7 @@ with st.container():
         if len(biglietti)>0:
             col1.write(row['data'])
         else:
-            st.markdow("*Date no disponibili*")
+            st.markdown("*Date no disponibili*")
         col2.write(row['luogo'])  
 
 with st.container():
@@ -52,7 +52,7 @@ with st.container():
             col1.write(row['Tipologia'])
             col2.write(row['Prezzo'])
     else:  
-        st.markdow("*Biglietteria no disponibile*")
+        st.markdown("*Biglietteria no disponibile*")
 
 with st.container():
     st.markdown("## Mappa")
