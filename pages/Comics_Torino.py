@@ -245,32 +245,19 @@ for classe in map_data["Classe"].unique():
   restricted_db=pd.concat([restricted_db,temp.head()])
 
 
+
 import networkx as nx
 import osmnx as ox
 from IPython.display import IFrame
 import streamlit.components.v1 as components
 
-G = ox.graph_from_place('Turin,Italy', network_type='all')
+import pandas as pd
+restricted_db=pd.read_csv("restricted_db.csv", keep_default_na=False,index_col=0)
+restricted_db['lat'] = restricted_db['lat'].astype(float)
+restricted_db['lon'] = restricted_db['lon'].astype(float)
 
-import osmnx as ox
-ox.config(use_cache=True, log_console=True)
-orig = ox.nearest_nodes(G,7.664243711338131,45.02891677040412)
-restricted_db["node"]=''
-restricted_db["route"]=''
-route_list=[]
-route_list2=[]
-for index,row in restricted_db.iterrows():
-  dest = ox.nearest_nodes(G,row["lon"],row["lat"])
-  route = ox.shortest_path(G, orig, dest, weight='travel_time')
-  len_route=nx.shortest_path_length(G, orig, dest)
-  restricted_db.loc[index,"node"]=dest
-  route_list.append(route)
-restricted_db["route"]=route_list
-
-restricted_db=restricted_db.reset_index()
 
 restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
-
 
 
 if len(set(list_values))>1:
@@ -288,11 +275,9 @@ if len(set(list_values))>1:
         chiave=str(index)+"a"
         do_action = button_phold.button(key=chiave,label="Info")
         if do_action:
-            mappa=ox.plot_route_folium(G,row["route"], route_color='#0000ff', opacity=0.5)
-            mappa.save(path+"mappa_Torino.html")
-            p=open(path+"mappa_Torino.html")
+            temp=row['Classe']
+            p=open(path+f"mappa_torino_{temp}_{index}.html")
             components.html(p.read())
-
 
 
 
