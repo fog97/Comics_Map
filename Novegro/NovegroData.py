@@ -22,6 +22,7 @@ wd = webdriver.Chrome('chromedriver',options=options)
 wd.get("https://parcoesposizioninovegro.it/biglietti/festival-del-fumetto-web-1giorno-198372-2/")
 
 list_projects = wd.find_elements(by=By.CSS_SELECTOR, value="p")
+
 ## Costo e tipologia dei biglietti
 biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
 for nome in list_projects:
