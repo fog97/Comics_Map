@@ -34,10 +34,7 @@ with st.container():
     col2.write('Indirizzo')
     for index, row in info.iterrows():
         col1, col2 = st.columns((10, 10))
-        if len(biglietti)>0:
-            col1.write(row['data'])
-        else:
-            st.markdown("*Date non dipsonibili*")
+        col1.write(row['data'])
         col2.write(row['luogo'])  
 
 with st.container():
