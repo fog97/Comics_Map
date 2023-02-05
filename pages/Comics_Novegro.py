@@ -16,15 +16,13 @@ import streamlit as st
 st.set_page_config(
     page_title="Novegro comics",
     layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        "Get help" : 'informazioni@festivaldelfumetto.com'
-    }
+    initial_sidebar_state="expanded"
 )
 
 st.header(" _Comics Novegro_ ")
 
 with st.sidebar:
+    st.write("Per Informazioni  : 'info@torinocomics.com'")
     st.markdown("#### Powered By _Foggy_")
 st.sidebar.image(image.imread('/app/comics_map/profilo.jpg'), width=300)
 
