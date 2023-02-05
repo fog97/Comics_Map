@@ -16,7 +16,10 @@ import streamlit as st
 st.set_page_config(
     page_title="Novegro comics",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={
+        'INFO': 'info@parcoesposizioninovegro.it'
+    }
 )
 
 st.header(" _Comics Novegro_ ")
