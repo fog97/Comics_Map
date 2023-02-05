@@ -22,7 +22,7 @@ st.set_page_config(
 st.header(" _Comics Torino_ ")
 
 with st.sidebar:
-    st.write("Per Informazioni  : 'info@torinocomics.com'")
+    st.write("Per Informazioni  : info@torinocomics.com")
     st.markdown("#### Powered By _Foggy_")
 st.sidebar.image(image.imread('/app/comics_map/profilo.jpg'), width=300)
 
