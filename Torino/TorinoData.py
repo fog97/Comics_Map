@@ -22,23 +22,19 @@ wd = webdriver.Chrome('chromedriver',options=options)
 wd.get("https://torinocomics.com/")
 
 list_projects = wd.find_elements(by=By.CLASS_NAME, value="text-center")
+
 testo=list_projects[0].text
 testo=testo.split(" ")
-data=testo[7]+" - "+testo[9]+" "+testo[10]
+
+import datetime
+today = datetime.date.today()
+year = today.year
+print(year)
+
+
+data=testo[7]+" - "+testo[9]+" "+testo[10]+" "+str(year)
 data
-
-for nome in list_projects:
-    testo=nome.text
-    test=testo.split(" ")   
-    if len(test)>=2:
-        if test[1]=="OPERATIVA\nParco":
-            luogo=test[1].split("\n")[1]+" "+test[2]+" "+test[3].split("\n")[0]+" - "+test[3].split("\n")[1]+" "+test[4]+" "+test[6]+" "+test[7].split("\n")[0]
-            print(luogo)
-
-
-#data
-data=list_projects[0].text
-
+#luogo
 list_projects = wd.find_elements(by=By.CSS_SELECTOR, value="p")
 
 for nome in list_projects:
@@ -50,10 +46,11 @@ luogo=testo[0].replace("© ","")+" "+testo[1].replace(",","")
 #infoevento
 infodict={'data':data,"luogo":luogo}
 infodf=pd.DataFrame(infodict,index=[1])
-infodf.to_csv("info_torino.csv",sep=";",replace=True)
+infodf.head()
+infodf.to_csv("info_torino.csv",sep=";")
 
 ## Costo e tipologia dei biglietti
-biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
+biglietti=pd.DataFrame(columns=["Tipologia","Prezzo","Note"])
 for nome in list_projects:
     testo=nome.text
     test=testo.split(" ")
@@ -84,14 +81,3 @@ for nome in list_projects:
         biglietti=pd.concat([biglietti,row])
 
 biglietti.to_csv("biglietti_novegro.csv",sep=";")
-# data e luogo
-#indirizzo
-for nome in list_projects:
-    testo=nome.text
-    test=testo.split(" ")   
-    if len(test)>=2:
-        if test[1]=="OPERATIVA\nParco":
-            luogo=test[1].split("\n")[1]+" "+test[2]+" "+test[3].split("\n")[0]+" - "+test[3].split("\n")[1]+" "+test[4]+" "+test[6]+" "+test[7].split("\n")[0]
-            print(luogo)
-
-
