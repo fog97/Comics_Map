@@ -349,10 +349,12 @@ data = st.date_input("Data Presenza",
 data = data.strftime("%m/%d/%Y")
 data_def=data
 data_to=''
-with st.expander("Inserire più giorni"):
-    data_to = st.date_input("Data Fine Presenza",
-        datetime.now())
+piudate = st.checkbox('Inserire più giorni')
+
+if piudate:
+    data_to = st.date_input("Data Fine Presenza",datetime.now())
     data_to = data_to.strftime("%m/%d/%Y")
+    
 if data_to!='' and data_to!=data_def:
     data_def=data_def+"-"+data_to
 
