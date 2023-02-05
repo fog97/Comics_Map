@@ -47,7 +47,7 @@ luogo=testo[0].replace("© ","")+" "+testo[1].replace(",","")
 infodict={'data':data,"luogo":luogo}
 infodf=pd.DataFrame(infodict,index=[1])
 infodf.head()
-infodf.to_csv("info_torino.csv",sep=";")
+infodf.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Torino/info_torino.csv",sep=";")
 
 ## Costo e tipologia dei biglietti
 biglietti=pd.DataFrame(columns=["Tipologia","Prezzo","Note"])
@@ -80,4 +80,4 @@ for nome in list_projects:
         row=pd.DataFrame([[tipologia,prezzo]],columns=["Tipologia","Prezzo"])    
         biglietti=pd.concat([biglietti,row])
 
-biglietti.to_csv("biglietti_novegro.csv",sep=";")
+biglietti.to_csv("biglietti_torino.csv",sep=";")
