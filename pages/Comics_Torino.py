@@ -18,7 +18,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-        'INFO': 'info@torinocomics.com'
+        "Get help" : 'info@torinocomics.com'
     }
 )
 
