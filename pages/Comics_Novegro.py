@@ -22,7 +22,7 @@ st.set_page_config(
 st.header(" _Comics Novegro_ ")
 
 with st.sidebar:
-    st.write("Per Informazioni  : info@torinocomics.com")
+    st.write("Per Informazioni  : info@parcoesposizioninovegro.it")
     st.markdown("#### Powered By _Foggy_")
 st.sidebar.image(image.imread('/app/comics_map/profilo.jpg'), width=300)
 
