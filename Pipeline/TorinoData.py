@@ -22,34 +22,8 @@ wd = webdriver.Chrome('chromedriver',options=options)
 
 wd.get("https://torinocomics.com/")
 
-list_projects = wd.find_elements(by=By.CLASS_NAME, value="text-center")
+list_projects = wd.find_elements(by=By.CSS_SELECTOR, value="p")
 if len(list_projects)>0:
-    testo=list_projects[0].text
-    testo=testo.split(" ")
-
-    import datetime
-    today = datetime.date.today()
-    year = today.year
-    print(year)
-
-
-    data=testo[7]+" - "+testo[9]+" "+testo[10]+" "+str(year)
-    data
-    #luogo
-    list_projects = wd.find_elements(by=By.CSS_SELECTOR, value="p")
-
-    for nome in list_projects:
-        testo=nome.text
-
-    testo= list_projects[len(list_projects)-1].text
-    testo=testo.split("|")
-    luogo=testo[0].replace("© ","")+" "+testo[1].replace(",","")
-    #infoevento
-    infodict={'data':data,"luogo":luogo}
-    infodf=pd.DataFrame(infodict,index=[1])
-    infodf.head()
-    infodf.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Torino/info_torino.csv",sep=";")
-
     ## Costo e tipologia dei biglietti
     biglietti=pd.DataFrame(columns=["Tipologia","Prezzo","Note"])
     for nome in list_projects:
@@ -83,7 +57,5 @@ if len(list_projects)>0:
 
     biglietti.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Torino/biglietti_torino.csv",sep=";")
 else:  
-    infodf=pd.DataFrame(columns=["data","luogo"])
-    infodf.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Torino/info_torino.csv",sep=";")
     biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
     biglietti.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Torino/biglietti_torino.csv",sep=";")       

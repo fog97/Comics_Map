@@ -55,26 +55,7 @@ if len(list_projects)>0:
             biglietti=pd.concat([biglietti,row])
 
     biglietti.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/biglietti_novegro.csv",sep=";")
-    # data e luogo
-    #indirizzo
-    for nome in list_projects:
-        testo=nome.text
-        test=testo.split(" ")   
-        if len(test)>=2:
-            if test[1]=="OPERATIVA\nParco":
-                luogo=test[1].split("\n")[1]+" "+test[2]+" "+test[3].split("\n")[0]+" - "+test[3].split("\n")[1]+" "+test[4]+" "+test[6]+" "+test[7].split("\n")[0]
-                print(luogo)
 
-
-    #data
-    data=list_projects[0].text
-
-    #infoevento
-    infodict={'data':data,"luogo":luogo}
-    infodf=pd.DataFrame(infodict,index=[1])
-    infodf.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/info_novegro.csv",sep=";")
 else:
-    infodf=pd.DataFrame(columns=["data","luogo"])
-    infodf.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/info_novegro.csv",sep=";")
     biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
     biglietti.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/biglietti_novegro.csv",sep=";")
