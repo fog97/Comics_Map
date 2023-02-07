@@ -10,13 +10,20 @@ from tqdm import tqdm
 import pandas as pd
 import json
 import pprint
-import logging
+from logging.handlers import RotatingFileHandler
 import traceback
+import logging
 
+logger = logging.getLogger("Rotating Log")
+logger.setLevel(logging.ERROR)
+handler = RotatingFileHandler("log_novegro.txt", maxBytes=10000, backupCount=5)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 try:
-    #Download dei dati di novegro
-    ########################################################################################################################
+#Download dei dati di novegro
+########################################################################################################################
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
@@ -67,4 +74,5 @@ try:
         biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
         biglietti.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/biglietti_novegro.csv",sep=";")
 except Exception as e:
-    traceback.print_tb(e.__traceback__)
+    logger.error(str(e))
+    logger.error(traceback.format_exc())
