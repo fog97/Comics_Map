@@ -26,8 +26,10 @@ try:
     wd = webdriver.Chrome('chromedriver',options=options)
 
     wd.get("https://parcoesposizioninovegro.it/biglietti/festival-del-fumetto-web-1giorno-198372-2/")
-    list_projects = wd.find_elements(by=By.CSS_SELECTOR, value="p")
-    if len(list_projects)>0:
+    text= wd.find_elements(by=By.CLASS_NAME, value="page-title")[0].text
+
+    if text=='Nessun Risultato':
+        list_projects = wd.find_elements(by=By.CSS_SELECTOR, value="p")
         ## Costo e tipologia dei biglietti
         biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
         for nome in list_projects:
@@ -64,9 +66,5 @@ try:
     else:
         biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
         biglietti.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/biglietti_novegro.csv",sep=";")
-except :
-    exc_type, exc_value, exc_traceback = sys.exc_info()
-    sam =  traceback.format_exception(exc_type, exc_value,
-                                           exc_traceback)
-    with open("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/log_novegro.txt", "w") as file1:
-        file1.write(sam)
+except Exception as e:
+    traceback.print_tb(e.__traceback__)
