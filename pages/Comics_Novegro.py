@@ -36,7 +36,10 @@ with st.container():
     col2.write('Indirizzo')
     for index, row in info.iterrows():
         col1, col2 = st.columns((10, 10))
-        col1.write(row['data'])
+        if row["data"]!='':
+            col1.write(row['data'])
+        else:
+            col1.write("a presto le date ☺")
         col2.write(row['luogo'])  
 
 with st.container():
