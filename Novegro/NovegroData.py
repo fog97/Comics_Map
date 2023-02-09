@@ -11,12 +11,12 @@ import pandas as pd
 import json
 import pprint
 import sqlite3
-conn = sqlite3.connect("Novegro.db")
+conn = sqlite3.connect("Novegro/Novegro.db")
 table_name = 'info'
 query = f'Create table if not Exists {table_name} (data,luogo)'
 conn.execute(query)
 table_name = 'biglietti'
-query = f'Create table if not Exists {table_name} (Tipologia,Prezzo,Note")'
+query = f'Create table if not Exists {table_name} (Tipologia,Prezzo,Note)'
 conn.execute(query)
 conn.commit()
 
