@@ -15,3 +15,4 @@ networkx
 osmnx
 folium
 ipython
+sqlite3

@@ -8,8 +8,9 @@ import shapefile
 from shapely.geometry import Point
 from shapely.geometry import shape
 import pydeck as pdk
-
+import sqlite3
 path='/app/comics_map/Novegro/'
+conn = sqlite3.connect(path+"Novegro.db")
 
 import streamlit as st
 
@@ -28,8 +29,8 @@ st.sidebar.image(image.imread('/app/comics_map/profilo.jpg'), width=300)
 
 with st.container():
     st.markdown("## Info")
-    biglietti=pd.read_csv(path+"biglietti_novegro.csv",sep=";")
-    info=pd.read_csv(path+"info_novegro.csv",sep=";")
+    info= pd.read_sql("select * from info",conn)
+    biglietti=pd.read_sql("select * from biglietti",conn)
     col1, col2 = st.columns((10, 10))
     col1.write('Date')
     col2.write('Indirizzo')
