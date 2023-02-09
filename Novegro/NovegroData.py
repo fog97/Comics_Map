@@ -10,6 +10,16 @@ from tqdm import tqdm
 import pandas as pd
 import json
 import pprint
+import sqlite3
+conn = sqlite3.connect("Novegro.db")
+table_name = 'info'
+query = f'Create table if not Exists {table_name} (data,luogo)'
+conn.execute(query)
+table_name = 'biglietti'
+query = f'Create table if not Exists {table_name} (Tipologia,Prezzo,Note")'
+conn.execute(query)
+conn.commit()
+
 #Download dei dati di novegro
 ########################################################################################################################
 options = webdriver.ChromeOptions()
@@ -24,7 +34,7 @@ wd.get("https://parcoesposizioninovegro.it/biglietti/festival-del-fumetto-web-1g
 list_projects = wd.find_elements(by=By.CSS_SELECTOR, value="p")
 if len(list_projects)>0:
     ## Costo e tipologia dei biglietti
-    biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
+    biglietti=pd.DataFrame(columns=["Tipologia","Prezzo","Note"])
     for nome in list_projects:
         testo=nome.text
         test=testo.split(" ")
@@ -54,7 +64,7 @@ if len(list_projects)>0:
             row=pd.DataFrame([[tipologia,prezzo]],columns=["Tipologia","Prezzo"])    
             biglietti=pd.concat([biglietti,row])
 
-    biglietti.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/biglietti_novegro.csv",sep=";")
+    biglietti.to_sql('biglietti',conn,if_exists='replace',index=False)
     # data e luogo
     #indirizzo
     for nome in list_projects:
@@ -72,9 +82,9 @@ if len(list_projects)>0:
     #infoevento
     infodict={'data':data,"luogo":luogo}
     infodf=pd.DataFrame(infodict,index=[1])
-    infodf.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/info_novegro.csv",sep=";")
+    infodf.to_sql('info',conn,if_exists='replace',index=False)
 else:
-    infodf=pd.DataFrame(columns=["data","luogo"])
-    infodf.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/info_novegro.csv",sep=";")
-    biglietti=pd.DataFrame(columns=["Tipologia","Prezzo"])
-    biglietti.to_csv("C:/Users/lucaf/OneDrive/Desktop/Esercizi/Comics_Map/Novegro/biglietti_novegro.csv",sep=";")
+    pass
+
+
+conn.close()
