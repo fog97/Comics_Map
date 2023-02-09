@@ -40,11 +40,11 @@ if len(list_projects)>0:
     today = datetime.date.today()
     year = today.year
     print(year)
-
-
     data=testo[7]+" - "+testo[9]+" "+testo[10]+" "+str(year)
     data
-    testo= list_projects[len(list_projects)-1].text
+    search_place = wd.find_elements(by=By.CSS_SELECTOR, value="p")
+    testo= search_place[len(search_place)-1].text
+    testo
     testo=testo.split("|")
     luogo=testo[0].replace("© ","")+" "+testo[1].replace(",","")
     #infoevento
