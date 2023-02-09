@@ -78,7 +78,8 @@ if len(list_projects)>0:
 
     #data
     data=list_projects[0].text
-
+    if len(data)>15:
+        data=''
     #infoevento
     infodict={'data':data,"luogo":luogo}
     infodf=pd.DataFrame(infodict,index=[1])
