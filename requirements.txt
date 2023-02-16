@@ -15,3 +15,5 @@ networkx
 osmnx
 folium
 ipython
+bs4
+requests
