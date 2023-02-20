@@ -225,6 +225,12 @@ with st.container():
 # Al punto di interesse vicino
 
 
+st.markdown("# Acquisto Biglietti Mezzi")
+
+st.markdown("[Metro/Bus](https://www.gtt.to.it/cms/biglietti-abbonamenti/biglietti/biglietti-carnet)")
+
+st.markdown("[Treno](https://www.trenitalia.com/it.html?cid=G_AV1022AWO_SEARCH_B_Trenitalia_E&gclid=CjwKCAiA0cyfBhBREiwAAtStHI82RmfGscH_QL77qBxcCWSUSfb2azN4LVmZb1gV0lNUv6jlT3_jnBoCLJYQAvD_BwE)")
+
 
 
 

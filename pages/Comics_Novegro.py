@@ -249,6 +249,14 @@ with st.container():
     st.pydeck_chart(pdk.Deck(layers=[Nav_Points,origin_layer], map_style='road',initial_view_state=INITIAL_VIEW_STATE, tooltip={"text": "{name}"}))
 
 
+st.markdown("# Acquisto Biglietti Mezzi")
+
+st.markdown("[Metro/Bus](https://www.atm.it/it/Pagine/default.aspx)")
+
+st.markdown("[Treno](https://www.trenitalia.com/it.html?cid=G_AV1022AWO_SEARCH_B_Trenitalia_E&gclid=CjwKCAiA0cyfBhBREiwAAtStHI82RmfGscH_QL77qBxcCWSUSfb2azN4LVmZb1gV0lNUv6jlT3_jnBoCLJYQAvD_BwE)")
+
+
+
 # Al punto di interesse vicino
 
 
