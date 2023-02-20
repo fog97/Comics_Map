@@ -306,7 +306,7 @@ us_pw=st.secrets["mongo"]["db_pswd"]
 cl_name=st.secrets["mongo"]["cluster_name"]
 
 
-@st.experimental_singleton(suppress_st_warning=True)
+#@st.experimental_singleton(suppress_st_warning=True)
 def init_connection():
     return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
 
