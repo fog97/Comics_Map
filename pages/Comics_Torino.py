@@ -44,8 +44,8 @@ with st.container():
 with st.container():
     st.markdown("## Biglietti")
     page=requests.get("https://torinocomics.com/")
-    soup = BeautifulSoup(page.content, "html.parser")
-    mydivs = soup.find_all("h1", {"class": "page-title"})[0].text
+    # soup = BeautifulSoup(page.content, "html.parser")
+    # mydivs = soup.find_all("h1", {"class": "page-title"})[0].text
     mydivs='Nessun Risultato'
     if mydivs=='Nessun Risultato':
         st.write("Biglietti non Disponibili")
