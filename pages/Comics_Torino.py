@@ -8,6 +8,8 @@ import shapefile
 from shapely.geometry import Point
 from shapely.geometry import shape
 import pydeck as pdk
+from bs4 import BeautifulSoup
+import requests
 import sqlite3
 path='/app/comics_map/Torino/'
 conn = sqlite3.connect(path+"Torino.db")
@@ -41,17 +43,14 @@ with st.container():
 
 with st.container():
     st.markdown("## Biglietti")
-    if len(biglietti)>0:
-        #st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
-        col1, col2 = st.columns((10, 10))
-        col1.write('Tipologia')
-        col2.write('Prezzo (€)')
-        for index, row in biglietti.iterrows():
-            col1, col2 = st.columns((10, 10))
-            col1.write(row['Tipologia'])
-            col2.write(row['Prezzo'])
-    else:  
-        st.markdown("*Biglietteria no disponibile*")
+    page=requests.get("https://torinocomics.com/")
+    soup = BeautifulSoup(page.content, "html.parser")
+    mydivs = soup.find_all("h1", {"class": "page-title"})[0].text
+    mydivs='Nessun Risultato'
+    if mydivs=='Nessun Risultato':
+        st.write("Biglietti non Disponibili")
+    else:
+        st.write("Acquista qui i [Biglietti](https://torinocomics.com/)")
 
 with st.container():
     st.markdown("## Mappa")
