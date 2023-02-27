@@ -21,3 +21,4 @@ streamlit-authenticator
 pickle
 pathlib
 yaml
+shapefile
