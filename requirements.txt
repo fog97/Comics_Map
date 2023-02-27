@@ -18,7 +18,6 @@ ipython
 bs4
 requests
 streamlit-authenticator
-pickle
 pathlib
 yaml
 shapefile
