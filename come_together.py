@@ -15,7 +15,7 @@ path='/app/comics_map/'
 
 import streamlit_authenticator as stauth
 
-with open('../config.yaml') as file:
+with open(path+'config.yaml') as file:
     config = yaml.load(file, Loader=yaml.SafeLoader)
 
 
