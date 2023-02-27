@@ -45,10 +45,10 @@ elif authentication_status is None:
 
 
 
-st.set_page_config(
-    page_title="Come Together",
-    layout="wide",
-    initial_sidebar_state="expanded")
+# st.set_page_config(
+#     page_title="Come Together",
+#     layout="wide",
+#     initial_sidebar_state="expanded")
 
 st.header(" _Come Together_ ")
 
