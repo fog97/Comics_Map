@@ -19,4 +19,3 @@ bs4
 requests
 streamlit-authenticator
 pathlib
-shapefile
