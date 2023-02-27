@@ -44,17 +44,49 @@ face="🐱"
 if authentication_status:
     authenticator.logout('Logout', 'main')
     st.write(f'Welcome *{name}* {face}')
-    st.title('Some content')
 elif authentication_status is False:
     st.error('Username/password is incorrect')
     col1,col2=st.columns(2)
     with col1:
-        st.write("Passowrd Dimenticata?")
+        with st.expander("Passowrd Dimenticata?"):
+            try:
+                username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
+                if username_forgot_pw:
+                    st.success('New password sent securely')
+                # Random password to be transferred to user securely
+                else:
+                    st.error('Username not found')
+            except Exception as e:
+                st.error(e)
     with col2:
-        st.write("Username Dimenticatao?")        
+        with st.expander("Username Dimenticatao?")  
+            try:
+                username_forgot_username, email_forgot_username = authenticator.forgot_username('Forgot username')
+                if username_forgot_username:
+                    st.success('Username sent securely')
+            # Username to be transferred to user securely
+                else:
+                    st.error('Email not found')
+            except Exception as e:
+                st.error(e)      
 elif authentication_status is None:
     st.warning('Please enter your username and password')
-    st.write("Non hai un Accout?")
+    col1,col2=st.columns(2)
+    with col1:
+        with st.expander("Non hai un Accout?")
+            try:
+                if authenticator.register_user('Register user', preauthorization=False):
+                    st.success('User registered successfully')
+            except Exception as e:
+                st.error(e)
+    with col2:
+        with st.expander("Aggiorna Informazioni Account"):
+            if authentication_status:
+                try:
+                    if authenticator.update_user_details(username, 'Update user details'):
+                        st.success('Entries updated successfully')
+                except Exception as e:
+                    st.error(e)
 
 
 
