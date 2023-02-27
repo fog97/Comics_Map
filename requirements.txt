@@ -17,3 +17,6 @@ folium
 ipython
 bs4
 requests
+streamlit-authenticator
+pickle
+pathlib
