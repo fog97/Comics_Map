@@ -24,7 +24,7 @@ st.set_page_config(
 
 st.header(" _Comics Torino_ ")
 
-if status_log:
+if st.session_state.authentication_status:
     with st.sidebar:
         st.write("Per Informazioni  : info@torinocomics.com")
         st.markdown("#### Powered By _Foggy_")

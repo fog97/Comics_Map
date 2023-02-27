@@ -38,7 +38,7 @@ name, authentication_status, username = authenticator.login('Login', 'main')
 
 
 st.session_state.authentication_status=authentication_status
-st.write(st.session_state.authentication_status)
+
 if authentication_status:
     authenticator.logout('Logout', 'main')
     st.write(f'Welcome *{name}*')
