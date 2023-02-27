@@ -30,14 +30,19 @@ authenticator = stauth.Authenticate(
 
 name, authentication_status, username = authenticator.login('Login', 'main')
 
-name, authentication_status, username 
-
 if authentication_status:
     authenticator.logout('Logout', 'main')
     st.write(f'Welcome *{name}*')
     st.title('Some content')
 elif authentication_status is False:
     st.error('Username/password is incorrect')
+    col1,col2,col3=st.columns(3)
+    with col1:
+        st.write("Riegistrati")
+    with col2:
+        st.write("Passowrd Dimenticata?")
+    with col3:
+        st.write("User Name Dimenticatao?")        
 elif authentication_status is None:
     st.warning('Please enter your username and password')
 
