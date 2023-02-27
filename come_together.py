@@ -81,12 +81,11 @@ elif authentication_status is None:
                 st.error(e)
     with col2:
         with st.expander("Aggiorna Informazioni Account"):
-            if authentication_status:
-                try:
-                    if authenticator.update_user_details(username, 'Update user details'):
-                        st.success('Entries updated successfully')
-                except Exception as e:
-                    st.error(e)
+            try:
+                if authenticator.update_user_details(username, 'Update user details'):
+                    st.success('Entries updated successfully')
+            except Exception as e:
+                st.error(e)
 
 
 
