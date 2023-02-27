@@ -39,9 +39,11 @@ name, authentication_status, username = authenticator.login('Login', 'main')
 
 st.session_state.authentication_status=authentication_status
 
+face="🐱"
+
 if authentication_status:
     authenticator.logout('Logout', 'main')
-    st.write(f'Welcome *{name}*')
+    st.write(f'Welcome *{name}* {face}')
     st.title('Some content')
 elif authentication_status is False:
     st.error('Username/password is incorrect')
