@@ -40,7 +40,7 @@ elif authentication_status is False:
     with col1:
         st.write("Passowrd Dimenticata?")
     with col2:
-        st.write("User Name Dimenticatao?")        
+        st.write("Username Dimenticatao?")        
 elif authentication_status is None:
     st.warning('Please enter your username and password')
     st.write("Non hai un Accout?")
