@@ -1,7 +1,7 @@
 credentials:
   usernames:
     ts:
-      email: test@gmail.com
+      email: luca.fumagalli97@gmail.com
       name: Test
       password: '$2b$12$CTeg.INgRiVMGB.uK7o1GugV9Lg3q03rWiInOrEH22l8o3TiC.XdK' # To be replaced with hashed password
 cookie:
