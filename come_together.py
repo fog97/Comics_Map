@@ -10,15 +10,16 @@ from shapely.geometry import shape
 import pydeck as pdk
 import streamlit_authenticator as stauth
 from PIL import Image
+import yaml
 path='/app/comics_map/'
 
 import streamlit_authenticator as stauth
 
 with open('../config.yaml') as file:
-    config = yaml.load(file, Loader=SafeLoader)
+    config = yaml.load(file, Loader=yaml.SafeLoader)
 
 
-authenticator = Authenticate(
+authenticator = stauth.Authenticate(
     config['credentials'],
     config['cookie']['name'],
     config['cookie']['key'],
