@@ -59,7 +59,7 @@ elif authentication_status is False:
             except Exception as e:
                 st.error(e)
     with col2:
-        with st.expander("Username Dimenticatao?")  
+        with st.expander("Username Dimenticatao?"): 
             try:
                 username_forgot_username, email_forgot_username = authenticator.forgot_username('Forgot username')
                 if username_forgot_username:
@@ -73,7 +73,7 @@ elif authentication_status is None:
     st.warning('Please enter your username and password')
     col1,col2=st.columns(2)
     with col1:
-        with st.expander("Non hai un Accout?")
+        with st.expander("Non hai un Accout?"):
             try:
                 if authenticator.register_user('Register user', preauthorization=False):
                     st.success('User registered successfully')
