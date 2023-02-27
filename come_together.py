@@ -13,6 +13,12 @@ from PIL import Image
 import yaml
 path='/app/comics_map/'
 
+st.set_page_config(
+    page_title="Come Together",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 import streamlit_authenticator as stauth
 
 with open(path+'config.yaml') as file:
