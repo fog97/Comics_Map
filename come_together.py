@@ -102,7 +102,7 @@ if not _RELEASE:
             st.error(e)
 
     # Saving config file
-    with open('../config.yaml', 'w') as file:
+    with open(path+'config.yaml', 'w') as file:
         yaml.dump(config, file, default_flow_style=False)
 
     # Alternatively you may use st.session_state['name'], st.session_state['authentication_status'], 
