@@ -24,8 +24,6 @@ import streamlit as st
 from yaml.loader import SafeLoader
 import streamlit.components.v1 as components
 
-from .hasher import Hasher
-from .authenticate import Authenticate
 
 _RELEASE = True
 
@@ -37,7 +35,7 @@ if not _RELEASE:
         config = yaml.load(file, Loader=SafeLoader)
 
     # Creating the authenticator object
-    authenticator = Authenticate(
+    authenticator = stauth.Authenticate(
         config['credentials'],
         config['cookie']['name'], 
         config['cookie']['key'], 

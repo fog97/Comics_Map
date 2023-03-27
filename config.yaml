@@ -6,8 +6,8 @@ credentials:
       password: '$2b$12$CTeg.INgRiVMGB.uK7o1GugV9Lg3q03rWiInOrEH22l8o3TiC.XdK' # To be replaced with hashed password
 cookie:
   expiry_days: 30
-  key: random_signature_key # Must be string
-  name: random_cookie_name
+  key: some_signature_key # Must be string
+  name: some_cookie_name
 preauthorized:
   emails:
   - luca.fumagalli97@gmail.com
