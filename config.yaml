@@ -3,7 +3,7 @@ credentials:
     ts:
       email: luca.fumagalli97@gmail.com
       name: Test
-      password: '$2b$12$CTeg.INgRiVMGB.uK7o1GugV9Lg3q03rWiInOrEH22l8o3TiC.XdK' # To be replaced with hashed password
+      password: '$2b$12$..Rltmbx9AcWBcraSm3R3.LABpUdqgmnZbst2HFND3zI8rtBZgzd.'
 cookie:
   expiry_days: 30
   key: some_signature_key # Must be string

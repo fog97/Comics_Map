@@ -29,7 +29,6 @@ _RELEASE = False
 
 if not _RELEASE:
     hashed_passwords = stauth.Hasher(['test']).generate()
-
     # Loading config file
     with open(path+'config.yaml') as file:
         config = yaml.load(file, Loader=SafeLoader)
