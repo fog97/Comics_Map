@@ -25,7 +25,7 @@ from yaml.loader import SafeLoader
 import streamlit.components.v1 as components
 
 
-_RELEASE = True
+_RELEASE = False
 
 if not _RELEASE:
     # hashed_passwords = Hasher(['abc', 'def']).generate()
