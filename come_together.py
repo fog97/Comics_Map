@@ -28,7 +28,7 @@ import streamlit.components.v1 as components
 _RELEASE = False
 
 if not _RELEASE:
-    # hashed_passwords = Hasher(['abc', 'def']).generate()
+    hashed_passwords = stauth.Hasher(['test']).generate()
 
     # Loading config file
     with open(path+'config.yaml') as file:
