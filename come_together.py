@@ -108,8 +108,8 @@ if not _RELEASE:
                     username_forgot_username, email_forgot_username = authenticator.forgot_username('Forgot username')
                     if username_forgot_username:
                         st.success('Username sent securely')
-                        st.write(random_password)
                         email_receiver = email_forgot_username
+                        st.write(email_forgot_username)
                         subject = "Username Come Together"
                         body = "Ciao! Ecco il tuo Username!"
                         msg = f"Subject: {subject}\n{body}\n{username_forgot_username}"
