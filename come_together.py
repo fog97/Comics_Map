@@ -47,7 +47,6 @@ if not _RELEASE:
     if authentication_status:
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{name}*')
-        st.title('Some content')
     elif authentication_status is False:
         st.error('Username/password is incorrect')
     elif authentication_status is None:
