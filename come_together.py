@@ -164,7 +164,7 @@ st.sidebar.image(image.imread(path+'profilo.jpg'), width=300)
 
 from git import Repo
 
-repo_dir = 'https://github.com/fog97/Comics_Map'
+repo_dir = '/app/comics_map'
 repo = Repo(repo_dir)
 file_list = [path+'config.yaml']
 commit_message = 'Upload Impostazioni'
