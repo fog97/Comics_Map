@@ -153,29 +153,24 @@ st.sidebar.image(image.imread(path+'profilo.jpg'), width=300)
 
 
 
-import base64
-from github import Github
-from github import InputGitTreeElement
+# import base64
+# from github import Github
+# from github import InputGitTreeElement
 
-user = st.secrets["git"]["git"]
-password = st.secrets["git"]["git_pwd"]
-g = Github(user,password)
-repo = g.get_user().get_repo('Comics_Map') # repo name
+# user = st.secrets["git"]["git"]
+# password = st.secrets["git"]["git_pwd"]
+# g = Github(user,password)
+# repo = g.get_user().get_repo('Comics_Map') # repo name
 
-file_name ='config.yaml'
-commit_message = 'config git'
-master_ref = repo.get_git_ref('heads/master')
-master_sha = master_ref.object.sha
-base_tree = repo.get_git_tree(master_sha)
+from git import Repo
 
-
-with open(path+file_name) as input_file:
-    data = input_file.read()
-element = InputGitTreeElement(file_name, '100644', 'blob', data)
-
-tree = repo.create_git_tree(element, base_tree)
-parent = repo.get_git_commit(master_sha)
-commit = repo.create_git_commit(commit_message, tree, [parent])
-master_ref.edit(commit.sha)
+repo_dir = '/app/comics_map'
+repo = Repo(repo_dir)
+file_list = [path+'config.yaml']
+commit_message = 'Upload Impostazioni'
+repo.index.add(file_list)
+repo.index.commit(commit_message)
+origin = repo.remote('origin')
+origin.push()
 
 
