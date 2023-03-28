@@ -76,8 +76,6 @@ if not _RELEASE:
 
     elif authentication_status is False:
         st.error('Username/password is incorrect')
-    elif authentication_status is None:
-        st.warning('Please enter your username and password')
         col1,col2=st.columns(2)
         with col1:
             with st.expander("Password dimenticata?", expanded=False):
