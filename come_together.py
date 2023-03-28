@@ -87,7 +87,7 @@ if not _RELEASE:
                     username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
                     if username_forgot_pw:
                         st.success('New password sent securely')
-                        st.write(random_password)
+                        st.write(email_forgot_password)
                         email_receiver = email_forgot_password
                         subject = "PWD Come Together"
                         body = "Ciao! Ecco la tua nuova password! Cambiala al primo utilizzo!"
