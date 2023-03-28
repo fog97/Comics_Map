@@ -157,9 +157,24 @@ import base64
 from github import Github
 from github import InputGitTreeElement
 
-user = st.secrets["git"]["git"]
-password = st.secrets["git"]["git_pwd"]
-g = Github(user,password)
-repo = g.get_user().get_repo('Comics_Map') # repo name
-
-
+import yaml
+from yaml.loader import SafeLoader
+from github import Github
+# Replace <ACCESS_TOKEN> with your personal access token
+ACCESS_TOKEN = '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'
+# Replace <REPO_NAME> with the name of the repository where you want to push the file
+REPO_NAME = 'Comics_Map'
+# Replace <FILE_NAME> with the name of the file you want to push
+FILE_NAME = 'C:\\Users\\lucaf\\OneDrive\\Desktop\\Esercizi\\Comics_Map\\config.yaml'
+# Replace <FILE_CONTENT> with the contents of the file you want to push
+with open('C:\\Users\\lucaf\\OneDrive\\Desktop\\Esercizi\\Comics_Map\\config.yaml') as file:
+    config = yaml.load(file, Loader=SafeLoader)
+FILE_CONTENT = config
+# Create a PyGithub instance using your access token
+g = Github(ACCESS_TOKEN)
+# Get the repository where you want to push the file
+repo = g.get_repo(REPO_NAME)
+# Create a new file in the repository
+new_file = repo.create_file(FILE_NAME, "Nuove Config", FILE_CONTENT)
+# Print the URL of the new file
+print(new_file.html_url)
