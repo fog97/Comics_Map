@@ -163,7 +163,7 @@ from github import Github
 # Replace <ACCESS_TOKEN> with your personal access token
 ACCESS_TOKEN = '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'
 # Replace <REPO_NAME> with the name of the repository where you want to push the file
-REPO_NAME = 'Comics_Map'
+REPO_NAME = 'fog97/Comics_Map'
 # Replace <FILE_NAME> with the name of the file you want to push
 FILE_NAME = 'C:\\Users\\lucaf\\OneDrive\\Desktop\\Esercizi\\Comics_Map\\config.yaml'
 # Replace <FILE_CONTENT> with the contents of the file you want to push
