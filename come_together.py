@@ -76,33 +76,34 @@ if not _RELEASE:
 
     elif authentication_status is False:
         st.error('Username/password is incorrect')
-    col1,col2=st.columns(2)
-    with col1:
-        with st.expander("Password dimenticata?", expanded=False):
-            # Creating a forgot password widget
-            try:
-                username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
-                if username_forgot_pw:
-                    st.success('New password sent securely')
-                    st.write(random_password)
-                    # Random password to be transferred to user securely
-                else:
-                    st.error('Username not found')
-            except Exception as e:
-                st.error(e)
-    with col2:
-        with st.expander("Username Dimenticato?", expanded=False):
-            # Creating a forgot username widget
-            try:
-                username_forgot_username, email_forgot_username = authenticator.forgot_username('Forgot username')
-                if username_forgot_username:
-                    st.success('Username sent securely')
-                    st.success(email_forgot_username)
-                    # Username to be transferred to user securely
-                else:
-                    st.error('Email not found')
-            except Exception as e:
-                st.error(e)
+    if not authentication_status:
+        col1,col2=st.columns(2)
+        with col1:
+            with st.expander("Password dimenticata?", expanded=False):
+                # Creating a forgot password widget
+                try:
+                    username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
+                    if username_forgot_pw:
+                        st.success('New password sent securely')
+                        st.write(random_password)
+                        # Random password to be transferred to user securely
+                    else:
+                        st.error('Username not found')
+                except Exception as e:
+                    st.error(e)
+        with col2:
+            with st.expander("Username Dimenticato?", expanded=False):
+                # Creating a forgot username widget
+                try:
+                    username_forgot_username, email_forgot_username = authenticator.forgot_username('Forgot username')
+                    if username_forgot_username:
+                        st.success('Username sent securely')
+                        st.success(email_forgot_username)
+                        # Username to be transferred to user securely
+                    else:
+                        st.error('Email not found')
+                except Exception as e:
+                    st.error(e)
 
 
 
