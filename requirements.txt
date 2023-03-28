@@ -19,4 +19,4 @@ bs4
 requests
 streamlit-authenticator
 pathlib
-github
+PyGithub
