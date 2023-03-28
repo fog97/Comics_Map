@@ -157,8 +157,8 @@ import base64
 from github import Github
 from github import InputGitTreeElement
 
-user = "fog97"
-password = "G1tM1n3r!"
+user = st.secrets["git"]["git"]
+password = st.secrets["git"]["git_pwd"]
 g = Github(user,password)
 repo = g.get_user().get_repo('Comics_Map') # repo name
 
