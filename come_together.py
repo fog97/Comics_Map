@@ -153,24 +153,13 @@ st.sidebar.image(image.imread(path+'profilo.jpg'), width=300)
 
 
 
-# import base64
-# from github import Github
-# from github import InputGitTreeElement
+import base64
+from github import Github
+from github import InputGitTreeElement
 
-# user = st.secrets["git"]["git"]
-# password = st.secrets["git"]["git_pwd"]
-# g = Github(user,password)
-# repo = g.get_user().get_repo('Comics_Map') # repo name
-
-from git import Repo
-
-repo_dir = '/app/comics_map'
-repo = Repo(repo_dir)
-file_list = [path+'config.yaml']
-commit_message = 'Upload Impostazioni'
-repo.index.add(file_list)
-repo.index.commit(commit_message)
-origin = repo.remote('origin')
-origin.push()
+user = st.secrets["git"]["git"]
+password = st.secrets["git"]["git_pwd"]
+g = Github(user,password)
+repo = g.get_user().get_repo('Comics_Map') # repo name
 
 
