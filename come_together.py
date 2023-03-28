@@ -11,6 +11,7 @@ import pydeck as pdk
 import streamlit_authenticator as stauth
 from PIL import Image
 import yaml
+import smtplib
 path='/app/comics_map/'
 
 st.set_page_config(
@@ -23,7 +24,8 @@ import yaml
 import streamlit as st
 from yaml.loader import SafeLoader
 import streamlit.components.v1 as components
-
+email_sender=st.secrets["mail"]["mail"]
+email_password=st.secrets["mail"]["mail_pwd"]
 
 _RELEASE = False
 
@@ -86,6 +88,14 @@ if not _RELEASE:
                     if username_forgot_pw:
                         st.success('New password sent securely')
                         st.write(random_password)
+                        email_receiver = email_forgot_password
+                        subject = "PWD Come Together"
+                        body = "Ciao! Ecco la tua nuova password! Cambiala al primo utilizzo!"
+                        msg = f"Subject: {subject}\n{body}\n{random_password}"
+                        server = smtplib.SMTP("smtp.gmail.com", 587)
+                        server.starttls()
+                        server.login(email_sender,email_password)
+                        server.sendmail(email_sender,email_receiver,msg)
                         # Random password to be transferred to user securely
                     else:
                         st.error('Username not found')
@@ -98,8 +108,15 @@ if not _RELEASE:
                     username_forgot_username, email_forgot_username = authenticator.forgot_username('Forgot username')
                     if username_forgot_username:
                         st.success('Username sent securely')
-                        st.success(email_forgot_username)
-                        # Username to be transferred to user securely
+                        st.write(random_password)
+                        email_receiver = email_forgot_username
+                        subject = "Username Come Together"
+                        body = "Ciao! Ecco il tuo Username!"
+                        msg = f"Subject: {subject}\n{body}\n{username_forgot_username}"
+                        server = smtplib.SMTP("smtp.gmail.com", 587)
+                        server.starttls()
+                        server.login(email_sender,email_password)
+                        server.sendmail(email_sender,email_receiver,msg)
                     else:
                         st.error('Email not found')
                 except Exception as e:
@@ -133,3 +150,9 @@ st.image(image.imread(path+'Copertina2.jpg'))
 with st.sidebar:
     st.markdown("#### Powered By _Foggy_")
 st.sidebar.image(image.imread(path+'profilo.jpg'), width=300)
+
+
+
+
+
+
