@@ -63,7 +63,8 @@ if not _RELEASE:
                 from github import Github
                 # Replace <ACCESS_TOKEN> with your personal access token
                 ACCESS_TOKEN = st.secrets["git"]["git_pwd"]
-                st.write(ACCESS_TOKEN)
+                st.write(st.secrets["mongo"]["db_pswd"])
+                st.write(st.secrets["git"]["git_pwd"])
                 # Replace <REPO_NAME> with the name of the repository where you want to push the file
                 REPO_NAME = 'fog97/Comics_Map'
                 # Replace <FILE_NAME> with the name of the file you want to push
