@@ -148,7 +148,7 @@ if not _RELEASE:
     # Replace <FILE_NAME> with the name of the file you want to push
     FILE_NAME = 'config.yaml'
     # Replace <FILE_CONTENT> with the contents of the file you want to push
-    with open('/content/config.yaml') as file:
+    with open(path+'config.yaml') as file:
         config = yaml.load(file, Loader=SafeLoader)
     FILE_CONTENT = str(config)
     # Create a PyGithub instance using your access token
