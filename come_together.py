@@ -33,9 +33,9 @@ if not _RELEASE:
     hashed_passwords = stauth.Hasher(['test']).generate()
     # Loading config file
     with open(path+'config.yaml') as file:
-        config = yaml.load(file, Loader=SafeLoader)
+        config_str = yaml.load(file, Loader=SafeLoader)
     import ast
-    config=ast.literal_eval(FILE_CONTENT)
+    config=ast.literal_eval(config_str)
 
 
     # Creating the authenticator object
