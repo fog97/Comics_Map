@@ -194,16 +194,15 @@ ACCESS_TOKEN = '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'
 # Replace <REPO_NAME> with the name of the repository where you want to push the file
 REPO_NAME = 'fog97/Comics_Map'
 # Replace <FILE_NAME> with the name of the file you want to push
-FILE_NAME = 'C:\\Users\\lucaf\\OneDrive\\Desktop\\Esercizi\\Comics_Map\\config.yaml'
+FILE_NAME = 'config.yaml'
 # Replace <FILE_CONTENT> with the contents of the file you want to push
-with open('C:\\Users\\lucaf\\OneDrive\\Desktop\\Esercizi\\Comics_Map\\config.yaml') as file:
+with open(path+'config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 FILE_CONTENT = config
 # Create a PyGithub instance using your access token
 g = Github(ACCESS_TOKEN)
 # Get the repository where you want to push the file
 repo = g.get_repo(REPO_NAME)
-# Create a new file in the repository
-new_file = repo.create_file(FILE_NAME, "Nuove Config", FILE_CONTENT)
-# Print the URL of the new file
-print(new_file.html_url)
+repo = g.get_repo(REPO_NAME)
+file = repo.get_contents(FILE_NAME)
+repo.update_file(FILE_NAME, "update_configs",FILE_CONTENT, file.sha)
