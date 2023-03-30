@@ -171,32 +171,32 @@ if not _RELEASE:
                     username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
                     if username_forgot_pw:
                         st.success('New password sent securely')
-                    with open(path+'config.yaml', 'w') as file:
-                        yaml.dump(config, file, default_flow_style=False)
-                    import base64
-                    from github import Github
-                    from github import InputGitTreeElement
+                        with open(path+'config.yaml', 'w') as file:
+                            yaml.dump(config, file, default_flow_style=False)
+                        import base64
+                        from github import Github
+                        from github import InputGitTreeElement
 
-                    import yaml
-                    from yaml.loader import SafeLoader
-                    from github import Github
-                    # Replace <ACCESS_TOKEN> with your personal access token
-                    ACCESS_TOKEN = st.secrets["git"]["git_pwd"].replace("'","")
-                    st.write(st.secrets["git"]["git_pwd"].replace("'",""))
-                    # Replace <REPO_NAME> with the name of the repository where you want to push the file
-                    REPO_NAME = 'fog97/Comics_Map'
-                    # Replace <FILE_NAME> with the name of the file you want to push
-                    FILE_NAME = 'config.yaml'
-                    # Replace <FILE_CONTENT> with the contents of the file you want to push
-                    with open(path+'config.yaml') as file:
-                        config = yaml.load(file, Loader=SafeLoader)
-                    FILE_CONTENT = str(config)
-                    # Create a PyGithub instance using your access token
-                    g = Github(ACCESS_TOKEN)
-                    # Get the repository where you want to push the file
-                    repo = g.get_repo(REPO_NAME)
-                    file = repo.get_contents(FILE_NAME)
-                    repo.update_file(FILE_NAME, "update_configs",FILE_CONTENT, file.sha)
+                        import yaml
+                        from yaml.loader import SafeLoader
+                        from github import Github
+                        # Replace <ACCESS_TOKEN> with your personal access token
+                        ACCESS_TOKEN = st.secrets["git"]["git_pwd"].replace("'","")
+                        st.write(st.secrets["git"]["git_pwd"].replace("'",""))
+                        # Replace <REPO_NAME> with the name of the repository where you want to push the file
+                        REPO_NAME = 'fog97/Comics_Map'
+                        # Replace <FILE_NAME> with the name of the file you want to push
+                        FILE_NAME = 'config.yaml'
+                        # Replace <FILE_CONTENT> with the contents of the file you want to push
+                        with open(path+'config.yaml') as file:
+                            config = yaml.load(file, Loader=SafeLoader)
+                        FILE_CONTENT = str(config)
+                        # Create a PyGithub instance using your access token
+                        g = Github(ACCESS_TOKEN)
+                        # Get the repository where you want to push the file
+                        repo = g.get_repo(REPO_NAME)
+                        file = repo.get_contents(FILE_NAME)
+                        repo.update_file(FILE_NAME, "update_configs",FILE_CONTENT, file.sha)
 
                     # add pin to sohw PWDRandom password to be transferred to user securely
                     else:
@@ -211,33 +211,33 @@ if not _RELEASE:
                     if username_forgot_username:
                         st.success('Username sent securely')
                         email_receiver = email_forgot_username
-                    with open(path+'config.yaml', 'w') as file:
-                        yaml.dump(config, file, default_flow_style=False)
-                    import base64
-                    from github import Github
-                    from github import InputGitTreeElement
+                        with open(path+'config.yaml', 'w') as file:
+                            yaml.dump(config, file, default_flow_style=False)
+                        import base64
+                        from github import Github
+                        from github import InputGitTreeElement
 
-                    import yaml
-                    from yaml.loader import SafeLoader
-                    from github import Github
-                    # Replace <ACCESS_TOKEN> with your personal access token
-                    ACCESS_TOKEN = st.secrets["git"]["git_pwd"].replace("'","")
-                    st.write(st.secrets["git"]["git_pwd"].replace("'",""))
-                    # Replace <REPO_NAME> with the name of the repository where you want to push the file
-                    REPO_NAME = 'fog97/Comics_Map'
-                    # Replace <FILE_NAME> with the name of the file you want to push
-                    FILE_NAME = 'config.yaml'
-                    # Replace <FILE_CONTENT> with the contents of the file you want to push
-                    with open(path+'config.yaml') as file:
-                        config = yaml.load(file, Loader=SafeLoader)
-                    FILE_CONTENT = str(config)
-                    # Create a PyGithub instance using your access token
-                    g = Github(ACCESS_TOKEN)
-                    # Get the repository where you want to push the file
-                    repo = g.get_repo(REPO_NAME)
-                    file = repo.get_contents(FILE_NAME)
-                    repo.update_file(FILE_NAME, "update_configs",FILE_CONTENT, file.sha)
-                    #add pin to show new USRNM
+                        import yaml
+                        from yaml.loader import SafeLoader
+                        from github import Github
+                        # Replace <ACCESS_TOKEN> with your personal access token
+                        ACCESS_TOKEN = st.secrets["git"]["git_pwd"].replace("'","")
+                        st.write(st.secrets["git"]["git_pwd"].replace("'",""))
+                        # Replace <REPO_NAME> with the name of the repository where you want to push the file
+                        REPO_NAME = 'fog97/Comics_Map'
+                        # Replace <FILE_NAME> with the name of the file you want to push
+                        FILE_NAME = 'config.yaml'
+                        # Replace <FILE_CONTENT> with the contents of the file you want to push
+                        with open(path+'config.yaml') as file:
+                            config = yaml.load(file, Loader=SafeLoader)
+                        FILE_CONTENT = str(config)
+                        # Create a PyGithub instance using your access token
+                        g = Github(ACCESS_TOKEN)
+                        # Get the repository where you want to push the file
+                        repo = g.get_repo(REPO_NAME)
+                        file = repo.get_contents(FILE_NAME)
+                        repo.update_file(FILE_NAME, "update_configs",FILE_CONTENT, file.sha)
+                        #add pin to show new USRNM
                     else:
                         st.error('Email not found')
                 except Exception as e:
