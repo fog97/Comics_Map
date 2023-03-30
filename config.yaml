@@ -1,13 +1,1 @@
-credentials:
-  usernames:
-    ts:
-      email: luca.fumagalli97@gmail.com
-      name: Test
-      password: '$2b$12$..Rltmbx9AcWBcraSm3R3.LABpUdqgmnZbst2HFND3zI8rtBZgzd.'
-cookie:
-  expiry_days: 30
-  key: some_signature_key # Must be string
-  name: some_cookie_name
-preauthorized:
-  emails:
-  - luca.fumagalli97@gmail.com
+{'cookie': {'expiry_days': 30, 'key': 'some_signature_key', 'name': 'some_cookie_name'}, 'credentials': {'usernames': {'ts': {'email': 'luca.fumagalli97@gmail.com', 'name': 'Test', 'password': '$2b$12$..Rltmbx9AcWBcraSm3R3.LABpUdqgmnZbst2HFND3zI8rtBZgzd.'}}}, 'preauthorized': {'emails': ['luca.fumagalli97@gmail.com']}}
