@@ -62,7 +62,7 @@ if not _RELEASE:
                 from yaml.loader import SafeLoader
                 from github import Github
                 # Replace <ACCESS_TOKEN> with your personal access token
-                ACCESS_TOKEN = st.secrets["git"]["git_pwd"]
+                ACCESS_TOKEN = st.secrets["git"]["git_pwd"].replace("'","")
                 st.write(st.secrets["git"]["git_pwd"].replace("'",""))
                 # Replace <REPO_NAME> with the name of the repository where you want to push the file
                 REPO_NAME = 'fog97/Comics_Map'
