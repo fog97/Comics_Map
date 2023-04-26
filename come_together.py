@@ -39,7 +39,6 @@ client = init_connection()
 db = client.PresenzeComics
 collection = db.Credentials
 config =collection.find_one()
-st.write(config)
 
 
 _RELEASE = False
@@ -60,7 +59,8 @@ if not _RELEASE:
         try:
             if authenticator.register_user('Register user', preauthorization=False):
                 st.success('User registered successfully')
-                collection.replace_one(config, config)
+                st.write(config)
+                #collection.replace_one(config, config)
         except Exception as e:
             st.error(e)
 
