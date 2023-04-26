@@ -28,31 +28,29 @@ try:
     if st.session_state.authentication_status:
         with st.sidebar:
             st.write("Per Informazioni  : info@torinocomics.com")
-            st.markdown("#### Powered By _Foggy_")
-        st.sidebar.image(image.imread('/app/comics_map/profilo.jpg'), width=300)
 
-        with st.container():
-            st.markdown("## Info")
-            info= pd.read_sql("select * from info",conn)
-            biglietti=pd.read_sql("select * from biglietti",conn)
-            col1, col2 = st.columns((10, 10))
-            col1.write('Date')
-            col2.write('Indirizzo')
-            for index, row in info.iterrows():
-                col1, col2 = st.columns((10, 10))
-                col1.write(row['data'])
-                col2.write(row['luogo'])  
+        # with st.container():
+        #     st.markdown("## Info")
+        #     info= pd.read_sql("select * from info",conn)
+        #     biglietti=pd.read_sql("select * from biglietti",conn)
+        #     col1, col2 = st.columns((10, 10))
+        #     col1.write('Date')
+        #     col2.write('Indirizzo')
+        #     for index, row in info.iterrows():
+        #         col1, col2 = st.columns((10, 10))
+        #         col1.write(row['data'])
+        #         col2.write(row['luogo'])  
 
-        with st.container():
-            st.markdown("## Biglietti")
-            page=requests.get("https://torinocomics.com/")
-            # soup = BeautifulSoup(page.content, "html.parser")
-            # mydivs = soup.find_all("h1", {"class": "page-title"})[0].text
-            mydivs='Nessun Risultato'
-            if mydivs=='Nessun Risultato':
-                st.write("Biglietti non Disponibili")
-            else:
-                st.write("Acquista qui i [Biglietti](https://torinocomics.com/)")
+        # with st.container():
+        #     st.markdown("## Biglietti")
+        #     page=requests.get("https://torinocomics.com/")
+        #     # soup = BeautifulSoup(page.content, "html.parser")
+        #     # mydivs = soup.find_all("h1", {"class": "page-title"})[0].text
+        #     mydivs='Nessun Risultato'
+        #     if mydivs=='Nessun Risultato':
+        #         st.write("Biglietti non Disponibili")
+        #     else:
+        #         st.write("Acquista qui i [Biglietti](https://torinocomics.com/)")
 
         with st.container():
             st.markdown("## Mappa")
