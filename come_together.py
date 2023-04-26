@@ -154,4 +154,4 @@ BODY = '\r\n'.join(['To: %s' % TO,
         '', TEXT])
 
 server.sendmail(gmail_user, [TO], BODY)
-print ('email sent')
+st.write('email sent')
