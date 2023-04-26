@@ -39,7 +39,7 @@ client = init_connection()
 db = client.PresenzeComics
 collection = db.Credentials
 config =collection.find_one()
-
+st.write(config)
 
 
 _RELEASE = False
