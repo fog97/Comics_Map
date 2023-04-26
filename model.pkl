@@ -1,1 +1,0 @@
-LogisticRegression(multi_class='multinomial', solver='newton-cg')
