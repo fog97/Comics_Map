@@ -138,7 +138,7 @@ st.image(image.imread(path+'Copertina2.jpg'))
 
 # sender=st.secrets["mail"]["mail"]
 # pwd=st.secrets["mail"]["mail_pwd"]
-
+#Test_345
 # gmail_user = sender
 # gmail_pwd = pwd
 # TO = 'l.fumagalli53@campus.unimib.it'
