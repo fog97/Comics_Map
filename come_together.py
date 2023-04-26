@@ -66,31 +66,7 @@ if not _RELEASE:
         try:
             if authenticator.register_user('Register user', preauthorization=False):
                 st.success('User registered successfully')
-                import base64
-                from github import Github
-                from github import InputGitTreeElement
-
-                import yaml
-                from yaml.loader import SafeLoader
                 collection.insert_one(config)
-                # from github import Github
-                # # Replace <ACCESS_TOKEN> with your personal access token
-                # ACCESS_TOKEN = st.secrets["git"]["git_pwd"].replace("'","")
-                # st.write(st.secrets["git"]["git_pwd"].replace("'",""))
-                # # Replace <REPO_NAME> with the name of the repository where you want to push the file
-                # REPO_NAME = 'fog97/Comics_Map'
-                # # Replace <FILE_NAME> with the name of the file you want to push
-                # FILE_NAME = 'config.yaml'
-                # # Replace <FILE_CONTENT> with the contents of the file you want to push
-                # with open(path+'config.yaml') as file:
-                #     config = yaml.load(file, Loader=SafeLoader)
-                # FILE_CONTENT = str(config)
-                # # Create a PyGithub instance using your access token
-                # g = Github(ACCESS_TOKEN)
-                # # Get the repository where you want to push the file
-                # repo = g.get_repo(REPO_NAME)
-                # file = repo.get_contents(FILE_NAME)
-                # repo.update_file(FILE_NAME, "update_configs",FILE_CONTENT, file.sha)
         except Exception as e:
             st.error(e)
 
@@ -107,14 +83,7 @@ if not _RELEASE:
                     try:
                         if authenticator.reset_password(username, 'Reset password'):
                             st.success('Password modified successfully')
-                        import base64
-                        from github import Github
-                        from github import InputGitTreeElement
-
-                        import yaml
-                        from yaml.loader import SafeLoader
-                        from github import Github
-                        collection.insert_one(config)
+                            collection.insert_one(config)
                     except Exception as e:
                         st.error(e)
         with col2:
