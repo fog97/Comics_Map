@@ -144,7 +144,7 @@ gmail_pwd = pwd
 TO = 'l.fumagalli53@campus.unimib.it'
 SUBJECT = "Testing sending using gmail"
 TEXT = "Testing sending mail using gmail servers"
-server = smtplib.SMTP('smtp.gmail.com', 587)
+server = smtplib.SMTP('smtp.gmail.com', 80)
 server.ehlo()
 server.starttls()
 server.login(gmail_user, gmail_pwd)
