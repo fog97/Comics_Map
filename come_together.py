@@ -136,22 +136,22 @@ st.header(" _Come Together_ ")
 
 st.image(image.imread(path+'Copertina2.jpg'))
 
-sender=st.secrets["mail"]["mail"]
-pwd=st.secrets["mail"]["mail_pwd"]
+# sender=st.secrets["mail"]["mail"]
+# pwd=st.secrets["mail"]["mail_pwd"]
 
-gmail_user = sender
-gmail_pwd = pwd
-TO = 'l.fumagalli53@campus.unimib.it'
-SUBJECT = "Testing sending using gmail"
-TEXT = "Testing sending mail using gmail servers"
-server = smtplib.SMTP('smtp.gmail.com', 80)
-server.ehlo()
-server.starttls()
-server.login(gmail_user, gmail_pwd)
-BODY = '\r\n'.join(['To: %s' % TO,
-        'From: %s' % gmail_user,
-        'Subject: %s' % SUBJECT,
-        '', TEXT])
+# gmail_user = sender
+# gmail_pwd = pwd
+# TO = 'l.fumagalli53@campus.unimib.it'
+# SUBJECT = "Testing sending using gmail"
+# TEXT = "Testing sending mail using gmail servers"
+# server = smtplib.SMTP('smtp.gmail.com', 80)
+# server.ehlo()
+# server.starttls()
+# server.login(gmail_user, gmail_pwd)
+# BODY = '\r\n'.join(['To: %s' % TO,
+#         'From: %s' % gmail_user,
+#         'Subject: %s' % SUBJECT,
+#         '', TEXT])
 
-server.sendmail(gmail_user, [TO], BODY)
-st.write('email sent')
+# server.sendmail(gmail_user, [TO], BODY)
+# st.write('email sent')
