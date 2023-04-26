@@ -1,6 +1,6 @@
 joblib
 sklearn
-scikit-learn
+#scikit-learn
 statsmodels
 geopy
 pyshp
