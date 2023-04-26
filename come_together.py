@@ -30,7 +30,7 @@ email_password=st.secrets["mail"]["mail_pwd"]
 _RELEASE = False
 
 if not _RELEASE:
-    hashed_passwords = stauth.Hasher(['test']).generate()
+    #hashed_passwords = stauth.Hasher(['test']).generate()
     # Loading config file
     with open(path+'config.yaml') as file:
         config = yaml.load(file, Loader=SafeLoader)
@@ -146,10 +146,6 @@ if not _RELEASE:
 st.header(" _Come Together_ ")
 
 st.image(image.imread(path+'Copertina2.jpg'))
-
-with st.sidebar:
-    st.markdown("#### Powered By _Foggy_")
-st.sidebar.image(image.imread(path+'profilo.jpg'), width=300)
 
 
 
