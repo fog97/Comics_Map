@@ -34,7 +34,7 @@ cl_name=st.secrets["mongo"]["cluster_name"]
 
 # @st.experimental_singleton(suppress_st_warning=True)
 def init_connection():
-    return MongoClient(f"mongodb+srv://luca:luca@cluster0.zisso.mongodb.net/test")
+    return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
 client = init_connection()
 db = client.PresenzeComics
 collection = db.Credentials
@@ -136,6 +136,22 @@ st.header(" _Come Together_ ")
 
 st.image(image.imread(path+'Copertina2.jpg'))
 
+sender=st.secrets["mail"]["mail"]
+pwd=st.secrets["mail"]["mail_pwd"]
 
+gmail_user = sender
+gmail_pwd = pwd
+TO = 'l.fumagalli53@campus.unimib.it'
+SUBJECT = "Testing sending using gmail"
+TEXT = "Testing sending mail using gmail servers"
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.ehlo()
+server.starttls()
+server.login(gmail_user, gmail_pwd)
+BODY = '\r\n'.join(['To: %s' % TO,
+        'From: %s' % gmail_user,
+        'Subject: %s' % SUBJECT,
+        '', TEXT])
 
-
+server.sendmail(gmail_user, [TO], BODY)
+print ('email sent')
