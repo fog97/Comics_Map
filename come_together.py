@@ -38,12 +38,6 @@ def init_connection():
 client = init_connection()
 db = client.PresenzeComics
 collection = db.Credentials
-# with open('config.yaml') as file:
-#     config_str = str(yaml.load(file, Loader=SafeLoader))
-# import ast
-# config=ast.literal_eval(config_str) 
-#collection.insert_one(config)
-
 config =collection.find_one()
 
 
