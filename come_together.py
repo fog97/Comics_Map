@@ -59,7 +59,7 @@ if not _RELEASE:
         try:
             if authenticator.register_user('Register user', preauthorization=False):
                 st.success('User registered successfully')
-                filter = { 'id':config["_id"]}
+                filter = { '_id': config["_id"] }
                 st.write(config)
                 collection.replace_one(filter, config)
         except Exception as e:
