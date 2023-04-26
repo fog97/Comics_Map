@@ -60,7 +60,7 @@ if not _RELEASE:
         try:
             if authenticator.register_user('Register user', preauthorization=False):
                 st.success('User registered successfully')
-                collection.insert_one(config)
+                collection.replaceOne(config)
         except Exception as e:
             st.error(e)
 
