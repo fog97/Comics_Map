@@ -39,7 +39,7 @@ client = init_connection()
 db = client.PresenzeComics
 collection = db.Credentials
 config =collection.find_one()
-
+filter = { '_id': config["_id"] }
 
 _RELEASE = False
 
@@ -59,8 +59,6 @@ if not _RELEASE:
         try:
             if authenticator.register_user('Register user', preauthorization=False):
                 st.success('User registered successfully')
-                filter = { '_id': config["_id"] }
-                st.write(config)
                 collection.replace_one(filter, config)
         except Exception as e:
             st.error(e)
@@ -78,7 +76,7 @@ if not _RELEASE:
                     try:
                         if authenticator.reset_password(username, 'Reset password'):
                             st.success('Password modified successfully')
-                            collection.insert_one(config)
+                            collection.replace_one(filter, config)
                     except Exception as e:
                         st.error(e)
         with col2:
@@ -88,7 +86,7 @@ if not _RELEASE:
                     try:
                         if authenticator.update_user_details(username, 'Update user details'):
                             st.success('Entries updated successfully')
-                            collection.insert_one(config)
+                            collection.replace_one(filter, config)
                     except Exception as e:
                         st.error(e)
 
@@ -103,7 +101,7 @@ if not _RELEASE:
                     username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
                     if username_forgot_pw:
                         st.success('New password sent securely')
-                        collection.insert_one(config)
+                        collection.replace_one(filter, config)
                     else:
                         st.error('Username not found')
                 except Exception as e:
@@ -116,7 +114,7 @@ if not _RELEASE:
                     if username_forgot_username:
                         st.success('Username sent securely')
                         email_receiver = email_forgot_username
-                        collection.insert_one(config)
+                        collection.replace_one(filter, config)
                     else:
                         st.error('Email not found')
                 except Exception as e:
