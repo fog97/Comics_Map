@@ -27,31 +27,6 @@ st.header(" _Comics Novegro_ ")
 if st.session_state.authentication_status:
     with st.sidebar:
         st.write("Per Informazioni  : info@parcoesposizioninovegro.it")
-    with st.container():
-        st.markdown("## Biglietti")
-        page=requests.get("https://parcoesposizioninovegro.it/biglietti/")
-        soup = BeautifulSoup(page.content, "html.parser")
-        mydivs = soup.find_all("h1", {"class": "page-title"})[0].text
-        if mydivs=='Nessun Risultato':
-            st.write("Biglietti non Disponibili")
-        else:
-            st.write("Acquista qui i [Biglietti](https://parcoesposizioninovegro.it/biglietti/)")
-
-
-
-    #     #st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
-    #     if len(biglietti)>0: 
-    #         col1, col2 = st.columns((10, 10))
-    #         col1.write('Tipologia')
-    #         col2.write('Prezzo (€)')
-    #         for index, row in biglietti.iterrows():
-    #             col1, col2 = st.columns((10, 10))
-    #             col1.write(row['Tipologia'])
-    #             col2.write(row['Prezzo'])
-    #     else:
-    #         st.markdown("*Biglietteria non dipsonibile*")
-
-    with st.container():
         st.markdown("## Mappa")
 
 
