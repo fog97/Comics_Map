@@ -27,7 +27,6 @@ st.header(" _Comics Novegro_ ")
 if st.session_state.authentication_status:
     with st.sidebar:
         st.write("Per Informazioni  : info@parcoesposizioninovegro.it")
-    with st.container():
     #     #st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
     #     if len(biglietti)>0: 
     #         col1, col2 = st.columns((10, 10))
