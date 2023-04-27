@@ -27,22 +27,6 @@ try:
     if st.session_state.authentication_status:
         with st.sidebar:
             st.write("Per Informazioni  : info@parcoesposizioninovegro.it")
-           
-        with st.container():
-            st.markdown("## Info")
-            info= pd.read_sql("select * from info",conn)
-            biglietti=pd.read_sql("select * from biglietti",conn)
-            col1, col2 = st.columns((10, 10))
-            col1.write('Date')
-            col2.write('Indirizzo')
-            for index, row in info.iterrows():
-                col1, col2 = st.columns((10, 10))
-                if row["data"]!='':
-                    col1.write(row['data'])
-                else:
-                    col1.write("a presto le date ☺")
-                col2.write(row['luogo'])  
-
         with st.container():
             st.markdown("## Biglietti")
             page=requests.get("https://parcoesposizioninovegro.it/biglietti/")
