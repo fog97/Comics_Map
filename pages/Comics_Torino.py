@@ -23,7 +23,7 @@ st.set_page_config(
 )
 
 st.header(" _Comics Torino_ ")
-
+st.write(st.session_state.authentication_status)
 try:
     if st.session_state.authentication_status:
         with st.sidebar:
