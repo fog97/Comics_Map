@@ -73,6 +73,7 @@ if not _RELEASE:
             with st.expander("Change Password", expanded=False):
                     # Creating a password reset widget
                 if authentication_status:
+                    st.session_state.authentication_status=authentication_status
                     try:
                         if authenticator.reset_password(username, 'Reset password'):
                             st.success('Password modified successfully')
