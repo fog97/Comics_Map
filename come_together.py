@@ -167,11 +167,23 @@ if not _RELEASE:
         
         
 
-st.header(" _Come Together_ ")
-
-st.image(image.imread(path+'Copertina2.jpg'), width=1000)
 
 
+
+
+import streamlit as st
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.write(' ')
+
+with col2:
+    st.header(" _Come Together_ ")
+    st.image(image.imread(path+'Copertina2.jpg'))
+
+with col3:
+    st.write(' ')
 
 #st.write("Area di test Ignora")
 
