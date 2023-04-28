@@ -72,6 +72,7 @@ if not _RELEASE:
     name, authentication_status, username = authenticator.login('Login', 'main')
     if authentication_status:
         authenticator.logout('Logout', 'main')
+        st.session_state.authentication_status=False
         st.write(f'Welcome *{name}*')
         col1,col2=st.columns(2)
         with col1:
