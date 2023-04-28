@@ -23,9 +23,9 @@ st.set_page_config(
 )
 
 st.header(" _Comics Torino_ ")
-st.write(st.session_state.authentication_status)
+st.write(st.session_state.autenticazione)
 try:
-    if st.session_state.authentication_status:
+    if st.session_state.autenticazione:
         with st.sidebar:
             st.write("Per Informazioni  : info@torinocomics.com")
 
