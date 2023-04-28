@@ -101,6 +101,7 @@ if not _RELEASE:
         st.session_state.autenticazione=False
         st.error('Username/password is incorrect')
     if not authentication_status:
+        st.session_state.autenticazione=False
         col1,col2=st.columns(2)
         with col1:
             with st.expander("Password dimenticata?", expanded=False):
