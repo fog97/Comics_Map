@@ -135,7 +135,7 @@ if not _RELEASE:
                     username_forgot_username, email_forgot_username = authenticator.forgot_username('Forgot username')
                     if username_forgot_username:
                         TO = email_forgot_username
-                        SUBJECT = "Nuova Password"
+                        SUBJECT = "Username"
                         TEXT = "Il tuo Username è "+str(username_forgot_username)+"."
                         server = smtplib.SMTP('smtp.gmail.com')
                         server.ehlo()
@@ -144,7 +144,7 @@ if not _RELEASE:
                         BODY = '\r\n'.join(['To: %s' % TO,
                                  'From: %s' % gmail_user,
                                  'Subject: %s' % SUBJECT,
-                                 '',str(TEXT.encode('utf-8'))])
+                                 '',TEXT])
                         server.sendmail(gmail_user, [TO], BODY)
                         server.quit()
 
