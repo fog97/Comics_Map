@@ -169,7 +169,7 @@ if not _RELEASE:
 
 st.header(" _Come Together_ ")
 
-st.image(image.imread(path+'Copertina2.jpg'), width=1000, height=1500)
+st.image(image.imread(path+'Copertina2.jpg'), width=1000)
 
 
 
