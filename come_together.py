@@ -137,6 +137,7 @@ if not _RELEASE:
                         TO = email_forgot_username
                         SUBJECT = "Username"
                         TEXT = username_forgot_username
+                        st.write(username_forgot_username)
                         server = smtplib.SMTP('smtp.gmail.com')
                         server.ehlo()
                         server.starttls()
