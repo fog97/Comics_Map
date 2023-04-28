@@ -19,11 +19,11 @@ pwd=st.secrets["mail"]["mail_pwd"]
 gmail_user = sender
 gmail_pwd = pwd
 
-#st.set_page_config(
-#    page_title="Come Together",
-#    layout="wide",
-#    initial_sidebar_state="expanded"
-#)
+st.set_page_config(
+    page_title="Come Together",
+    layout="centered",
+    initial_sidebar_state="expanded"
+)
 
 import yaml
 import streamlit as st
