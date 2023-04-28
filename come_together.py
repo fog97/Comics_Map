@@ -111,7 +111,7 @@ if not _RELEASE:
                     if username_forgot_pw:
                         TO = email_forgot_password
                         SUBJECT = "Nuova Password"
-                        TEXT = "La nuova password è "+"str(random_password)+" assicurati di cambiarla appena possibile."
+                        TEXT = "La nuova password è "+str(random_password)+" assicurati di cambiarla appena possibile."
                         server = smtplib.SMTP('smtp.gmail.com')
                         server.ehlo()
                         server.starttls()
