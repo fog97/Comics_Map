@@ -19,11 +19,11 @@ pwd=st.secrets["mail"]["mail_pwd"]
 gmail_user = sender
 gmail_pwd = pwd
 
-st.set_page_config(
-    page_title="Come Together",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+#st.set_page_config(
+#    page_title="Come Together",
+#    layout="wide",
+#    initial_sidebar_state="expanded"
+#)
 
 import yaml
 import streamlit as st
@@ -35,6 +35,19 @@ from pymongo import MongoClient
 us_name=st.secrets["mongo"]["db_username"]
 us_pw=st.secrets["mongo"]["db_pswd"]
 cl_name=st.secrets["mongo"]["cluster_name"]
+
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.write(' ')
+
+with col2:
+    st.header(" _Come Together_ ")
+    st.image(image.imread(path+'Copertina2.jpg'))
+
+with col3:
+    st.write(' ')
 
 
 # @st.experimental_singleton(suppress_st_warning=True)
@@ -171,19 +184,7 @@ if not _RELEASE:
 
 
 
-import streamlit as st
 
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.write(' ')
-
-with col2:
-    st.header(" _Come Together_ ")
-    st.image(image.imread(path+'Copertina2.jpg'))
-
-with col3:
-    st.write(' ')
 
 #st.write("Area di test Ignora")
 
