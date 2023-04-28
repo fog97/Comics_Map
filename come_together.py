@@ -13,6 +13,11 @@ from PIL import Image
 import yaml
 import smtplib
 path='/app/comics_map/'
+sender=st.secrets["mail"]["mail"]
+pwd=st.secrets["mail"]["mail_pwd"]
+#Test_345
+gmail_user = sender
+gmail_pwd = pwd
 
 st.set_page_config(
     page_title="Come Together",
@@ -101,6 +106,19 @@ if not _RELEASE:
                 try:
                     username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
                     if username_forgot_pw:
+                        TO = email_forgot_password
+                        SUBJECT = "Nuova Password"
+                        TEXT = f"La nuova password è {random_password} assicurati di cambiarla appena possibile."
+                        server = smtplib.SMTP('smtp.gmail.com')
+                        server.ehlo()
+                        server.starttls()
+                        server.login(gmail_user, gmail_pwd)
+                        BODY = '\r\n'.join(['To: %s' % TO,
+                                 'From: %s' % gmail_user,
+                                 'Subject: %s' % SUBJECT,
+                                 '', TEXT])
+                        server.sendmail(gmail_user, [TO], BODY)
+                        server.quit()
                         st.success('New password sent securely')
                         collection.replace_one(filter, config)
                     else:
@@ -139,27 +157,8 @@ st.image(image.imread(path+'Copertina2.jpg'))
 
 
 
-st.write("Area di test Ignora")
+#st.write("Area di test Ignora")
 
 
-sender=st.secrets["mail"]["mail"]
-pwd=st.secrets["mail"]["mail_pwd"]
 #Test_345
-gmail_user = sender
-gmail_pwd = pwd
-if st.button('mail send'):
-    TO = 'l.fumagalli53@campus.unimib.it'
-    SUBJECT = "Testing sending using gmail"
-    TEXT = "Testing sending mail using gmail servers"
-    server = smtplib.SMTP('smtp.gmail.com')
-    server.ehlo()
-    server.starttls()
-    server.login(gmail_user, gmail_pwd)
-    BODY = '\r\n'.join(['To: %s' % TO,
-             'From: %s' % gmail_user,
-             'Subject: %s' % SUBJECT,
-             '', TEXT])
 
-    server.sendmail(gmail_user, [TO], BODY)
-    server.quit()
-    st.write('email sent')
