@@ -111,7 +111,7 @@ if not _RELEASE:
                     if username_forgot_pw:
                         TO = email_forgot_password
                         SUBJECT = "Nuova Password"
-                        TEXT = "La nuova password è "+str(random_password)+" assicurati di cambiarla appena possibile."
+                        TEXT = "La nuova password :"+str(random_password)+". Assicurati di cambiarla appena possibile."
                         server = smtplib.SMTP('smtp.gmail.com')
                         server.ehlo()
                         server.starttls()
@@ -119,7 +119,7 @@ if not _RELEASE:
                         BODY = '\r\n'.join(['To: %s' % TO,
                                  'From: %s' % gmail_user,
                                  'Subject: %s' % SUBJECT,
-                                 '', str(TEXT.encode('utf-8'))])
+                                 '', str(TEXT)])
                         server.sendmail(gmail_user, [TO], BODY)
                         server.quit()
                         st.success('New password sent securely')
@@ -136,7 +136,7 @@ if not _RELEASE:
                     if username_forgot_username:
                         TO = email_forgot_username
                         SUBJECT = "Username"
-                        TEXT = username_forgot_username
+                        TEXT = f"Username :{username_forgot_username}"
                         st.write(username_forgot_username)
                         server = smtplib.SMTP('smtp.gmail.com')
                         server.ehlo()
@@ -145,7 +145,7 @@ if not _RELEASE:
                         BODY = '\r\n'.join(['To: %s' % TO,
                                  'From: %s' % gmail_user,
                                  'Subject: %s' % SUBJECT,
-                                 '', str(TEXT.encode('utf-8').strip())])
+                                 '', str(TEXT)])
                         server.sendmail(gmail_user, [TO], BODY)
                         server.quit()
 
