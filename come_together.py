@@ -71,6 +71,7 @@ if not _RELEASE:
     # creating a login widget
     name, authentication_status, username = authenticator.login('Login', 'main')
     if authentication_status:
+        st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{name}*')
         col1,col2=st.columns(2)
@@ -97,6 +98,7 @@ if not _RELEASE:
                         st.error(e)
 
     elif authentication_status is False:
+        st.session_state.autenticazione=False
         st.error('Username/password is incorrect')
     if not authentication_status:
         col1,col2=st.columns(2)
