@@ -21,7 +21,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-st.write(st.session_state.autenticazione)
+
 st.header(" _Comics Novegro_ ")
 
 if st.session_state.autenticazione:
