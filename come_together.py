@@ -132,8 +132,22 @@ if not _RELEASE:
                 try:
                     username_forgot_username, email_forgot_username = authenticator.forgot_username('Forgot username')
                     if username_forgot_username:
+                        TO = email_forgot_username
+                        SUBJECT = "Nuova Password"
+                        TEXT = f"Il tuo Username è {username_forgot_username}."
+                        st.write(random_password)
+                        server = smtplib.SMTP('smtp.gmail.com')
+                        server.ehlo()
+                        server.starttls()
+                        server.login(gmail_user, gmail_pwd)
+                        BODY = '\r\n'.join(['To: %s' % TO,
+                                 'From: %s' % gmail_user,
+                                 'Subject: %s' % SUBJECT,
+                                 '', str(TEXT)])
+                        server.sendmail(gmail_user, [TO], BODY)
+                        server.quit()
+
                         st.success('Username sent securely')
-                        email_receiver = email_forgot_username
                         collection.replace_one(filter, config)
                     else:
                         st.error('Email not found')
