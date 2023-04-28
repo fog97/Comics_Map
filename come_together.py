@@ -137,22 +137,29 @@ st.header(" _Come Together_ ")
 
 st.image(image.imread(path+'Copertina2.jpg'))
 
-# sender=st.secrets["mail"]["mail"]
-# pwd=st.secrets["mail"]["mail_pwd"]
-#Test_345
-# gmail_user = sender
-# gmail_pwd = pwd
-# TO = 'l.fumagalli53@campus.unimib.it'
-# SUBJECT = "Testing sending using gmail"
-# TEXT = "Testing sending mail using gmail servers"
-# server = smtplib.SMTP('smtp.gmail.com', 80)
-# server.ehlo()
-# server.starttls()
-# server.login(gmail_user, gmail_pwd)
-# BODY = '\r\n'.join(['To: %s' % TO,
-#         'From: %s' % gmail_user,
-#         'Subject: %s' % SUBJECT,
-#         '', TEXT])
 
-# server.sendmail(gmail_user, [TO], BODY)
-# st.write('email sent')
+
+st.write("Area di test Ignora")
+
+
+sender=st.secrets["mail"]["mail"]
+pwd=st.secrets["mail"]["mail_pwd"]
+#Test_345
+gmail_user = sender
+gmail_pwd = pwd
+if st.button('mail send'):
+    TO = 'l.fumagalli53@campus.unimib.it'
+    SUBJECT = "Testing sending using gmail"
+    TEXT = "Testing sending mail using gmail servers"
+    server = smtplib.SMTP('smtp.gmail.com')
+    server.ehlo()
+    server.starttls()
+    server.login(gmail_user, gmail_pwd)
+    BODY = '\r\n'.join(['To: %s' % TO,
+             'From: %s' % gmail_user,
+             'Subject: %s' % SUBJECT,
+             '', TEXT])
+
+    server.sendmail(gmail_user, [TO], BODY)
+    erver.quit()
+    st.write('email sent')
