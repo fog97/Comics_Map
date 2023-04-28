@@ -442,6 +442,6 @@ if st.session_state.autenticazione:
 
 
 else:
-    st.write("Autenticati")
+    st.write("Autenticati o registrati per favore")
 
 
