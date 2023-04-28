@@ -116,7 +116,7 @@ if not _RELEASE:
                         BODY = '\r\n'.join(['To: %s' % TO,
                                  'From: %s' % gmail_user,
                                  'Subject: %s' % SUBJECT,
-                                 '', TEXT])
+                                 '', TEXT.encode('utf-8')])
                         server.sendmail(gmail_user, [TO], BODY)
                         server.quit()
                         st.success('New password sent securely')
