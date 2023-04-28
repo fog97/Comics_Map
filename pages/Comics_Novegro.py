@@ -21,10 +21,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-st.write(st.session_state.authentication_status)
+st.write(authentication_status)
 st.header(" _Comics Novegro_ ")
 
-if st.session_state.authentication_status:
+if authentication_status:
     with st.sidebar:
         st.write("Per Informazioni  : info@parcoesposizioninovegro.it")
     #     #st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
