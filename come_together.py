@@ -136,7 +136,7 @@ if not _RELEASE:
                     if username_forgot_username:
                         TO = email_forgot_username
                         SUBJECT = "Username"
-                        TEXT = "Il tuo Username è "+str(username_forgot_username)+"."
+                        TEXT = username_forgot_username
                         server = smtplib.SMTP('smtp.gmail.com')
                         server.ehlo()
                         server.starttls()
