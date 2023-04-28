@@ -161,5 +161,5 @@ if st.button('mail send'):
              '', TEXT])
 
     server.sendmail(gmail_user, [TO], BODY)
-    erver.quit()
+    server.quit()
     st.write('email sent')
