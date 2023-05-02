@@ -149,9 +149,9 @@ if st.session_state.autenticazione:
 
         from geopy.geocoders import Nominatim
         locator = Nominatim(user_agent = "myapp")
-        location = locator.geocode("Via Novegro 20090 Segrate")
-        start_lat=location.latitude 
-        start_lng=location.longitude
+        #location = locator.geocode("Via Novegro 20090 Segrate")
+        start_lat=45.47185532715593
+        start_lng=9.275071955673953
         dic={"lat":start_lat,"lon":start_lng,"name":"Esposizioni Novegro"}
         origin=pd.DataFrame(dic,index=[1])
 
@@ -217,7 +217,7 @@ if st.session_state.autenticazione:
 
 
 
-        #st.pydeck_chart(pdk.Deck(layers=[Nav_Points,origin_layer], map_style='road',initial_view_state=INITIAL_VIEW_STATE, tooltip={"text": "{name}"}))
+        st.pydeck_chart(pdk.Deck(layers=[Nav_Points,origin_layer], map_style='road',initial_view_state=INITIAL_VIEW_STATE, tooltip={"text": "{name}"}))
 
 
     st.markdown("# Acquisto Biglietti Mezzi")
