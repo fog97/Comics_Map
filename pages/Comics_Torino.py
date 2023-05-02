@@ -36,7 +36,7 @@ def init_connection():
 client = init_connection()
 db = client.PresenzeComics
 collection_friends = db.Friends
-filter_friends = { 'user': username }
+filter_friends = { 'user': st.session_state.utente }
 friends =collection_friends.find(filter_friends)
 fr=pd.DataFrame(list(friends))
 list_friend=fr.loc[0,"friend"].split(";")
