@@ -133,7 +133,7 @@ if not _RELEASE:
                 mydict = { "user": st.session_state.utente, "friend": fr.loc[0,"friend"]+";"+"friend" }
                 collection_friends.replace_one(filter_friends, mydict)
         with col3:
-            dell=st.button('Aggiungi Amico')
+            dell=st.button('Elimina Amico')
             list_friend=list_friend.remove(friend)
             stringa_amici=''
             for amico in list_friend:
