@@ -217,7 +217,7 @@ if st.session_state.autenticazione:
 
 
 
-        st.pydeck_chart(pdk.Deck(layers=[Nav_Points,origin_layer], map_style='road',initial_view_state=INITIAL_VIEW_STATE, tooltip={"text": "{name}"}))
+        #st.pydeck_chart(pdk.Deck(layers=[Nav_Points,origin_layer], map_style='road',initial_view_state=INITIAL_VIEW_STATE, tooltip={"text": "{name}"}))
 
 
     st.markdown("# Acquisto Biglietti Mezzi")
