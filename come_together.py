@@ -84,6 +84,7 @@ if not _RELEASE:
     # creating a login widget
     name, authentication_status, username = authenticator.login('Login', 'main')
     if authentication_status:
+        st.write(username)
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{name}*')
