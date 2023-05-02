@@ -135,7 +135,7 @@ if not _RELEASE:
                     collection_friends.replace_one(filter_friends, mydict)
             with col3:
                 dell=st.button('Elimina Amico')
-                if add:
+                if dell:
                     list_friend=list_friend.remove(friend)
                     stringa_amici=''
                     for amico in list_friend:
