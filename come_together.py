@@ -87,7 +87,7 @@ if not _RELEASE:
         st.write("friends")
         st.write(username)
         collection_friends = db.Friends
-        filter_friends = { 'user': username }
+        filter_friends = { 'user': str(username) }
         friends =collection_friends.find(filter)
         list_fr=list(friends)
         st.write(pd.DataFrame(list_fr))
