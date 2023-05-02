@@ -59,19 +59,6 @@ collection = db.Credentials
 config =collection.find_one()
 filter = { '_id': config["_id"] }
 
-collection_friends = db.Friends
-filter_friends = { 'user': st.session_state.utente }
-
-try:
-    friends =collection_friends.find(filter_friends)
-    fr=pd.DataFrame(list(friends))
-    list_friend=fr.loc[0,"friend"].split(";")
-except:
-    first_data={'user': st.session_state.utente, 'friend': ''}
-    collection_friends.insert_one(first_data)
-    friends =collection_friends.find(filter_friends)
-    fr=pd.DataFrame(list(friends))
-    list_friend=fr.loc[0,"friend"].split(";")
 
 _RELEASE = False
 
@@ -99,6 +86,20 @@ if not _RELEASE:
     name, authentication_status, username = authenticator.login('Login', 'main')
     if authentication_status:
         st.session_state.utente=username
+        
+        collection_friends = db.Friends
+        filter_friends = { 'user': st.session_state.utente }
+
+        try:
+            friends =collection_friends.find(filter_friends)
+            fr=pd.DataFrame(list(friends))
+            list_friend=fr.loc[0,"friend"].split(";")
+        except:
+            first_data={'user': st.session_state.utente, 'friend': ''}
+            collection_friends.insert_one(first_data)
+            friends =collection_friends.find(filter_friends)
+            fr=pd.DataFrame(list(friends))
+            list_friend=fr.loc[0,"friend"].split(";")
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{name}*')
