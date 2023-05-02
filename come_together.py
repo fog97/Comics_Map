@@ -56,7 +56,7 @@ def init_connection():
 client = init_connection()
 db = client.PresenzeComics
 collection = db.Credentials
-friends = client.Friens
+friends = client.Friends
 config =collection.find_one()
 filter = { '_id': config["_id"] }
 
@@ -86,6 +86,7 @@ if not _RELEASE:
     name, authentication_status, username = authenticator.login('Login', 'main')
     if authentication_status:
         st.write("friends")
+        st.write(username)
         collection_friends = db.Friens
         filter_friends = { 'user': username }
         friends =collection_friends.find(filter)
