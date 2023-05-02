@@ -134,12 +134,13 @@ if not _RELEASE:
                 collection_friends.replace_one(filter_friends, mydict)
         with col3:
             dell=st.button('Elimina Amico')
-            list_friend=list_friend.remove(friend)
-            stringa_amici=''
-            for amico in list_friend:
-                stringa_amici=stringa_amici+";"+amico
-            mydict = { "user": st.session_state.utente, "friend": stringa_amici}
-            collection_friends.replace_one(filter_friends, mydict)
+            if add:
+                list_friend=list_friend.remove(friend)
+                stringa_amici=''
+                for amico in list_friend:
+                    stringa_amici=stringa_amici+";"+amico
+                mydict = { "user": st.session_state.utente, "friend": stringa_amici}
+                collection_friends.replace_one(filter_friends, mydict)
             
 
     elif authentication_status is False:
