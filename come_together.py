@@ -85,10 +85,11 @@ if not _RELEASE:
     name, authentication_status, username = authenticator.login('Login', 'main')
     if authentication_status:
         collection_friends = db.Friends
-        filter_friends = { 'user': str(username) }
+        filter_friends = { 'user': username }
         friends =collection_friends.find(filter_friends)
         fr=pd.DataFrame(list(friends))
         list_friend=fr.loc[0,"friend"].split(";")
+        st.session_state.utente=username
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{name}*')
