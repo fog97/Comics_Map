@@ -56,6 +56,7 @@ def init_connection():
 client = init_connection()
 db = client.PresenzeComics
 collection = db.Credentials
+friends = client.Friens
 config =collection.find_one()
 filter = { '_id': config["_id"] }
 
@@ -84,7 +85,12 @@ if not _RELEASE:
     # creating a login widget
     name, authentication_status, username = authenticator.login('Login', 'main')
     if authentication_status:
-        st.write(username)
+        st.write("friends")
+        collection_friends = db.Friens
+        filter_friends = { 'user': username }
+        friends =collection_friends.find(filter)
+        list_fr=list(friends)
+        st.write(pd.DataFrame(list_fr))
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{name}*')
