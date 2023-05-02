@@ -23,7 +23,7 @@ st.set_page_config(
 )
 
 st.header(" _Comics Novegro_ ")
-
+st.write(st.session_state.utente)
 if st.session_state.autenticazione:
     with st.sidebar:
         st.write("Per Informazioni  : info@parcoesposizioninovegro.it")
@@ -309,7 +309,7 @@ if st.session_state.autenticazione:
 
     col0, col1= st.columns(2)
 
-    nome = col0.text_input('Nome' )
+    #nome = col0.text_input('Nome' )
 
     st.text_input("Password ", key="password")
     input_pas=st.session_state.password
@@ -391,7 +391,7 @@ if st.session_state.autenticazione:
     add = st.button('Aggiungi')
 
     if add:
-        mydict = { "Nome": nome, "Data": data_def, "Foto":immagine,"Password":input_pas }
+        mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine,"Password":input_pas }
         db = client.PresenzeComics
         mycol = db["Novegro"]
         mycol.insert_one(mydict)
