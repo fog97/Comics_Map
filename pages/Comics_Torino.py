@@ -54,29 +54,7 @@ if st.session_state.autenticazione:
     with st.sidebar:
         st.write("Per Informazioni  : info@torinocomics.com")
 
-    # with st.container():
-    #     st.markdown("## Info")
-    #     info= pd.read_sql("select * from info",conn)
-    #     biglietti=pd.read_sql("select * from biglietti",conn)
-    #     col1, col2 = st.columns((10, 10))
-    #     col1.write('Date')
-    #     col2.write('Indirizzo')
-    #     for index, row in info.iterrows():
-    #         col1, col2 = st.columns((10, 10))
-    #         col1.write(row['data'])
-    #         col2.write(row['luogo'])  
-
-    # with st.container():
-    #     st.markdown("## Biglietti")
-    #     page=requests.get("https://torinocomics.com/")
-    #     # soup = BeautifulSoup(page.content, "html.parser")
-    #     # mydivs = soup.find_all("h1", {"class": "page-title"})[0].text
-    #     mydivs='Nessun Risultato'
-    #     if mydivs=='Nessun Risultato':
-    #         st.write("Biglietti non Disponibili")
-    #     else:
-    #         st.write("Acquista qui i [Biglietti](https://torinocomics.com/)")
-
+ 
     with st.container():
         st.markdown("## Mappa")
 
@@ -85,8 +63,6 @@ if st.session_state.autenticazione:
         map_data['lat'] = map_data['lat'].astype(float)
         map_data['lon'] = map_data['lon'].astype(float)
 
-
-        #['Parcheggio', 'Bus', 'Train', 'Metro']
 
         bus = st.checkbox('Bus')
         bus_l=''
@@ -337,10 +313,6 @@ if st.session_state.autenticazione:
 
 
     col0, col1= st.columns(2)
-
-
-    st.markdown("*La password serve per eliminare la presenza*")
-
 
     from datetime import datetime
     from io import StringIO
