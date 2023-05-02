@@ -24,6 +24,32 @@ st.set_page_config(
 
 st.header(" _Comics Novegro_ ")
 
+
+
+from pymongo import MongoClient
+
+us_name=st.secrets["mongo"]["db_username"]
+us_pw=st.secrets["mongo"]["db_pswd"]
+cl_name=st.secrets["mongo"]["cluster_name"]
+
+def init_connection():
+    return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
+client = init_connection()
+db = client.PresenzeComics
+collection_friends = db.Friends
+filter_friends = { 'user': st.session_state.utente }
+
+try:
+    friends =collection_friends.find(filter_friends)
+    fr=pd.DataFrame(list(friends))
+    list_friend=fr.loc[0,"friend"].split(";")
+except:
+    first_data={'user': st.session_state.utente, 'friend': ''}
+    collection_friends.insert_one(first_data)
+    friends =collection_friends.find(filter_friends)
+    fr=pd.DataFrame(list(friends))
+    list_friend=fr.loc[0,"friend"].split(";")
+
 if st.session_state.autenticazione:
     with st.sidebar:
         st.write("Per Informazioni  : info@parcoesposizioninovegro.it")
@@ -309,10 +335,6 @@ if st.session_state.autenticazione:
 
     col0, col1= st.columns(2)
 
-    nome = col0.text_input('Nome' )
-
-    st.text_input("Password ", key="password")
-    input_pas=st.session_state.password
 
     from pymongo import MongoClient
     import pandas as pd
@@ -391,7 +413,7 @@ if st.session_state.autenticazione:
     add = st.button('Aggiungi')
 
     if add:
-        mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine,"Password":input_pas }
+        mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine }
         db = client.PresenzeComics
         mycol = db["Novegro"]
         mycol.insert_one(mydict)
@@ -411,27 +433,24 @@ if st.session_state.autenticazione:
     col4.write('Elimina Presenza')
 
     for index, row in presenze.iterrows():
-        col1, col2,col3,col4 = st.columns((10, 10, 15,10))
-        col1.write(row['Nome'])
-        col2.write(row['Data'])
-        if row['Foto']!='':
-            col3.image(row['Foto'], width=100)
-        else:
-            with st.container():
-                col3.write(row['Foto'])   
-        button_phold = col4.empty() 
-        do_action = button_phold.button(key=index,label="Delete")
-        if do_action:
-            if text_pass==row["Password"]:
+        if row['Nome'] in list_friend or row['Nome']==st.session_state.utente:
+            col1, col2,col3,col4 = st.columns((10, 10, 15,10))
+            col1.write(row['Nome'])
+            col2.write(row['Data'])
+            if row['Foto']!='':
+                col3.image(row['Foto'], width=100)
+            else:
+                with st.container():
+                    col3.write(row['Foto'])   
+            button_phold = col4.empty() 
+            do_action = button_phold.button(key=index,label="Delete")
+            if do_action:
                 mydict = {"_id":row["_id"]}
                 db = client.PresenzeComics
                 mycol = db["Novegro"]
                 mycol.delete_one(mydict)
                 db = client.PresenzeComics
                 collection = db.Novegro 
-                presenze = pd.DataFrame(list(collection.find()))
-            else:
-                st.write("Password Errata")
 
 
 

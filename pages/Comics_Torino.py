@@ -309,45 +309,45 @@ if st.session_state.autenticazione:
 
 >>>>>>> 5effa80800f45096f03359849e505a0ed8111f64
 
-    import networkx as nx
-    import osmnx as ox
-    from IPython.display import IFrame
-    import streamlit.components.v1 as components
+    # import networkx as nx
+    # import osmnx as ox
+    # from IPython.display import IFrame
+    # import streamlit.components.v1 as components
 
-    import pandas as pd
-    restricted_db=pd.read_csv(path+"restricted_db.csv", keep_default_na=False,index_col=0)
-    restricted_db['lat'] = restricted_db['lat'].astype(float)
-    restricted_db['lon'] = restricted_db['lon'].astype(float)
-
-
-    restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
+    # import pandas as pd
+    # restricted_db=pd.read_csv(path+"restricted_db.csv", keep_default_na=False,index_col=0)
+    # restricted_db['lat'] = restricted_db['lat'].astype(float)
+    # restricted_db['lon'] = restricted_db['lon'].astype(float)
 
 
-    if len(set(list_values))>1:
-        st.markdown("# Indicazioni Stradali")
-        col1, col2,col3 = st.columns((10, 10, 15))
-        col1.write('Tipo')
-        col2.write('Nome')
-        col3.write('Mostra Indicazioni')
-
-        for index, row in restricted_db2.iterrows():
-            col1, col2,col3 = st.columns((10, 10, 15))
-            col1.write(row['Classe'])
-            col2.write(row['name'])
-            button_phold = col3.empty()
-            chiave=str(index)+"a"
-            do_action = button_phold.button(key=chiave,label="Info")
-            if do_action:
-                temp=row['Classe']
-                p=open(path+f"mappa_torino_{temp}_{index}.html")
-                components.html(p.read())
+    # restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
 
 
+    # if len(set(list_values))>1:
+    #     st.markdown("# Indicazioni Stradali")
+    #     col1, col2,col3 = st.columns((10, 10, 15))
+    #     col1.write('Tipo')
+    #     col2.write('Nome')
+    #     col3.write('Mostra Indicazioni')
+
+    #     for index, row in restricted_db2.iterrows():
+    #         col1, col2,col3 = st.columns((10, 10, 15))
+    #         col1.write(row['Classe'])
+    #         col2.write(row['name'])
+    #         button_phold = col3.empty()
+    #         chiave=str(index)+"a"
+    #         do_action = button_phold.button(key=chiave,label="Info")
+    #         if do_action:
+    #             temp=row['Classe']
+    #             p=open(path+f"mappa_torino_{temp}_{index}.html")
+    #             components.html(p.read())
 
 
 
 
 
+
+with st.container():
     st.markdown("# Presenze")
 
 
