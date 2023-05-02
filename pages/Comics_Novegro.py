@@ -309,7 +309,7 @@ if st.session_state.autenticazione:
 
     col0, col1= st.columns(2)
 
-    #nome = col0.text_input('Nome' )
+    nome = col0.text_input('Nome' )
 
     st.text_input("Password ", key="password")
     input_pas=st.session_state.password
