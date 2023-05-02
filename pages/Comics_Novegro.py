@@ -416,7 +416,7 @@ if st.session_state.autenticazione:
     collection = db.Novegro 
     presenze = pd.DataFrame(list(collection.find()))
 
-    text_pass = st.text_input("Password per Eliminazione",key='1AB') 
+    #text_pass = st.text_input("Password per Eliminazione",key='1AB') 
 
     col1, col2,col3,col4 = st.columns((10, 10, 15,10))
     col1.write('Nome')

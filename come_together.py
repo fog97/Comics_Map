@@ -59,6 +59,20 @@ collection = db.Credentials
 config =collection.find_one()
 filter = { '_id': config["_id"] }
 
+collection_friends = db.Friends
+filter_friends = { 'user': st.session_state.utente }
+
+try:
+    friends =collection_friends.find(filter_friends)
+    fr=pd.DataFrame(list(friends))
+    list_friend=fr.loc[0,"friend"].split(";")
+except:
+    first_data={'user': st.session_state.utente, 'friend': ''}
+    collection_friends.insert_one(first_data)
+    friends =collection_friends.find(filter_friends)
+    fr=pd.DataFrame(list(friends))
+    list_friend=fr.loc[0,"friend"].split(";")
+
 _RELEASE = False
 
 if not _RELEASE:
@@ -110,6 +124,23 @@ if not _RELEASE:
                             collection.replace_one(filter, config)
                     except Exception as e:
                         st.error(e)
+        col1,col2,col3=st.columns(3)
+        with col1:
+            friend = st.text_input("Username amico",key='1AB') 
+        with col2:
+            add=st.button('Aggiungi Amico')
+            if add:
+                mydict = { "user": st.session_state.utente, "friend": fr.loc[0,"friend"]+";"+"friend" }
+                collection_friends.replace_one(filter_friends, mydict)
+        with col3:
+            dell=st.button('Aggiungi Amico')
+            list_friend=list_friend.remove(friend)
+            stringa_amici=''
+            for amico in list_friend:
+                stringa_amici=stringa_amici+";"+amico
+            mydict = { "user": st.session_state.utente, "friend": stringa_amici}
+            collection_friends.replace_one(filter_friends, mydict)
+            
 
     elif authentication_status is False:
         st.session_state.autenticazione=False
@@ -168,6 +199,8 @@ if not _RELEASE:
                         st.error('Email not found')
                 except Exception as e:
                     st.error(e)
+
+
 
 
 
