@@ -338,36 +338,6 @@ if st.session_state.autenticazione:
 
     col0, col1= st.columns(2)
 
-    nome = col0.text_input('Nome' )
-
-    st.text_input("Password ", key="password")
-    input_pas=st.session_state.password
-
-    from pymongo import MongoClient
-    import pandas as pd
-    def init_connection():
-        return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
-    client = init_connection()
-    import gridfs
-    from io import BytesIO
-    db = client.PresenzeComics
-    fs = gridfs.GridFS(db)
-    collection = db.Torino 
-    passwords = pd.DataFrame(list(collection.find()))
-    try:
-        passwords_list = passwords['Password'].tolist()
-    except KeyError:
-        passwords_list = []
-
-    if input_pas not in passwords_list and input_pas!=''  :
-        st.write("Buona Password ✓")
-    elif input_pas in passwords_list:
-        st.write("Password Usata")
-        del(input_pas)
-    else:
-        pass
-
-
 
     st.markdown("*La password serve per eliminare la presenza*")
 
@@ -418,7 +388,7 @@ if st.session_state.autenticazione:
     add = st.button('Aggiungi')
 
     if add:
-        mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine,"Password":input_pas }
+        mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine }
         db = client.PresenzeComics
         mycol = db["Torino"]
         mycol.insert_one(mydict)
@@ -428,8 +398,6 @@ if st.session_state.autenticazione:
     db = client.PresenzeComics
     collection = db.Torino 
     presenze = pd.DataFrame(list(collection.find()))
-
-    text_pass = st.text_input("Password per Eliminazione",key='1AB') 
 
     col1, col2,col3,col4 = st.columns((10, 10, 15,10))
     col1.write('Nome')
