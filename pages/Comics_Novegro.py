@@ -23,7 +23,7 @@ st.set_page_config(
 )
 
 st.header(" _Comics Novegro_ ")
-st.write(st.session_state.utente)
+
 if st.session_state.autenticazione:
     with st.sidebar:
         st.write("Per Informazioni  : info@parcoesposizioninovegro.it")
