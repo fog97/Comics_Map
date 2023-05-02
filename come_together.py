@@ -84,13 +84,11 @@ if not _RELEASE:
     # creating a login widget
     name, authentication_status, username = authenticator.login('Login', 'main')
     if authentication_status:
-        st.write("friends")
-        st.write(username)
         collection_friends = db.Friends
         filter_friends = { 'user': str(username) }
         friends =collection_friends.find(filter_friends)
-        list_fr=list(friends)
-        st.write(pd.DataFrame(list_fr))
+        fr=pd.DataFrame(list(friends))
+        list_friend=fr.loc[0,"friend"].split(";")
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{name}*')
