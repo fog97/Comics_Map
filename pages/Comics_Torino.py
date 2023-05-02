@@ -43,7 +43,7 @@ try:
     fr=pd.DataFrame(list(friends))
     list_friend=fr.loc[0,"friend"].split(";")
 except:
-    first_data={'user': 'test', 'friend': ''}
+    first_data={'user': st.session_state.utente, 'friend': ''}
     collection_friends.insert_one(first_data)
     friends =collection_friends.find(filter_friends)
     fr=pd.DataFrame(list(friends))
