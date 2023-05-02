@@ -89,6 +89,7 @@ if not _RELEASE:
         friends =collection_friends.find(filter_friends)
         fr=pd.DataFrame(list(friends))
         list_friend=fr.loc[0,"friend"].split(";")
+        st.write(list_friend)
         st.session_state.utente=username
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
