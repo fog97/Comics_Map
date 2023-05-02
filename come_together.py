@@ -88,7 +88,7 @@ if not _RELEASE:
         st.write(username)
         collection_friends = db.Friends
         filter_friends = { 'user': str(username) }
-        friends =collection_friends.find(filter)
+        friends =collection_friends.find(filter_friends)
         list_fr=list(friends)
         st.write(pd.DataFrame(list_fr))
         st.session_state.autenticazione=True
