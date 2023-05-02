@@ -393,7 +393,7 @@ if st.session_state.autenticazione:
     add = st.button('Aggiungi')
 
     if add:
-        mydict = { "Nome": nome, "Data": data_def, "Foto":immagine,"Password":input_pas }
+        mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine,"Password":input_pas }
         db = client.PresenzeComics
         mycol = db["Torino"]
         mycol.insert_one(mydict)
