@@ -78,6 +78,7 @@ if not _RELEASE:
             if authenticator.register_user('Register user', preauthorization=False):
                 st.success('User registered successfully')
                 collection.replace_one(filter, config)
+                collection_friends.insert_one(first_data)
         except Exception as e:
             st.error(e)
 
