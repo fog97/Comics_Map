@@ -344,115 +344,115 @@ if st.session_state.autenticazione:
 
 
 
-with st.container():
-    st.markdown("# Presenze")
+    with st.container():
+        st.markdown("# Presenze")
 
 
 
-    #Uso mongoDB
-    from pymongo import MongoClient
+        #Uso mongoDB
+        from pymongo import MongoClient
 
-    us_name=st.secrets["mongo"]["db_username"]
-    us_pw=st.secrets["mongo"]["db_pswd"]
-    cl_name=st.secrets["mongo"]["cluster_name"]
-
-
-    #@st.experimental_singleton(suppress_st_warning=True)
-    def init_connection():
-        return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
+        us_name=st.secrets["mongo"]["db_username"]
+        us_pw=st.secrets["mongo"]["db_pswd"]
+        cl_name=st.secrets["mongo"]["cluster_name"]
 
 
-    col0, col1= st.columns(2)
-
-    from datetime import datetime
-    from io import StringIO
-
-
-    data = st.date_input("Data Presenza",
-        datetime.now())
-    data = data.strftime("%m/%d/%Y")
-    data_def=data
-    data_to=''
-    piudate = st.checkbox('Inserire più giorni')
-
-    if piudate:
-        data_to = st.date_input("Data Fine Presenza",datetime.now())
-        data_to = data_to.strftime("%m/%d/%Y")
-
-    if data_to!='' and data_to!=data_def:
-        data_def=data_def+"-"+data_to
-
-    uploaded_files = st.file_uploader("Carica la foto del tuo cosplay", accept_multiple_files=True)
-    for uploaded_file in uploaded_files:
-        bytes_data = uploaded_file.read()
+        #@st.experimental_singleton(suppress_st_warning=True)
+        def init_connection():
+            return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
 
 
-    import gridfs
-    from io import BytesIO
+        col0, col1= st.columns(2)
 
-    db = client.PresenzeComics
-
-    #Create an object of GridFs for the above database.
-    fs = gridfs.GridFS(db)
-
-    immagine=''
-    try:
-        with BytesIO(bytes_data) as f:
-            contents = f.read()
-            st.image(contents, caption='Immagine Caricata')
-            immagine=contents
-    except NameError:
-        immagine=''
+        from datetime import datetime
+        from io import StringIO
 
 
+        data = st.date_input("Data Presenza",
+            datetime.now())
+        data = data.strftime("%m/%d/%Y")
+        data_def=data
+        data_to=''
+        piudate = st.checkbox('Inserire più giorni')
+
+        if piudate:
+            data_to = st.date_input("Data Fine Presenza",datetime.now())
+            data_to = data_to.strftime("%m/%d/%Y")
+
+        if data_to!='' and data_to!=data_def:
+            data_def=data_def+"-"+data_to
+
+        uploaded_files = st.file_uploader("Carica la foto del tuo cosplay", accept_multiple_files=True)
+        for uploaded_file in uploaded_files:
+            bytes_data = uploaded_file.read()
 
 
-    add = st.button('Aggiungi')
+        import gridfs
+        from io import BytesIO
 
-    if add:
-        mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine }
         db = client.PresenzeComics
-        mycol = db["Torino"]
-        mycol.insert_one(mydict)
 
+        #Create an object of GridFs for the above database.
+        fs = gridfs.GridFS(db)
 
-
-    db = client.PresenzeComics
-    collection = db.Torino 
-    presenze = pd.DataFrame(list(collection.find()))
-
-    col1, col2,col3,col4 = st.columns((10, 10, 15,10))
-    col1.write('Nome')
-    col2.write('Data')
-    col3.write('Cosplay')
-    col4.write('Elimina Presenza')
-
-    for index, row in presenze.iterrows():
-        if row['Nome'] in list_friend or row['Nome']==st.session_state.utente:
-            col1, col2,col3,col4 = st.columns((10, 10, 15,10))
-            col1.write(row['Nome'])
-            col2.write(row['Data'])
-            if row['Foto']!='':
-                col3.image(row['Foto'], width=100)
-            else:
-                with st.container():
-                    col3.write(row['Foto'])   
-            button_phold = col4.empty() 
-            do_action = button_phold.button(key=index,label="Delete")
-            if do_action and row['Nome']==st.session_state.utente:
-                mydict = {"_id":row["_id"]}
-                db = client.PresenzeComics
-                mycol = db["Torino"]
-                mycol.delete_one(mydict)
-                db = client.PresenzeComics
-                collection = db.Torino 
-                presenze = pd.DataFrame(list(collection.find()))
+        immagine=''
+        try:
+            with BytesIO(bytes_data) as f:
+                contents = f.read()
+                st.image(contents, caption='Immagine Caricata')
+                immagine=contents
+        except NameError:
+            immagine=''
 
 
 
 
+        add = st.button('Aggiungi')
 
-    st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
+        if add:
+            mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine }
+            db = client.PresenzeComics
+            mycol = db["Torino"]
+            mycol.insert_one(mydict)
+
+
+
+        db = client.PresenzeComics
+        collection = db.Torino 
+        presenze = pd.DataFrame(list(collection.find()))
+
+        col1, col2,col3,col4 = st.columns((10, 10, 15,10))
+        col1.write('Nome')
+        col2.write('Data')
+        col3.write('Cosplay')
+        col4.write('Elimina Presenza')
+
+        for index, row in presenze.iterrows():
+            if row['Nome'] in list_friend or row['Nome']==st.session_state.utente:
+                col1, col2,col3,col4 = st.columns((10, 10, 15,10))
+                col1.write(row['Nome'])
+                col2.write(row['Data'])
+                if row['Foto']!='':
+                    col3.image(row['Foto'], width=100)
+                else:
+                    with st.container():
+                        col3.write(row['Foto'])   
+                button_phold = col4.empty() 
+                do_action = button_phold.button(key=index,label="Delete")
+                if do_action and row['Nome']==st.session_state.utente:
+                    mydict = {"_id":row["_id"]}
+                    db = client.PresenzeComics
+                    mycol = db["Torino"]
+                    mycol.delete_one(mydict)
+                    db = client.PresenzeComics
+                    collection = db.Torino 
+                    presenze = pd.DataFrame(list(collection.find()))
+
+
+
+
+
+        st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
 else:
     st.write("Autenticati o registrati per favore")
 
