@@ -25,6 +25,23 @@ st.set_page_config(
 st.header(" _Comics Torino_ ")
 
 
+from pymongo import MongoClient
+
+us_name=st.secrets["mongo"]["db_username"]
+us_pw=st.secrets["mongo"]["db_pswd"]
+cl_name=st.secrets["mongo"]["cluster_name"]
+
+def init_connection():
+    return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
+client = init_connection()
+db = client.PresenzeComics
+collection_friends = db.Friends
+filter_friends = { 'user': username }
+friends =collection_friends.find(filter_friends)
+fr=pd.DataFrame(list(friends))
+list_friend=fr.loc[0,"friend"].split(";")
+
+
 if st.session_state.autenticazione:
     with st.sidebar:
         st.write("Per Informazioni  : info@torinocomics.com")
@@ -413,27 +430,28 @@ if st.session_state.autenticazione:
     col4.write('Elimina Presenza')
 
     for index, row in presenze.iterrows():
-        col1, col2,col3,col4 = st.columns((10, 10, 15,10))
-        col1.write(row['Nome'])
-        col2.write(row['Data'])
-        if row['Foto']!='':
-            col3.image(row['Foto'], width=100)
-        else:
-            with st.container():
-                col3.write(row['Foto'])   
-        button_phold = col4.empty() 
-        do_action = button_phold.button(key=index,label="Delete")
-        if do_action:
-            if text_pass==row["Password"]:
-                mydict = {"_id":row["_id"]}
-                db = client.PresenzeComics
-                mycol = db["Torino"]
-                mycol.delete_one(mydict)
-                db = client.PresenzeComics
-                collection = db.Torino 
-                presenze = pd.DataFrame(list(collection.find()))
+        if row['Nome'] in list_friend:
+            col1, col2,col3,col4 = st.columns((10, 10, 15,10))
+            col1.write(row['Nome'])
+            col2.write(row['Data'])
+            if row['Foto']!='':
+                col3.image(row['Foto'], width=100)
             else:
-                st.write("Password Errata")
+                with st.container():
+                    col3.write(row['Foto'])   
+            button_phold = col4.empty() 
+            do_action = button_phold.button(key=index,label="Delete")
+            if do_action:
+                if text_pass==row["Password"]:
+                    mydict = {"_id":row["_id"]}
+                    db = client.PresenzeComics
+                    mycol = db["Torino"]
+                    mycol.delete_one(mydict)
+                    db = client.PresenzeComics
+                    collection = db.Torino 
+                    presenze = pd.DataFrame(list(collection.find()))
+                else:
+                    st.write("Password Errata")
 
 
 
