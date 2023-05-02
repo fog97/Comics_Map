@@ -137,8 +137,9 @@ if not _RELEASE:
                 dell=st.button('Elimina Amico')
                 if dell:
                     stringa_amici=''
-                    for amico in list_friend and amico!=friend:
-                        stringa_amici=stringa_amici+";"+amico
+                    for amico in list_friend :
+                        if amico!=friend:
+                            stringa_amici=stringa_amici+";"+amico
                     mydict = { "user": st.session_state.utente, "friend": stringa_amici}
                     collection_friends.replace_one(filter_friends, mydict)
             
