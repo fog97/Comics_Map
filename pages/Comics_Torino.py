@@ -230,7 +230,6 @@ if st.session_state.autenticazione:
 
     st.markdown("[Metro/Bus](https://www.gtt.to.it/cms/biglietti-abbonamenti/biglietti/biglietti-carnet)")
 
-<<<<<<< HEAD
         # import geopy.distance
 
         # origin_lat=45.02891677040412
@@ -281,7 +280,6 @@ if st.session_state.autenticazione:
         #             temp=row['Classe']
         #             p=open(path+f"mappa_torino_{temp}_{index}.html")
         #             components.html(p.read())
-=======
     st.markdown("[Treno](https://www.trenitalia.com/it.html?cid=G_AV1022AWO_SEARCH_B_Trenitalia_E&gclid=CjwKCAiA0cyfBhBREiwAAtStHI82RmfGscH_QL77qBxcCWSUSfb2azN4LVmZb1gV0lNUv6jlT3_jnBoCLJYQAvD_BwE)")
 
 
@@ -307,7 +305,6 @@ if st.session_state.autenticazione:
         restricted_db=pd.concat([restricted_db,temp.head()])
 
 
->>>>>>> 5effa80800f45096f03359849e505a0ed8111f64
 
     # import networkx as nx
     # import osmnx as ox
