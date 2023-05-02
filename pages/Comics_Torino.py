@@ -237,56 +237,56 @@ try:
 
 
 
-        import geopy.distance
+        # import geopy.distance
 
-        origin_lat=45.02891677040412
-        orining_lon=7.664243711338131
+        # origin_lat=45.02891677040412
+        # orining_lon=7.664243711338131
 
-        map_data["Distance"]=""
+        # map_data["Distance"]=""
 
-        for index,row in map_data.iterrows():
-            distance=round(geopy.distance.geodesic((row["lat"],row["lon"]), (origin_lat,orining_lon)).km,3)
-            map_data.loc[index,"Distance"]=distance
+        # for index,row in map_data.iterrows():
+        #     distance=round(geopy.distance.geodesic((row["lat"],row["lon"]), (origin_lat,orining_lon)).km,3)
+        #     map_data.loc[index,"Distance"]=distance
 
-        restricted_db=pd.DataFrame(columns=map_data.columns)
-        for classe in map_data["Classe"].unique():
-            temp=map_data[map_data.Classe==classe].sort_values(by="Distance",ascending=True)
-            restricted_db=pd.concat([restricted_db,temp.head()])
-
-
-
-        import networkx as nx
-        import osmnx as ox
-        from IPython.display import IFrame
-        import streamlit.components.v1 as components
-
-        import pandas as pd
-        restricted_db=pd.read_csv(path+"restricted_db.csv", keep_default_na=False,index_col=0)
-        restricted_db['lat'] = restricted_db['lat'].astype(float)
-        restricted_db['lon'] = restricted_db['lon'].astype(float)
+        # restricted_db=pd.DataFrame(columns=map_data.columns)
+        # for classe in map_data["Classe"].unique():
+        #     temp=map_data[map_data.Classe==classe].sort_values(by="Distance",ascending=True)
+        #     restricted_db=pd.concat([restricted_db,temp.head()])
 
 
-        restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
+
+        # import networkx as nx
+        # import osmnx as ox
+        # from IPython.display import IFrame
+        # import streamlit.components.v1 as components
+
+        # import pandas as pd
+        # restricted_db=pd.read_csv(path+"restricted_db.csv", keep_default_na=False,index_col=0)
+        # restricted_db['lat'] = restricted_db['lat'].astype(float)
+        # restricted_db['lon'] = restricted_db['lon'].astype(float)
 
 
-        if len(set(list_values))>1:
-            st.markdown("# Indicazioni Stradali")
-            col1, col2,col3 = st.columns((10, 10, 15))
-            col1.write('Tipo')
-            col2.write('Nome')
-            col3.write('Mostra Indicazioni')
+        # restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
 
-            for index, row in restricted_db2.iterrows():
-                col1, col2,col3 = st.columns((10, 10, 15))
-                col1.write(row['Classe'])
-                col2.write(row['name'])
-                button_phold = col3.empty()
-                chiave=str(index)+"a"
-                do_action = button_phold.button(key=chiave,label="Info")
-                if do_action:
-                    temp=row['Classe']
-                    p=open(path+f"mappa_torino_{temp}_{index}.html")
-                    components.html(p.read())
+
+        # if len(set(list_values))>1:
+        #     st.markdown("# Indicazioni Stradali")
+        #     col1, col2,col3 = st.columns((10, 10, 15))
+        #     col1.write('Tipo')
+        #     col2.write('Nome')
+        #     col3.write('Mostra Indicazioni')
+
+        #     for index, row in restricted_db2.iterrows():
+        #         col1, col2,col3 = st.columns((10, 10, 15))
+        #         col1.write(row['Classe'])
+        #         col2.write(row['name'])
+        #         button_phold = col3.empty()
+        #         chiave=str(index)+"a"
+        #         do_action = button_phold.button(key=chiave,label="Info")
+        #         if do_action:
+        #             temp=row['Classe']
+        #             p=open(path+f"mappa_torino_{temp}_{index}.html")
+        #             components.html(p.read())
 
 
 
