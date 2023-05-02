@@ -328,37 +328,29 @@ if st.session_state.autenticazione:
     cl_name=st.secrets["mongo"]["cluster_name"]
 
 
-    # @st.experimental_singleton(suppress_st_warning=True)
-    def init_connection():
-        return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
+    # # @st.experimental_singleton(suppress_st_warning=True)
+    # def init_connection():
+    #     return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
 
 
-    col0, col1= st.columns(2)
+    # col0, col1= st.columns(2)
 
 
-    from pymongo import MongoClient
-    import pandas as pd
-    def init_connection():
-        return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
-    client = init_connection()
-    import gridfs
-    from io import BytesIO
-    db = client.PresenzeComics
-    fs = gridfs.GridFS(db)
-    collection = db.Novegro 
-    passwords = pd.DataFrame(list(collection.find()))
-    try:
-        passwords_list = passwords['Password'].tolist()
-    except KeyError:
-        passwords_list = []
-
-    if input_pas not in passwords_list and input_pas!=''  :
-        st.write("Buona Password ✓")
-    elif input_pas in passwords_list:
-        st.write("Password Usata")
-        del(input_pas)
-    else:
-        pass
+    # from pymongo import MongoClient
+    # import pandas as pd
+    # def init_connection():
+    #     return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
+    # client = init_connection()
+    # import gridfs
+    # from io import BytesIO
+    # db = client.PresenzeComics
+    # fs = gridfs.GridFS(db)
+    # collection = db.Novegro 
+    # passwords = pd.DataFrame(list(collection.find()))
+    # try:
+    #     passwords_list = passwords['Password'].tolist()
+    # except KeyError:
+    #     passwords_list = []
 
 
 
