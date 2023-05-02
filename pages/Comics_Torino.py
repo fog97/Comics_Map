@@ -438,7 +438,7 @@ if st.session_state.autenticazione:
     col4.write('Elimina Presenza')
 
     for index, row in presenze.iterrows():
-        if row['Nome'] in list_friend:
+        if row['Nome'] in list_friend or row['Nome']==st.session_state.utente:
             col1, col2,col3,col4 = st.columns((10, 10, 15,10))
             col1.write(row['Nome'])
             col2.write(row['Data'])
