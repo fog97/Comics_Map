@@ -131,7 +131,7 @@ if not _RELEASE:
             with col2:
                 add=st.button('Aggiungi Amico')
                 if add:
-                    mydict = { "user": st.session_state.utente, "friend": fr.loc[0,"friend"]+";"+"friend" }
+                    mydict = { "user": st.session_state.utente, "friend": fr.loc[0,"friend"]+";"+friend }
                     collection_friends.replace_one(filter_friends, mydict)
             with col3:
                 dell=st.button('Elimina Amico')
