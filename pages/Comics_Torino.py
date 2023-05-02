@@ -449,8 +449,8 @@ if st.session_state.autenticazione:
                     col3.write(row['Foto'])   
             button_phold = col4.empty() 
             do_action = button_phold.button(key=index,label="Delete")
-            if do_action:
-                if text_pass==row["Password"]:
+            if do_action and row['Nome']==st.session_state.utente:
+                #if text_pass==row["Password"]:
                     mydict = {"_id":row["_id"]}
                     db = client.PresenzeComics
                     mycol = db["Torino"]
