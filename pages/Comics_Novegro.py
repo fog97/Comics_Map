@@ -21,10 +21,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-st.write(st.session_state.authentication_status)
-st.header(" _Comics Novegro_ ")
 
-if st.session_state.authentication_status:
+st.header(" _Comics Novegro_ ")
+st.write(st.session_state.utente)
+if st.session_state.autenticazione:
     with st.sidebar:
         st.write("Per Informazioni  : info@parcoesposizioninovegro.it")
     #     #st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
@@ -391,7 +391,7 @@ if st.session_state.authentication_status:
     add = st.button('Aggiungi')
 
     if add:
-        mydict = { "Nome": nome, "Data": data_def, "Foto":immagine,"Password":input_pas }
+        mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine,"Password":input_pas }
         db = client.PresenzeComics
         mycol = db["Novegro"]
         mycol.insert_one(mydict)
@@ -442,6 +442,6 @@ if st.session_state.authentication_status:
 
 
 else:
-    st.write("Autenticati")
+    st.write("Autenticati o registrati per favore")
 
 
