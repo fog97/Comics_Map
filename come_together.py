@@ -143,7 +143,7 @@ if not _RELEASE:
                 if dell:
                     stringa_amici=''
                     for amico in list_friend :
-                        if amico!=friend:
+                        if amico!=friend and  amico!="":
                             stringa_amici=stringa_amici+";"+amico
                     mydict = { "user": st.session_state.utente, "friend": stringa_amici}
                     collection_friends.replace_one(filter_friends, mydict)
