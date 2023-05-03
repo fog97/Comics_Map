@@ -102,7 +102,7 @@ if not _RELEASE:
             list_friend=fr.loc[0,"friend"].split(";")
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
-        st.markdown(f'Benvenuto **{name}** ! :sunglasses:')
+        st.write(f'Benvenuto **{name}**')
         
         col1,col2=st.columns(2)
         
