@@ -126,15 +126,15 @@ if not _RELEASE:
                     except Exception as e:
                         st.error(e)
         with st.container():
-            col1,col2,col3=st.columns(3)
+            st.markdown("Gestione Amici")
+            friend = st.text_input("Username amico",key='1AB') 
+            col1,col2=st.columns(2)
             with col1:
-                friend = st.text_input("Username amico",key='1AB') 
-            with col2:
                 add=st.button('Aggiungi Amico')
                 if add:
                     mydict = { "user": st.session_state.utente, "friend": fr.loc[0,"friend"]+";"+friend }
                     collection_friends.replace_one(filter_friends, mydict)
-            with col3:
+            with col2:
                 dell=st.button('Elimina Amico')
                 if dell:
                     stringa_amici=''
