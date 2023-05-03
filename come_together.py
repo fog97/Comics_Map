@@ -103,7 +103,9 @@ if not _RELEASE:
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
         st.markdown(f'Benvenuto **{name}** ! :sunglasses:')
+        
         col1,col2=st.columns(2)
+        
         with col1:
             with st.expander("Change Password", expanded=False):
                     # Creating a password reset widget
