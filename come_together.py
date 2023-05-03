@@ -38,12 +38,12 @@ cl_name=st.secrets["mongo"]["cluster_name"]
 
 
 col1, col2, col3 = st.columns(3)
-
+st.title("Come Together")
 with col1:
     st.write(' ')
 
 with col2:
-    st.title("Come Together")
+    
     st.image(image.imread(path+'Copertina2.jpg'))
 
 with col3:
@@ -102,7 +102,7 @@ if not _RELEASE:
             list_friend=fr.loc[0,"friend"].split(";")
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
-        st.write(f'Benvenuto **{name}**')
+        st.write(f'Benvenuto **{name}** :smiley:')
         
         col1, col2 = st.columns(2)
         
