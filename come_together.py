@@ -39,7 +39,7 @@ cl_name=st.secrets["mongo"]["cluster_name"]
 
 col1, col2, col3 = st.columns(3)
 
-original_title = '<p style="font-family:fantasy; color:Blue; font-size: 80px;">Come Together</p>'
+original_title = '<p style="font-family:fantasy; color:Red; font-size: 80px;">Come Together</p>'
 st.markdown(original_title, unsafe_allow_html=True)
 with col1:
     st.write(' ')
