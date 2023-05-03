@@ -43,7 +43,7 @@ with col1:
     st.write(' ')
 
 with col2:
-    st.header(" _Come Together_ ")
+    st.title("Come Together")
     st.image(image.imread(path+'Copertina2.jpg'))
 
 with col3:
