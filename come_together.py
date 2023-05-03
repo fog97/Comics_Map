@@ -102,8 +102,10 @@ if not _RELEASE:
             list_friend=fr.loc[0,"friend"].split(";")
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
-        st.write(f'Welcome *{name}*')
-        col1,col2=st.columns(2)
+        st.write(f'Benvenuto **{name}**')
+        
+        col1, col2 = st.columns(2)
+        
         with col1:
             with st.expander("Change Password", expanded=False):
                     # Creating a password reset widget
