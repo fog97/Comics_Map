@@ -105,7 +105,7 @@ if not _RELEASE:
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
         st.write(f'Benvenuto **{name}** :smiley:')
-        
+        st.header('Log In / Sign In')
         col1, col2 = st.columns(2)
         
         with col1:
