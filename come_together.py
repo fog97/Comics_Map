@@ -102,7 +102,7 @@ if not _RELEASE:
             list_friend=fr.loc[0,"friend"].split(";")
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
-        st.write(f'Welcome *{name}*')
+        st.markdown(f'Benvenuto **{name}** ! :sunglasses:')
         col1,col2=st.columns(2)
         with col1:
             with st.expander("Change Password", expanded=False):
@@ -126,7 +126,7 @@ if not _RELEASE:
                     except Exception as e:
                         st.error(e)
         with st.container():
-            st.markdown("Gestione Amici")
+            st.markdown(##"Gestione Amici")
             friend = st.text_input("Username amico",key='1AB') 
             col1,col2=st.columns(2)
             with col1:
