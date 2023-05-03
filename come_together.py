@@ -159,8 +159,9 @@ if not _RELEASE:
             with st.expander("Password dimenticata?", expanded=False):
                 # Creating a forgot password widget
                 try:
-                    username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
+                    
                     if username_forgot_pw:
+                        username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
                         TO = email_forgot_password
                         SUBJECT = "Nuova Password"
                         TEXT = "La nuova password :"+str(random_password)+" . Assicurati di cambiarla appena possibile."
