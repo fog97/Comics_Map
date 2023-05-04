@@ -93,7 +93,11 @@ if not _RELEASE:
         collection_friends = db.Friends
         filter_friends = { 'user': st.session_state.utente }
         security =pd.DataFrame(list(collection_secs.find(filter_friends)))
-        st.write(len(security))
+        if len(security)==0
+            st.write("Primo accesso, inserisci un PIN di 4 cifre. Serve per cambiare password, ricordalo !")
+            pin=t.text_input()
+            sec_data={'user': username, 'pin': pin}
+            collection_secs.insert_one(sec_data)
         try:
             friends =collection_friends.find(filter_friends)
             fr=pd.DataFrame(list(friends))
@@ -160,6 +164,9 @@ if not _RELEASE:
         col1,col2=st.columns(2)
         with col1:
             with st.expander("Password dimenticata?", expanded=False):
+                security =pd.DataFrame(list(collection_secs.find(filter_friends)))
+                pin=t.text_input("Inserisci il tuo PIN")
+                pin=security.loc[0,"pin"]
                 # Creating a forgot password widget
                 try:
                     username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
