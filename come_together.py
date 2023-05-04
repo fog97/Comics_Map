@@ -37,7 +37,7 @@ us_pw=st.secrets["mongo"]["db_pswd"]
 cl_name=st.secrets["mongo"]["cluster_name"]
 
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns(1,10,1)
 
 
 with col1:
