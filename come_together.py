@@ -92,13 +92,15 @@ if not _RELEASE:
         
         collection_friends = db.Friends
         filter_friends = { 'user': st.session_state.utente }
-        if 'filter_friends' in locals():
+        try:
             security =pd.DataFrame(list(collection_secs.find(filter_friends)))
             if len(security)==0:
                 pin=st.text_input("Primo accesso, inserisci un PIN di 4 cifre. Serve per cambiare password, ricordalo !")
                 if pin!="":
                     sec_data={'user': username, 'pin': pin}
                     collection_secs.insert_one(sec_data)
+        except:
+            pass
         try:
             friends =collection_friends.find(filter_friends)
             fr=pd.DataFrame(list(friends))
