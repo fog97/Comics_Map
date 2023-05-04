@@ -172,7 +172,8 @@ if not _RELEASE:
                 try:
                     security =pd.DataFrame(list(collection_secs.find(filter_sec)))
                     pin=st.text_input("Inserisci il tuo PIN")
-                    pin=security.loc[0,"pin"]
+                    if pin=security.loc[0,"pin"]:
+                        st.write(pass)
                 except:
                     pass
                 # Creating a forgot password widget
