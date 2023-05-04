@@ -92,7 +92,7 @@ if not _RELEASE:
         
         collection_friends = db.Friends
         filter_friends = { 'user': st.session_state.utente }
-        security =pd.DataFrame(list(collection_secs.find(filter_friends))
+        security =pd.DataFrame(list(collection_secs.find(filter_friends)))
         st.write(security)
         try:
             friends =collection_friends.find(filter_friends)
