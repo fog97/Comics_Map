@@ -39,14 +39,15 @@ cl_name=st.secrets["mongo"]["cluster_name"]
 
 col1, col2, col3 = st.columns(3)
 
-original_title = '<p style="font-family:fantasy; color:Red; font-size: 80px;">Come Together</p>'
-st.markdown(original_title, unsafe_allow_html=True)
+
 with col1:
     st.write(' ')
 
 with col2:
     
     st.image(image.imread(path+'Copertina2.jpg'))
+    original_title = '<p style="font-family:fantasy; color:Red; font-size: 80px;">Come Together</p>'
+    st.markdown(original_title, unsafe_allow_html=True)
 
 with col3:
     st.write(' ')
