@@ -167,9 +167,12 @@ if not _RELEASE:
         col1,col2=st.columns(2)
         with col1:
             with st.expander("Password dimenticata?", expanded=False):
-                security =pd.DataFrame(list(collection_secs.find(filter_friends)))
-                pin=t.text_input("Inserisci il tuo PIN")
-                pin=security.loc[0,"pin"]
+                try:
+                    security =pd.DataFrame(list(collection_secs.find(filter_friends)))
+                    pin=t.text_input("Inserisci il tuo PIN")
+                    pin=security.loc[0,"pin"]
+                except:
+                    pass
                 # Creating a forgot password widget
                 try:
                     username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
