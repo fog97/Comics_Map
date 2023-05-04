@@ -81,11 +81,7 @@ if not _RELEASE:
         try:
             if authenticator.register_user('Register user', preauthorization=False):
                 st.success('User registered successfully')
-                collection.replace_one(filter, config)
-                st.write("test_layout")
-                st.write(config['credentials'])
-                #sec_data={'user': st.session_state.utente, 'pin': ''}
-                #collection_secs.insert_one(sec_data)  
+                collection.replace_one(filter, config)  
         except Exception as e:
             st.error(e)
 
@@ -96,7 +92,12 @@ if not _RELEASE:
         
         collection_friends = db.Friends
         filter_friends = { 'user': st.session_state.utente }
-
+        #sec_data={'user': st.session_state.utente, 'pin': ''}
+        #collection_secs.insert_one(sec_data)
+        security =pd.DataFrame(list(collection_secs.find(filter_friends))
+        st.write(security)
+        if username not in security["user"]:
+            st.write("primo_accesso")
         try:
             friends =collection_friends.find(filter_friends)
             fr=pd.DataFrame(list(friends))
