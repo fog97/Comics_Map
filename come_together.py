@@ -92,8 +92,6 @@ if not _RELEASE:
         
         collection_friends = db.Friends
         filter_friends = { 'user': st.session_state.utente }
-        #sec_data={'user': st.session_state.utente, 'pin': ''}
-        #collection_secs.insert_one(sec_data)
         security =pd.DataFrame(list(collection_secs.find(filter_friends))
         st.write(security)
         try:
