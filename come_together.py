@@ -59,13 +59,14 @@ client = init_connection()
 db = client.PresenzeComics
 collection = db.Credentials
 config =collection.find_one()
+collection_secs = db.Security
+
 filter = { '_id': config["_id"] }
 
 
 _RELEASE = False
 
 if not _RELEASE:
-    #hashed_passwords = stauth.Hasher(['test']).generate()
     # Loading config file
     # Creating the authenticator object
     authenticator = stauth.Authenticate(
@@ -81,6 +82,10 @@ if not _RELEASE:
             if authenticator.register_user('Register user', preauthorization=False):
                 st.success('User registered successfully')
                 collection.replace_one(filter, config)
+                st.write("test_layout")
+                st.write(config['credentials'])
+                #sec_data={'user': st.session_state.utente, 'pin': ''}
+                #collection_secs.insert_one(sec_data)  
         except Exception as e:
             st.error(e)
 
@@ -102,6 +107,7 @@ if not _RELEASE:
             friends =collection_friends.find(filter_friends)
             fr=pd.DataFrame(list(friends))
             list_friend=fr.loc[0,"friend"].split(";")
+        sec =collection_secs.find(filter_friends)
         st.session_state.autenticazione=True
         authenticator.logout('Logout', 'main')
         st.write(f'Benvenuto **{name}** :smiley:')
