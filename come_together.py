@@ -95,8 +95,7 @@ if not _RELEASE:
         #sec_data={'user': st.session_state.utente, 'pin': ''}
         #collection_secs.insert_one(sec_data)
         security =pd.DataFrame(list(collection_secs.find(filter_friends))
-        if username not in security["user"]:
-            st.write("primo_accesso")
+        st.write(security)
         try:
             friends =collection_friends.find(filter_friends)
             fr=pd.DataFrame(list(friends))
