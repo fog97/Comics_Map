@@ -174,33 +174,34 @@ if not _RELEASE:
                     pin=st.text_input("Inserisci il tuo PIN")
                     if pin==security.loc[0,"pin"]:
                         st.write("pass")
+
+                    # Creating a forgot password widget
+                    try:
+                        username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
+                        if username_forgot_pw:
+
+                            TO = email_forgot_password
+                            SUBJECT = "Nuova Password"
+                            TEXT = "La nuova password :"+str(random_password)+" . Assicurati di cambiarla appena possibile."
+                            server = smtplib.SMTP('smtp.gmail.com')
+                            server.ehlo()
+                            server.starttls()
+                            server.login(gmail_user, gmail_pwd)
+                            BODY = '\r\n'.join(['To: %s' % TO,
+                                     'From: %s' % gmail_user,
+                                     'Subject: %s' % SUBJECT,
+                                     '', str(TEXT)])
+                            server.sendmail(gmail_user, [TO], BODY)
+                            server.quit()
+
+                            st.success('New password sent securely')
+                            collection.replace_one(filter, config)
+                        else:
+                            st.error('Username not found')
+                    except Exception as e:
+                        st.error(e)
                 except:
                     pass
-                # Creating a forgot password widget
-                try:
-                    username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
-                    if username_forgot_pw:
-                        
-                        TO = email_forgot_password
-                        SUBJECT = "Nuova Password"
-                        TEXT = "La nuova password :"+str(random_password)+" . Assicurati di cambiarla appena possibile."
-                        server = smtplib.SMTP('smtp.gmail.com')
-                        server.ehlo()
-                        server.starttls()
-                        server.login(gmail_user, gmail_pwd)
-                        BODY = '\r\n'.join(['To: %s' % TO,
-                                 'From: %s' % gmail_user,
-                                 'Subject: %s' % SUBJECT,
-                                 '', str(TEXT)])
-                        server.sendmail(gmail_user, [TO], BODY)
-                        server.quit()
-
-                        st.success('New password sent securely')
-                        collection.replace_one(filter, config)
-                    else:
-                        st.error('Username not found')
-                except Exception as e:
-                    st.error(e)
         with col2:
             with st.expander("Username Dimenticato?", expanded=False):
                 # Creating a forgot username widget
