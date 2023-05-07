@@ -18,7 +18,7 @@ pwd=st.secrets["mail"]["mail_pwd"]
 #Test_345
 gmail_user = sender
 gmail_pwd = pwd
-
+st.session_state.autenticazione=False
 st.set_page_config(
     page_title="Come Together",
     layout="centered",
