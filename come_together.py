@@ -256,7 +256,7 @@ audio_bytes = audio_recorder(
     text="",
     recording_color="#e8b62c",
     neutral_color="#6aa36f",
-    icon_name="sparkles",
+    icon_name="user",
     icon_size="6x",
 )
 
