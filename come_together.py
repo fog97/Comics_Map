@@ -11,6 +11,7 @@ import pydeck as pdk
 import streamlit_authenticator as stauth
 from PIL import Image
 import yaml
+import io
 from pydub import AudioSegment
 import smtplib
 import speech_recognition as sr
@@ -259,8 +260,10 @@ audio = audiorecorder("Click to record", "Recording...")
 if len(audio) > 0:
     # To play audio in frontend:
     st.audio(audio.tobytes())
+    s = io.BytesIO(audio.tobytes())
+    audiotr = AudioSegment.from_raw(s, sample_width, frame_rate, channels).export("sound.wav", format='wav')
     r = sr.Recognizer()
-    with sr.AudioFile(audio) as source:
+    with sr.AudioFile("sound.wav") as source:
         try:
             text = r.recognize_google(audio_text)
             st.write('Converting audio transcripts into text ...')
