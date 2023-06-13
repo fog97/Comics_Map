@@ -12,6 +12,7 @@ import streamlit_authenticator as stauth
 from PIL import Image
 import yaml
 import smtplib
+from audio_recorder_streamlit import audio_recorder
 path='/app/comics_map/'
 sender=st.secrets["mail"]["mail"]
 pwd=st.secrets["mail"]["mail_pwd"]
