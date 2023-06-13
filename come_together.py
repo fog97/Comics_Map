@@ -274,9 +274,6 @@ if audio_bytes:
     if os.path.exists('myfile.wav'):
         os.remove('myfile.wav')
     with sr.AudioFile('myfile.wav') as source:
-        try:
-            text = r.recognize_google(audio_text)
-            st.write('Converting audio transcripts into text ...')
-            st.write(text)
-        except:
-            st.write('Sorry.. run again...')
+        text = r.recognize_google(audio_text)
+        st.write(text)
+
