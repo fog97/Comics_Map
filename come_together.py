@@ -262,7 +262,7 @@ if len(audio) > 0:
     # To save audio to a file:
     #wav_file = open("audio.wav", "wb")
     #wav_file.write(audio.tobytes())
-    with wave.open("sound1.wav", "w") as f:
+    with wave.open("sound1.wav", "wb") as f:
         f.setsampwidth(é)
         f.setnchannels(1)
         f.setframerate(44100)
