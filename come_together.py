@@ -267,9 +267,12 @@ audio_bytes = audio_recorder(
 if audio_bytes:
     st.audio(audio_bytes, format="audio/wav")  
     with wave.open('myfile.wav', mode='wb') as f:
-        audiofile.setnchannels(1)
-        audiofile.setframerate(44100)
-        f.write(audio_bytes)
+        # 2 Channels.
+        f.setnchannels(2)
+        # 2 bytes per sample.
+        f.setsampwidth(2)
+        f.setframerate(44100)
+        f.writeframes(audio_bytes)
     r = sr.Recognizer()
     if os.path.exists('myfile.wav'):
         os.remove('myfile.wav')
