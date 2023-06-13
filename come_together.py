@@ -241,32 +241,29 @@ if not _RELEASE:
 
 
 
+       
+
+st.write("Area di test Ignora") 
         
         
         
-        
 
 
 
+from audiorecorder import audiorecorder
 
+st.title("Audio Recorder")
+audio = audiorecorder("Click to record", "Recording...")
 
-
-
-st.write("Area di test Ignora")
-audio_bytes = audio_recorder(
-    text="",
-    recording_color="#e8b62c",
-    neutral_color="#6aa36f",
-    icon_name="user",
-    icon_size="6x",
-)
-if audio_bytes:
-    #st.audio(audio_bytes, format="audio/wav")
+if len(audio) > 0:
+    # To play audio in frontend:
+    st.audio(audio.tobytes())
+    
     # To save audio to a file:
-    wav_file = open("audio_bytes.wav", "wb")
-    wav_file.write(audio_bytes)
+    wav_file = open("audio.mp3", "wb")
+    wav_file.write(audio.tobytes())
     r = sr.Recognizer()
-    with sr.AudioFile('audio_bytes.wav') as source:
+    with sr.AudioFile("audio.mp3") as source:
         try:
             text = r.recognize_google(audio_text)
             st.write('Converting audio transcripts into text ...')
