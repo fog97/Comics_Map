@@ -260,10 +260,10 @@ if len(audio) > 0:
     st.audio(audio.tobytes())
     
     # To save audio to a file:
-    wav_file = open("audio.mp3", "wb")
+    wav_file = open("audio.mav", "wb")
     wav_file.write(audio.tobytes())
     r = sr.Recognizer()
-    with sr.AudioFile("audio.mp3") as source:
+    with sr.AudioFile("audio.mav") as source:
         try:
             text = r.recognize_google(audio_text)
             st.write('Converting audio transcripts into text ...')
