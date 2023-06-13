@@ -250,8 +250,12 @@ if not _RELEASE:
 
 
 
-#st.write("Area di test Ignora")
-
-
-#Test_345
+st.write("Area di test Ignora")
+audio_bytes = audio_recorder(
+    text="",
+    recording_color="#e8b62c",
+    neutral_color="#6aa36f",
+    icon_name="sparkles",
+    icon_size="6x",
+)
 
