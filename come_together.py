@@ -259,15 +259,8 @@ audio = audiorecorder("Click to record", "Recording...")
 if len(audio) > 0:
     # To play audio in frontend:
     st.audio(audio.tobytes())
-    # To save audio to a file:
-    #wav_file = open("audio.mp3", "wb")
-    #wav_file.write(audio.tobytes())
-    #sound = AudioSegment.from_mp3("audio.mp3")
-    #sound.export("sound1.wav", format="wav")
-    #with open('sound1.wav', mode='bx') as f:
-    #    f.write(response)
     r = sr.Recognizer()
-    with sr.AudioFile(audio.tobytes()) as source:
+    with sr.AudioFile(audio) as source:
         try:
             text = r.recognize_google(audio_text)
             st.write('Converting audio transcripts into text ...')
