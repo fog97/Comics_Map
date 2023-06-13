@@ -263,11 +263,10 @@ if len(audio) > 0:
     #wav_file = open("audio.wav", "wb")
     #wav_file.write(audio.tobytes())
     with wave.open("sound1.wav", "w") as f:
-        # 2 Channels.
-        f.setnchannels(2)
-        # 2 bytes per sample
-        f.setsampwidth(2)
-        f.setframerate(samplerate)
+        f.setsampwidth(é)
+        f.setnchannels(1)
+        f.setframerate(44100)
+        f.writeframes(full_audio_bytes)
         f.writeframes(audio.tobytes())
     r = sr.Recognizer()
     with sr.AudioFile("sound1.wav") as source:
