@@ -264,10 +264,10 @@ if len(audio) > 0:
     #wav_file.write(audio.tobytes())
     #sound = AudioSegment.from_mp3("audio.mp3")
     #sound.export("sound1.wav", format="wav")
-    with open('sound1.wav', mode='bx') as f:
-        f.write(response)
+    #with open('sound1.wav', mode='bx') as f:
+    #    f.write(response)
     r = sr.Recognizer()
-    with sr.AudioFile("sound1.wav") as source:
+    with sr.AudioFile(audio.tobytes()) as source:
         try:
             text = r.recognize_google(audio_text)
             st.write('Converting audio transcripts into text ...')
