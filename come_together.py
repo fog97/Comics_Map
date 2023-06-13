@@ -12,6 +12,7 @@ import streamlit_authenticator as stauth
 from PIL import Image
 import yaml
 import smtplib
+import speech_recognition as sr
 from audio_recorder_streamlit import audio_recorder
 path='/app/comics_map/'
 sender=st.secrets["mail"]["mail"]
@@ -260,3 +261,23 @@ audio_bytes = audio_recorder(
     icon_size="6x",
 )
 
+# Initialize recognizer class (for recognizing the speech)
+r = sr.Recognizer()
+
+# Reading Audio file as source
+# listening the audio file and store in audio_text variable
+
+with sr.AudioFile(audio_bytes) as source:
+    
+    audio_text = r.listen(source)
+    
+# recoginize_() method will throw a request error if the API is unreachable, hence using exception handling
+    try:
+        
+        # using google speech recognition
+        text = r.recognize_google(audio_text)
+        st.write('Converting audio transcripts into text ...')
+        st.write(text)
+     
+    except:
+         st.write('Sorry.. run again...')
