@@ -255,14 +255,14 @@ st.write("Area di test Ignora")
 from audiorecorder import audiorecorder
 
 st.title("Audio Recorder")
-audio = audiorecorder("Click to record", "Recording...")
-
-if audio:
-    st.audio(audio, format="audio/wav")
+ 
+audio_bytes = audio_recorder("Click to record", "Recording...")
+if audio_bytes:
+    st.audio(audio_bytes, format="audio/wav")
     r = sr.Recognizer()
-    with sr.AudioFile(audio) as source:
+    with sr.AudioFile(audio_bytes) as source:
         try:
-            text = r.recognize_google(audio)
+            text = r.recognize_google(audio_text)
             st.write('Converting audio transcripts into text ...')
             st.write(text)
         except:
