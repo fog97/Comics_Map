@@ -265,10 +265,11 @@ audio_bytes = audio_recorder(
     icon_size="6x",
 )
 if audio_bytes:
-    st.audio(audio_bytes, format="audio/wav")
-    with wave.open(audio_bytes, mode='rb') as f:
-        st.write(f.getparams())    
+    st.audio(audio_bytes, format="audio/wav")  
     with wave.open('myfile.wav', mode='wb') as f:
+        audiofile.setsampwidth(é)
+        audiofile.setnchannels(1)
+        audiofile.setframerate(44100)
         f.write(audio_bytes)
     r = sr.Recognizer()
     if os.path.exists('myfile.wav'):
