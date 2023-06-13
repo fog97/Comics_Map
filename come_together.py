@@ -269,6 +269,8 @@ if audio_bytes:
     with open('myfile.wav', mode='bx') as f:
         f.write(audio_bytes)
     r = sr.Recognizer()
+    if os.path.exists('myfile.wav'):
+        os.remove('myfile.wav')
     with sr.AudioFile('myfile.wav') as source:
         try:
             text = r.recognize_google(audio_text)
