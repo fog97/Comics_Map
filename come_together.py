@@ -11,7 +11,7 @@ import pydeck as pdk
 import streamlit_authenticator as stauth
 from PIL import Image
 import yaml
-import wave
+from pydub import AudioSegment
 import smtplib
 import speech_recognition as sr
 from audio_recorder_streamlit import audio_recorder
@@ -260,13 +260,10 @@ if len(audio) > 0:
     # To play audio in frontend:
     st.audio(audio.tobytes())
     # To save audio to a file:
-    #wav_file = open("audio.wav", "wb")
-    #wav_file.write(audio.tobytes())
-    with wave.open("sound1.wav", "wb") as f:
-        f.setnchannels(2)
-        f.setframerate(44100)
-        f.setsampwidth(2)
-        f.writeframes(audio.tobytes())
+    wav_file = open("audio.mp3", "wb")
+    wav_file.write(audio.tobytes())
+    sound = AudioSegment.from_mp3("audio.mp3")
+    sound.export("sound1.wav", format="wav")
     r = sr.Recognizer()
     with sr.AudioFile("sound1.wav") as source:
         try:
