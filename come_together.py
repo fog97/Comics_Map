@@ -275,6 +275,7 @@ if audio_bytes:
         f.writeframes(audio_bytes)
     r = sr.Recognizer()
     with sr.AudioFile('myfile.wav') as source:
+        audio_text = r.listen(source)
         text = r.recognize_google(audio_text)
         st.write(text)
 
