@@ -20,3 +20,4 @@ streamlit-authenticator
 pathlib
 PyGithub
 audio_recorder_streamlit
+SpeechRecognition
