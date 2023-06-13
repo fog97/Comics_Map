@@ -274,8 +274,6 @@ if audio_bytes:
         f.setframerate(44100)
         f.writeframes(audio_bytes)
     r = sr.Recognizer()
-    if os.path.exists('myfile.wav'):
-        os.remove('myfile.wav')
     with sr.AudioFile('myfile.wav') as source:
         text = r.recognize_google(audio_text)
         st.write(text)
