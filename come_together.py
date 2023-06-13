@@ -257,15 +257,12 @@ from audiorecorder import audiorecorder
 st.title("Audio Recorder")
 audio = audiorecorder("Click to record", "Recording...")
 
-if len(audio) > 0:
-    s = io.BytesIO(audio.tobytes())
-    st.audio(audio.tobytes())
-    audio = AudioSegment.from_raw(s,  sample_width=2, frame_rate=32000, channels=2).export("sound.wav", format='wav')
-    
+if audio:
+    st.audio(audio, format="audio/wav")
     r = sr.Recognizer()
-    with sr.AudioFile("sound.wav") as source:
+    with sr.AudioFile(audio) as source:
         try:
-            text = r.recognize_google(audio_text)
+            text = r.recognize_google(audio)
             st.write('Converting audio transcripts into text ...')
             st.write(text)
         except:
