@@ -22,3 +22,4 @@ PyGithub
 streamlit-audiorecorder
 SpeechRecognition
 pydub
+wave
