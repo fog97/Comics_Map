@@ -262,8 +262,11 @@ audio_bytes = audio_recorder(
 )
 if audio_bytes:
     #st.audio(audio_bytes, format="audio/wav")
+    # To save audio to a file:
+    wav_file = open("audio_bytes.wav", "wb")
+    wav_file.write(audio_bytes.tobytes())
     r = sr.Recognizer()
-    with sr.AudioFile('audio_bytes.mav') as source:
+    with sr.AudioFile('audio_bytes.wav') as source:
         try:
             text = r.recognize_google(audio_text)
             st.write('Converting audio transcripts into text ...')
