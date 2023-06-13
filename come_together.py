@@ -266,8 +266,8 @@ audio_bytes = audio_recorder(
 )
 if audio_bytes:
     st.audio(audio_bytes, format="audio/wav")
-    with wave.open('myfile.wav', mode='rb') as f:
-        st.write(f.getnchannels())    
+    with wave.open(audio_bytes', mode='rb') as f:
+        st.write(f.getparams())    
     with wave.open('myfile.wav', mode='wb') as f:
         f.write(audio_bytes)
     r = sr.Recognizer()
