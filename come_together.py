@@ -261,24 +261,24 @@ audio_bytes = audio_recorder(
     icon_size="6x",
 )
 if audio_bytes:
-    st.audio(audio_bytes, format="audio/wav")
-# Initialize recognizer class (for recognizing the speech)
-#r = sr.Recognizer()
+    #st.audio(audio_bytes, format="audio/wav")
+    # Initialize recognizer class (for recognizing the speech)
+    r = sr.Recognizer()
 
-# Reading Audio file as source
-# listening the audio file and store in audio_text variable
+    # Reading Audio file as source
+    # listening the audio file and store in audio_text variable
 
-#with sr.AudioFile(audio_bytes) as source:
-    
-#    audio_text = r.listen(source)
-    
-# recoginize_() method will throw a request error if the API is unreachable, hence using exception handling
-#    try:
-        
-        # using google speech recognition
-#        text = r.recognize_google(audio_text)
-#        st.write('Converting audio transcripts into text ...')
-#        st.write(text)
-     
- #   except:
- #        st.write('Sorry.. run again...')
+    with sr.AudioFile(audio_bytes) as source:
+
+    #    audio_text = r.listen(source)
+
+    # recoginize_() method will throw a request error if the API is unreachable, hence using exception handling
+        try:
+
+            # using google speech recognition
+            text = r.recognize_google(audio_text)
+            st.write('Converting audio transcripts into text ...')
+            st.write(text)
+
+       except:
+            st.write('Sorry.. run again...')
