@@ -15,6 +15,7 @@ import io
 from pydub import AudioSegment
 import smtplib
 import speech_recognition as sr
+import wave
 from audio_recorder_streamlit import audio_recorder
 path='/app/comics_map/'
 sender=st.secrets["mail"]["mail"]
