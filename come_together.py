@@ -258,10 +258,9 @@ st.title("Audio Recorder")
 audio = audiorecorder("Click to record", "Recording...")
 
 if len(audio) > 0:
-    # To play audio in frontend:
-    st.audio(audio.tobytes())
     s = io.BytesIO(audio.tobytes())
     audio = AudioSegment.from_raw(s,  sample_width=2, frame_rate=32000, channels=2).export("sound.wav", format='wav')
+    st.audio(audio.tobytes())
     r = sr.Recognizer()
     with sr.AudioFile("sound.wav") as source:
         try:
