@@ -265,7 +265,7 @@ audio_bytes = audio_recorder(
 )
 if audio_bytes:
     st.audio(audio_bytes, format="audio/wav")
-    with open('myfile.wav', mode='vx') as f:
+    with wave.open('myfile.wav', mode='wb') as f:
         f.write(audio_bytes)
     r = sr.Recognizer()
     if os.path.exists('myfile.wav'):
