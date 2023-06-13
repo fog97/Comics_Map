@@ -21,3 +21,4 @@ pathlib
 PyGithub
 streamlit-audiorecorder
 SpeechRecognition
+wave
