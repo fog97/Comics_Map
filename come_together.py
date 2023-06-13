@@ -263,7 +263,7 @@ audio_bytes = audio_recorder(
 if audio_bytes:
     #st.audio(audio_bytes, format="audio/wav")
     r = sr.Recognizer()
-    with sr.AudioFile(audio_bytes) as source:
+    with sr.AudioFile('audio_bytes.mav') as source:
         try:
             text = r.recognize_google(audio_text)
             st.write('Converting audio transcripts into text ...')
