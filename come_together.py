@@ -267,7 +267,6 @@ audio_bytes = audio_recorder(
 if audio_bytes:
     st.audio(audio_bytes, format="audio/wav")  
     with wave.open('myfile.wav', mode='wb') as f:
-        audiofile.setsampwidth(é)
         audiofile.setnchannels(1)
         audiofile.setframerate(44100)
         f.write(audio_bytes)
