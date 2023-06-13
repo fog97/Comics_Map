@@ -264,7 +264,7 @@ audio_bytes = audio_recorder(
     icon_size="6x",
 )
 if audio_bytes:
-    st.write(type(audio_bytes))
+    st.write(type(audio_bytes.tobytes()))
     st.audio(audio_bytes, format="audio/wav")
     r = sr.Recognizer()
     with sr.AudioFile(audio_bytes) as source:
