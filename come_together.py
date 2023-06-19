@@ -12,11 +12,8 @@ import streamlit_authenticator as stauth
 from PIL import Image
 import yaml
 import io
-from pydub import AudioSegment
 import smtplib
-import speech_recognition as sr
-import wave
-from audio_recorder_streamlit import audio_recorder
+
 path='/app/comics_map/'
 sender=st.secrets["mail"]["mail"]
 pwd=st.secrets["mail"]["mail_pwd"]
@@ -241,41 +238,4 @@ if not _RELEASE:
 
 
 
-
-
-
-       
-
-st.write("Area di test Ignora") 
-        
-        
-        
-
-
-
-from audiorecorder import audiorecorder
-
-st.title("Audio Recorder")
- 
-audio_bytes = audio_recorder(
-    text="",
-    recording_color="#e8b62c",
-    neutral_color="#6aa36f",
-    icon_name="user",
-    icon_size="6x",
-)
-if audio_bytes:
-    st.audio(audio_bytes, format="audio/wav")  
-    with wave.open('myfile.wav', mode='wb') as f:
-        # 2 Channels.
-        f.setnchannels(2)
-        # 2 bytes per sample.
-        f.setsampwidth(2)
-        f.setframerate(44100)
-        f.writeframes(audio_bytes)
-    r = sr.Recognizer()
-    with sr.AudioFile('myfile.wav') as source:
-        audio_text = r.listen(source)
-        text = r.recognize_google(audio_text)
-        st.write(text)
 
