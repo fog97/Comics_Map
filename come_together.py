@@ -14,7 +14,7 @@ import yaml
 import io
 import smtplib
 
-path='./comics_map/'
+path='./app/comics_map/'
 sender=st.secrets["mail"]["mail"]
 pwd=st.secrets["mail"]["mail_pwd"]
 #Test_345
