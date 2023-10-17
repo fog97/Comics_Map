@@ -47,7 +47,7 @@ with col1:
 
 with col2:
     
-    st.image(image.imread(path+'Copertina2.jpg'))
+    st.image(image.imread('Copertina2.jpg'))
     original_title = '<p style="font-family:fantasy; color:Red; font-size: 80px;">Come Together</p>'
     st.markdown(original_title, unsafe_allow_html=True)
 
