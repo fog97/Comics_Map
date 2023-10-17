@@ -11,7 +11,7 @@ import pydeck as pdk
 from bs4 import BeautifulSoup
 import requests
 import sqlite3
-path='/app/comics_map/Novegro/'
+path='./Novegro/'
 conn = sqlite3.connect(path+"Novegro.db")
 
 import streamlit as st
