@@ -167,21 +167,13 @@ if st.session_state.autenticazione:
         import matplotlib.pyplot as plt
         import pydeck as pdk
 
-        from geopy.geocoders import Nominatim
-        locator = Nominatim(user_agent = "myapp")
-        #location = locator.geocode("Via {Fiera_Selector} 20090 Segrate")
-        start_lat=45.47185532715593
-        start_lng=9.275071955673953
-        dic={"lat":start_lat,"lon":start_lng,"name":f"Esposizioni {Fiera_Selector}"}
-        origin=pd.DataFrame(dic,index=[1])
-
         import pandas as pd
 
         import matplotlib.pyplot as plt
         import pydeck as pdk
         INITIAL_VIEW_STATE = pdk.ViewState(
-        latitude=45.47185532715593, 
-        longitude=9.275071955673953,
+        latitude=map_data[map_data.Classe=='Init']['lat'][0], 
+        longitude=map_data[map_data.Classe=='Init']['lon'][0], 
         zoom=10,
         max_zoom=16,
         pitch=45,
@@ -199,7 +191,7 @@ if st.session_state.autenticazione:
         }
 
 
-        origin=pd.DataFrame({"lon":9.275071955673953,"lat":45.47185532715593,"name":f"Esposizioni {Fiera_Selector}"}, index=[0])
+        origin=pd.DataFrame({"lon":map_data[map_data.Classe=='Init']['lon'][0], "lat":map_data[map_data.Classe=='Init']['lat'][0],  "name":f"Esposizioni {Fiera_Selector}"}, index=[0])
         import pydeck as pdk
         import pandas as pd
 

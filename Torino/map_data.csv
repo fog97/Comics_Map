@@ -1,4 +1,5 @@
 ,Classe,lat,lon,name,icon_data
+X,Init,45.02891677040412,7.664243711338131,Fiere,--
 0,Parcheggio,45.0777457,7.7026626,Parcheggio,"{'url': 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Parking_%E2%80%93_Transportation_%E2%80%93_Light.png', 'width': 32, 'height': 37, 'anchorY': 'auto'}"
 1,Parcheggio,45.0791337,7.7014438,Parcheggio,"{'url': 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Parking_%E2%80%93_Transportation_%E2%80%93_Light.png', 'width': 32, 'height': 37, 'anchorY': 'auto'}"
 2,Parcheggio,45.0634661,7.6806902,Parcheggio,"{'url': 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Parking_%E2%80%93_Transportation_%E2%80%93_Light.png', 'width': 32, 'height': 37, 'anchorY': 'auto'}"
