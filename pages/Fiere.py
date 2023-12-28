@@ -69,7 +69,7 @@ if st.session_state.autenticazione:
         st.write(map_data.head())
         st.write(map_data.iloc[0,1])
         st.write(map_data.iloc[0,2])
-        st.write(map_data.iloc[0,3)
+        st.write(map_data.iloc[0,3])
         st.write(map_data.iloc[0,4])
         #['Parcheggio', 'Bus', 'Train', 'Metro']
 
