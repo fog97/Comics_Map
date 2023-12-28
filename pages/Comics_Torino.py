@@ -163,8 +163,8 @@ if st.session_state.autenticazione:
         import matplotlib.pyplot as plt
         import pydeck as pdk
         INITIAL_VIEW_STATE = pdk.ViewState(
-        latitude=map_data[map_data.Classe=='Init']['lat'][0], 
-        longitude=map_data[map_data.Classe=='Init']['lon'][0], 
+        latitude=map_data.iloc[0,2], 
+        longitude=map_data.iloc[0,3], 
         zoom=10,
         max_zoom=16,
         pitch=45,
@@ -182,7 +182,7 @@ if st.session_state.autenticazione:
         }
 
 
-        origin=pd.DataFrame({"lon":map_data[map_data.Classe=='Init']['lon'][0], "lat":map_data[map_data.Classe=='Init']['lat'][0],"name":"Esposizioni Torino"}, index=[0])
+        origin=pd.DataFrame({"lon":map_data.iloc[0,3], "lat":map_data.iloc[0,2],"name":"Esposizioni Torino"}, index=[0])
         import pydeck as pdk
         import pandas as pd
 
