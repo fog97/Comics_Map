@@ -11,11 +11,6 @@ import pydeck as pdk
 from bs4 import BeautifulSoup
 import requests
 import sqlite3
-st.set_page_config(
-    page_title="Fiere",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 
 Fiera_Selector='Novegro'
