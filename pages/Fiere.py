@@ -58,19 +58,6 @@ except:
 
 if st.session_state.autenticazione:
     with st.sidebar:
-        st.write("Per Informazioni  : info@parcoesposizioninovegro.it")
-    #     #st.write(biglietti.loc[:, ["Tipologia","Prezzo"]])
-    #     if len(biglietti)>0: 
-    #         col1, col2 = st.columns((10, 10))
-    #         col1.write('Tipologia')
-    #         col2.write('Prezzo (€)')
-    #         for index, row in biglietti.iterrows():
-    #             col1, col2 = st.columns((10, 10))
-    #             col1.write(row['Tipologia'])
-    #             col2.write(row['Prezzo'])
-    #     else:
-    #         st.markdown("*Biglietteria non dipsonibile*")
-
     with st.container():
         st.markdown("## Mappa")
 
@@ -181,10 +168,10 @@ if st.session_state.autenticazione:
 
         from geopy.geocoders import Nominatim
         locator = Nominatim(user_agent = "myapp")
-        #location = locator.geocode("Via Novegro 20090 Segrate")
+        #location = locator.geocode("Via {Fiera_Selector} 20090 Segrate")
         start_lat=45.47185532715593
         start_lng=9.275071955673953
-        dic={"lat":start_lat,"lon":start_lng,"name":"Esposizioni Novegro"}
+        dic={"lat":start_lat,"lon":start_lng,"name":f"Esposizioni {Fiera_Selector}"}
         origin=pd.DataFrame(dic,index=[1])
 
         import pandas as pd
@@ -211,7 +198,7 @@ if st.session_state.autenticazione:
         }
 
 
-        origin=pd.DataFrame({"lon":9.275071955673953,"lat":45.47185532715593,"name":"Esposizioni Novegro"}, index=[0])
+        origin=pd.DataFrame({"lon":9.275071955673953,"lat":45.47185532715593,"name":f"Esposizioni {Fiera_Selector}"}, index=[0])
         import pydeck as pdk
         import pandas as pd
 
@@ -312,7 +299,7 @@ if st.session_state.autenticazione:
     #         do_action = button_phold.button(key=chiave,label="Info")
     #         if do_action:
     #             temp=row['Classe']
-    #             p=open(path+f"mappa_novegro_{temp}_{index}.html")
+    #             p=open(path+f"mappa_{Fiera_Selector}_{temp}_{index}.html")
     #             components.html(p.read())
 
 
@@ -351,7 +338,7 @@ if st.session_state.autenticazione:
     # from io import BytesIO
     # db = client.PresenzeComics
     # fs = gridfs.GridFS(db)
-    # collection = db.Novegro 
+    # collection = db.{Fiera_Selector} 
     # passwords = pd.DataFrame(list(collection.find()))
     # try:
     #     passwords_list = passwords['Password'].tolist()
@@ -413,13 +400,13 @@ if st.session_state.autenticazione:
     if add:
         mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine }
         db = client.PresenzeComics
-        mycol = db["Novegro"]
+        mycol = db[Fiera_Selector]
         mycol.insert_one(mydict)
 
 
-    
+    db_name=Fiera_Selector
     db = client.PresenzeComics
-    collection = db.Novegro 
+    collection = db.db_name
     presenze = pd.DataFrame(list(collection.find()))
 
     #text_pass = st.text_input("Password per Eliminazione",key='1AB') 
@@ -445,10 +432,10 @@ if st.session_state.autenticazione:
             if do_action:
                 mydict = {"_id":row["_id"]}
                 db = client.PresenzeComics
-                mycol = db["Novegro"]
+                mycol = db[Fiera_Selector]
                 mycol.delete_one(mydict)
                 db = client.PresenzeComics
-                collection = db.Novegro 
+                collection = db.db_name
 
 
 
