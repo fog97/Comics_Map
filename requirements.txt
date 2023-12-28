@@ -19,3 +19,7 @@ requests
 streamlit-authenticator
 pathlib
 PyGithub
+streamlit-audiorecorder
+SpeechRecognition
+pydub
+wave

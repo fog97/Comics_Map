@@ -11,8 +11,10 @@ import pydeck as pdk
 import streamlit_authenticator as stauth
 from PIL import Image
 import yaml
+import io
 import smtplib
-path='/app/comics_map/'
+
+path='./app/comics_map/'
 sender=st.secrets["mail"]["mail"]
 pwd=st.secrets["mail"]["mail_pwd"]
 #Test_345
@@ -45,7 +47,7 @@ with col1:
 
 with col2:
     
-    st.image(image.imread(path+'Copertina2.jpg'))
+    st.image(image.imread('Copertina2.jpg'))
     original_title = '<p style="font-family:fantasy; color:Red; font-size: 80px;">Come Together</p>'
     st.markdown(original_title, unsafe_allow_html=True)
 
@@ -236,22 +238,4 @@ if not _RELEASE:
 
 
 
-
-
-
-        
-        
-        
-        
-
-
-
-
-
-
-
-#st.write("Area di test Ignora")
-
-
-#Test_345
 
