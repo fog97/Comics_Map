@@ -58,6 +58,7 @@ except:
 
 if st.session_state.autenticazione:
     with st.sidebar:
+        st.markdown("Powered by : *Foggy.cos*")
     with st.container():
         st.markdown("## Mappa")
 
