@@ -66,7 +66,7 @@ if st.session_state.autenticazione:
         map_data=pd.read_csv(path+"map_data.csv", keep_default_na=False,index_col=0)
         map_data['lat'] = map_data['lat'].astype(float)
         map_data['lon'] = map_data['lon'].astype(float)
-        st.write(map_data.iloc[0,1])
+        st.write(map_data.head())
 
 
         #['Parcheggio', 'Bus', 'Train', 'Metro']
