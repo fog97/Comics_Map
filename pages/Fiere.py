@@ -67,8 +67,10 @@ if st.session_state.autenticazione:
         map_data['lat'] = map_data['lat'].astype(float)
         map_data['lon'] = map_data['lon'].astype(float)
         st.write(map_data.head())
-
-
+        st.write(map_data.iloc[0,1])
+        st.write(map_data.iloc[0,2])
+        st.write(map_data.iloc[0,3)
+        st.write(map_data.iloc[0,4])
         #['Parcheggio', 'Bus', 'Train', 'Metro']
 
         bus = st.checkbox('Bus')
