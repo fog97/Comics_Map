@@ -11,6 +11,13 @@ import pydeck as pdk
 from bs4 import BeautifulSoup
 import requests
 import sqlite3
+st.set_page_config(
+    page_title="Fiere",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+
 Fiera_Selector='Novegro'
 Fiera_Selector= st.selectbox(
     'Seleziona Fiera',
@@ -24,11 +31,7 @@ conn = sqlite3.connect(path+f"{Fiera_Selector}.db")
 
 import streamlit as st
 
-st.set_page_config(
-    page_title=f"{Fiera_Selector}2 comics",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+
 
 st.header(f" _Comics {Fiera_Selector}_ ")
 
