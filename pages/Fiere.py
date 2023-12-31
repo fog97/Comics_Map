@@ -334,7 +334,7 @@ if st.session_state.autenticazione:
     db = client.PresenzeComics
     collection = db.db_name
     presenze = pd.DataFrame(list(collection.find()))
-
+    st.table(presenze)
     #text_pass = st.text_input("Password per Eliminazione",key='1AB') 
 
     col1, col2,col3,col4 = st.columns((10, 10, 15,10))
@@ -342,8 +342,7 @@ if st.session_state.autenticazione:
     col2.write('Data')
     col3.write('Cosplay')
     col4.write('Elimina Presenza')
-    st.write(row['Nome'] )
-    st.write(st.session_state.utente)
+
 
     for index, row in presenze.iterrows():
         if row['Nome'] in list_friend or row['Nome']==st.session_state.utente:
