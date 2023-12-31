@@ -19,7 +19,11 @@ Fiera_Selector= st.selectbox(
     ('Novegro', 'Torino'))
 
 
-
+st.set_page_config(
+    page_title=Fiera_Selector,
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 path=f'./{Fiera_Selector}/'
 conn = sqlite3.connect(path+f"{Fiera_Selector}.db")
