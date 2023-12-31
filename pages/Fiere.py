@@ -249,24 +249,6 @@ if st.session_state.autenticazione:
     # Al punto di interesse vicino
 
 
-
-    import geopy.distance
-
-    origin_lat=45.47185532715593
-    orining_lon=9.275071955673953
-
-    map_data["Distance"]=""
-
-    for index,row in map_data.iterrows():
-        distance=round(geopy.distance.geodesic((row["lat"],row["lon"]), (origin_lat,orining_lon)).km,3)
-        map_data.loc[index,"Distance"]=distance
-
-    restricted_db=pd.DataFrame(columns=map_data.columns)
-    for classe in map_data["Classe"].unique():
-        temp=map_data[map_data.Classe==classe].sort_values(by="Distance",ascending=True)
-        restricted_db=pd.concat([restricted_db,temp.head()])
-
-
     import networkx as nx
     import osmnx as ox
     from IPython.display import IFrame
@@ -281,33 +263,6 @@ if st.session_state.autenticazione:
     restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
 
 
-    # if len(set(list_values))>1:
-    #     st.markdown("# Indicazioni Stradali")
-    #     st.markdown("*Sono indicati solo i parcheggi vicini ma esterni alla fiera*")
-    #     col1, col2,col3 = st.columns((10, 10, 15))
-    #     col1.write('Tipo')
-    #     col2.write('Nome')
-    #     col3.write('Mostra Indicazioni')
-
-    #     for index, row in restricted_db2.iterrows():
-    #         col1, col2,col3 = st.columns((10, 10, 15))
-    #         col1.write(row['Classe'])
-    #         col2.write(row['name'])
-    #         button_phold = col3.empty()
-    #         chiave=str(index)+"a"
-    #         do_action = button_phold.button(key=chiave,label="Info")
-    #         if do_action:
-    #             temp=row['Classe']
-    #             p=open(path+f"mappa_{Fiera_Selector}_{temp}_{index}.html")
-    #             components.html(p.read())
-
-
-
-
-
-
-
-
     st.markdown("# Presenze")
 
 
@@ -319,34 +274,6 @@ if st.session_state.autenticazione:
     us_pw=st.secrets["mongo"]["db_pswd"]
     cl_name=st.secrets["mongo"]["cluster_name"]
 
-
-    # # @st.experimental_singleton(suppress_st_warning=True)
-    # def init_connection():
-    #     return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
-
-
-    # col0, col1= st.columns(2)
-
-
-    # from pymongo import MongoClient
-    # import pandas as pd
-    # def init_connection():
-    #     return MongoClient(f"mongodb+srv://{us_name}:{us_pw}@{cl_name}.zisso.mongodb.net/test")
-    # client = init_connection()
-    # import gridfs
-    # from io import BytesIO
-    # db = client.PresenzeComics
-    # fs = gridfs.GridFS(db)
-    # collection = db.{Fiera_Selector} 
-    # passwords = pd.DataFrame(list(collection.find()))
-    # try:
-    #     passwords_list = passwords['Password'].tolist()
-    # except KeyError:
-    #     passwords_list = []
-
-
-
-    st.markdown("*La password serve per eliminare la presenza*")
 
 
     from datetime import datetime
@@ -404,6 +331,7 @@ if st.session_state.autenticazione:
 
 
     db_name=Fiera_Selector
+    st.write(db_name)
     db = client.PresenzeComics
     collection = db.db_name
     presenze = pd.DataFrame(list(collection.find()))
