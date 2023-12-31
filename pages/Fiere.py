@@ -11,7 +11,11 @@ import pydeck as pdk
 from bs4 import BeautifulSoup
 import requests
 import sqlite3
-
+st.set_page_config(
+    page_title='Fiere',
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 Fiera_Selector='Novegro'
 Fiera_Selector= st.selectbox(
@@ -19,11 +23,7 @@ Fiera_Selector= st.selectbox(
     ('Novegro', 'Torino'))
 
 
-st.set_page_config(
-    page_title=Fiera_Selector,
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+
 
 path=f'./{Fiera_Selector}/'
 conn = sqlite3.connect(path+f"{Fiera_Selector}.db")
