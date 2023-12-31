@@ -170,7 +170,11 @@ if st.session_state.autenticazione:
 
         import matplotlib.pyplot as plt
         import pydeck as pdk
-        st.table(map_data.head())
+        
+        map_data=pd.read_csv(path+"map_data.csv", keep_default_na=False,index_col=0)
+        map_data['lat'] = map_data['lat'].astype(float)
+        map_data['lon'] = map_data['lon'].astype(float)
+        st.table(map_data)
         st.write(map_data.iloc[0,1])
         Latitudine_iniziale=map_data.iloc[0,1]
         Longitudine_iniziale=map_data.iloc[0,2]
