@@ -333,8 +333,8 @@ if st.session_state.autenticazione:
     db_name=Fiera_Selector
     db = client.PresenzeComics
     collection = db.db_name
-    presenze = pd.DataFrame(list(collection.find()))
-    st.write(db_name)
+    presenze = pd.DataFrame(list(db[Fiera_Selector].find()))
+
     #text_pass = st.text_input("Password per Eliminazione",key='1AB') 
 
     col1, col2,col3,col4 = st.columns((10, 10, 15,10))
