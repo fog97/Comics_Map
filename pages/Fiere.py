@@ -331,7 +331,6 @@ if st.session_state.autenticazione:
 
 
     db_name=Fiera_Selector
-    st.write(db_name)
     db = client.PresenzeComics
     collection = db.db_name
     presenze = pd.DataFrame(list(collection.find()))
@@ -343,6 +342,8 @@ if st.session_state.autenticazione:
     col2.write('Data')
     col3.write('Cosplay')
     col4.write('Elimina Presenza')
+    st.write(row['Nome'] )
+    st.write(st.session_state.utente)
 
     for index, row in presenze.iterrows():
         if row['Nome'] in list_friend or row['Nome']==st.session_state.utente:
