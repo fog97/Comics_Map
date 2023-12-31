@@ -174,8 +174,6 @@ if st.session_state.autenticazione:
         map_data=pd.read_csv(path+"map_data.csv", keep_default_na=False,index_col=0)
         map_data['lat'] = map_data['lat'].astype(float)
         map_data['lon'] = map_data['lon'].astype(float)
-        st.table(map_data)
-        st.write(map_data.iloc[0,1])
         Latitudine_iniziale=map_data.iloc[0,1]
         Longitudine_iniziale=map_data.iloc[0,2]
         
@@ -199,7 +197,7 @@ if st.session_state.autenticazione:
         }
 
 
-        origin=pd.DataFrame({"lon":map_data.iloc[0,2], "lat":map_data.iloc[0,1],  "name":f"Esposizioni {Fiera_Selector}"}, index=[0])
+        origin=pd.DataFrame({"lon":Longitudine_iniziale, "lat":Latitudine_iniziale  "name":f"Esposizioni {Fiera_Selector}"}, index=[0])
         import pydeck as pdk
         import pandas as pd
 
