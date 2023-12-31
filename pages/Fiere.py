@@ -237,32 +237,6 @@ if st.session_state.autenticazione:
 
         st.pydeck_chart(pdk.Deck(layers=[Nav_Points,origin_layer], map_style='road',initial_view_state=INITIAL_VIEW_STATE, tooltip={"text": "{name}"}))
 
-
-    st.markdown("# Acquisto Biglietti Mezzi")
-
-    st.markdown("[Metro/Bus](https://www.atm.it/it/Pagine/default.aspx)")
-
-    st.markdown("[Treno](https://www.trenitalia.com/it.html?cid=G_AV1022AWO_SEARCH_B_Trenitalia_E&gclid=CjwKCAiA0cyfBhBREiwAAtStHI82RmfGscH_QL77qBxcCWSUSfb2azN4LVmZb1gV0lNUv6jlT3_jnBoCLJYQAvD_BwE)")
-
-
-
-    # Al punto di interesse vicino
-
-
-    import networkx as nx
-    import osmnx as ox
-    from IPython.display import IFrame
-    import streamlit.components.v1 as components
-
-    import pandas as pd
-    restricted_db=pd.read_csv(path+"restricted_db.csv", keep_default_na=False,index_col=0)
-    restricted_db['lat'] = restricted_db['lat'].astype(float)
-    restricted_db['lon'] = restricted_db['lon'].astype(float)
-
-
-    restricted_db2=restricted_db[restricted_db.Classe.isin(list_values)]
-
-
     st.markdown("# Presenze")
 
 
