@@ -170,6 +170,7 @@ if st.session_state.autenticazione:
 
         import matplotlib.pyplot as plt
         import pydeck as pdk
+        st.table(map_data.head())
         st.write(map_data.iloc[0,1])
         Latitudine_iniziale=map_data.iloc[0,1]
         Longitudine_iniziale=map_data.iloc[0,2]
