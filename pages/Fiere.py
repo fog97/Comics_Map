@@ -197,7 +197,7 @@ if st.session_state.autenticazione:
         }
 
 
-        origin=pd.DataFrame({"lon":Longitudine_iniziale, "lat":Latitudine_iniziale  "name":f"Esposizioni {Fiera_Selector}"}, index=[0])
+        origin=pd.DataFrame({"lon":Longitudine_iniziale, "lat":Latitudine_iniziale ,"name":f"Esposizioni {Fiera_Selector}"}, index=[0])
         import pydeck as pdk
         import pandas as pd
 
