@@ -155,15 +155,15 @@ if st.session_state.autenticazione:
     partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
     
     st.markdown("**Conferma Partecipazione e lascia note**")
-    Fiera_Selector=''
-    if Fiera_Selector=='':
+    Conv_Selector=''
+    if Conv_Selector=='':
         st.write("Seleziona una Convention")
-        Fiera_Selector= st.selectbox(
+        Conv_Selector= st.selectbox(
             'Convention Disponibili',
             partecipazioni_keys["Nome_Conv"].unique())
     else:
         st.write("Per Cambiare Convention")
-        Fiera_Selector= st.selectbox('COnvention Disponibili',lista_conv)
+        Conv_Selector= st.selectbox('COnvention Disponibili',lista_conv)
         col1, col2 = st.columns((10, 10))
         button_phold = col1.empty() 
         do_action = st.button(key=index,label="Conferma Presenza")
