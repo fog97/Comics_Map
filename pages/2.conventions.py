@@ -37,6 +37,7 @@ st.header(f" **PAGINA IN COSTRUZIONE** ")
 
 
 from pymongo import MongoClient
+st.header(f" _Crea la Convetion!!_ ")
 
 us_name=st.secrets["mongo"]["db_username"]
 us_pw=st.secrets["mongo"]["db_pswd"]
@@ -84,7 +85,7 @@ if st.session_state.autenticazione:
         data_def=data_def+"-"+data_to
 
 
-    uploaded_files = st.file_uploader("Carica la foto del tuo cosplay", accept_multiple_files=True)
+    uploaded_files = st.file_uploader("Carica una foto per la tua Convention", accept_multiple_files=True)
     for uploaded_file in uploaded_files:
         bytes_data = uploaded_file.read()
 
@@ -107,43 +108,39 @@ if st.session_state.autenticazione:
         immagine=''
 
         
-
+    note=st.text_input("Inserisci eventuali note : ")
 
     add = st.button('Aggiungi')
 
     if add:
-        mydict = { "Nome": st.session_state.utente, "Data": data_def, "Foto":immagine }
+        mydict = { "Organizzatore": st.session_state.utente, "Data": data_def, "Foto":immagine,"Note":note }
         db = client.PresenzeComics
-        mycol = db[Fiera_Selector]
+        mycol = db["Convention"]
         mycol.insert_one(mydict)
 
 
-    db_name=Fiera_Selector
     db = client.PresenzeComics
     collection = db.db_name
-    presenze = pd.DataFrame(list(db[Fiera_Selector].find()))
+    presenze = pd.DataFrame(list(db["Convention"].find()))
 
     #text_pass = st.text_input("Password per Eliminazione",key='1AB') 
 
-    col1, col2,col3,col4 = st.columns((10, 10, 15,10))
-    col1.write('Nome')
-    col2.write('Data')
-    col3.write('Cosplay')
-    col4.write('Elimina Presenza')
+    col1, col2,col3,col4,col5 = st.columns((10, 10, 15,10))
+    col1.write('Cosplay')
+    col2.write('Organizzatore')
+    col3.write('Data')
+    col5.write('Note')
+    col4.write('Elimina Convention')
 
 
     for index, row in presenze.iterrows():
         if row['Nome'] in list_friend or row['Nome']==st.session_state.utente:
-            col1, col2,col3,col4 = st.columns((10, 10, 15,10))
-            col1.write(row['Nome'])
-            col2.write(row['Data'])
+            col1, col2,col3,col4,col5 = st.columns((15, 10, 10,15,10))
             if row['Foto']!='':
                 col3.image(row['Foto'], width=100)
             else:
                 with st.container():
-                    col3.write(row['Foto'])   
-            button_phold = col4.empty() 
-            do_action = button_phold.button(key=index,label="Delete")
+                    col1.write(row['Foto'])   
             if do_action:
                 mydict = {"_id":row["_id"]}
                 db = client.PresenzeComics
@@ -151,8 +148,11 @@ if st.session_state.autenticazione:
                 mycol.delete_one(mydict)
                 db = client.PresenzeComics
                 collection = db.db_name
-
-
+            col2.write(row['Organizzatore'])
+            col3.write(row['Data'])
+            col4.write(row['Note'])
+            button_phold = col5.empty() 
+            do_action = button_phold.button(key=index,label="Delete")
 
 
 
