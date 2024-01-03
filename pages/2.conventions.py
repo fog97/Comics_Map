@@ -125,17 +125,18 @@ if st.session_state.autenticazione:
 
     #text_pass = st.text_input("Password per Eliminazione",key='1AB') 
 
-    col1, col2,col3,col4,col5 = st.columns((15, 10, 10,15,10))
+    col1, col2,col3,col4,col5,col6 = st.columns((15, 10, 10,10,15,10))
     col1.write('Foto')
     col2.write('Organizzatore')
     col3.write('Data')
+    col4.write('Location')
     col5.write('Note')
-    col4.write('Elimina Convention')
+    col6.write('Elimina Convention')
 
 
     for index, row in presenze.iterrows():
         if row['Nome'] in list_friend or row['Nome']==st.session_state.utente:
-            col1, col2,col3,col4,col5 = st.columns((15, 10, 10,15,10))
+            col1, col2,col3,col4,col5,col6 = st.columns((15, 10, 10,10,15,10))
             if row['Foto']!='':
                 col3.image(row['Foto'], width=100)
             else:
@@ -150,8 +151,9 @@ if st.session_state.autenticazione:
                 collection = db.db_name
             col2.write(row['Organizzatore'])
             col3.write(row['Data'])
-            col4.write(row['Note'])
-            button_phold = col5.empty() 
+            col4.write(row['Location'])
+            col5.write(row['Note'])
+            button_phold = col6.empty() 
             do_action = button_phold.button(key=index,label="Delete")
 
 
