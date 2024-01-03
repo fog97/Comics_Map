@@ -160,7 +160,7 @@ if st.session_state.autenticazione:
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
     col1, col2 = st.columns((10, 10))
     button_phold = col1.empty() 
-    do_action = st.button(key=index,label="Conferma Presenza")
+    do_action = st.button(key='1a',label="Conferma Presenza")
     if do_action:
         mydict = {"_id":row["_id"]}
         db = client.PresenzeComics
@@ -168,7 +168,7 @@ if st.session_state.autenticazione:
         db = client.PresenzeComics
         mycol.update_one()
     button_phold = col2.empty() 
-    do_action = st.button(key=index,label="Elimina Presenza")
+    do_action = st.button(key='1b',label="Elimina Presenza")
     if do_action:
         mydict = {"_id":row["_id"]}
         db = client.PresenzeComics
