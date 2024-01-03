@@ -142,6 +142,12 @@ if st.session_state.autenticazione:
             else:
                 with st.container():
                     col1.write(row['Foto'])   
+            col2.write(row['Organizzatore'])
+            col3.write(row['Data'])
+            col4.write(row['Location'])
+            col5.write(row['Note'])
+            button_phold = col6.empty() 
+            do_action = button_phold.button(key=index,label="Delete")
             if do_action:
                 mydict = {"_id":row["_id"]}
                 db = client.PresenzeComics
@@ -149,13 +155,6 @@ if st.session_state.autenticazione:
                 mycol.delete_one(mydict)
                 db = client.PresenzeComics
                 collection = db.db_name
-            col2.write(row['Organizzatore'])
-            col3.write(row['Data'])
-            col4.write(row['Location'])
-            col5.write(row['Note'])
-            button_phold = col6.empty() 
-            do_action = button_phold.button(key=index,label="Delete")
-
 
 
     st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
