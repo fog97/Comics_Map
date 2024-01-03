@@ -68,7 +68,8 @@ if st.session_state.autenticazione:
     from datetime import datetime
     from io import StringIO
 
-
+    titolo=st.text_input("Inserisci il Titolo della Convention : ")
+    
     data = st.date_input("Data Presenza",
         datetime.now())
     data = data.strftime("%m/%d/%Y")
@@ -113,7 +114,7 @@ if st.session_state.autenticazione:
     add = st.button('Aggiungi')
 
     if add:
-        mydict = { "Organizzatore": st.session_state.utente, "Data": data_def, "Foto":immagine,"Note":note ,"Location":location }
+        mydict = {"Titolo":titolo, "Organizzatore": st.session_state.utente, "Data": data_def, "Foto":immagine,"Note":note ,"Location":location }
         db = client.PresenzeComics
         mycol = db["Convention"]
         mycol.insert_one(mydict)
@@ -125,28 +126,30 @@ if st.session_state.autenticazione:
 
     #text_pass = st.text_input("Password per Eliminazione",key='1AB') 
 
-    col1, col2,col3,col4,col5,col6 = st.columns((15, 10, 10,10,15,10))
-    col1.write('Foto')
-    col2.write('Organizzatore')
-    col3.write('Data')
-    col4.write('Location')
-    col5.write('Note')
-    col6.write('Elimina Convention')
+    col1, col2,col3,col4,col5,col6,col7 = st.columns((10, 15, 10, 10,10,15,10))
+    col1.write('Titolo')
+    col2.write('Foto')
+    col3.write('Organizzatore')
+    col4.write('Data')
+    col5.write('Location')
+    col6.write('Note')
+    col7.write('Elimina Convention')
 
 
     for index, row in presenze.iterrows():
         if row['Organizzatore'] in list_friend or row['Organizzatore']==st.session_state.utente:
-            col1, col2,col3,col4,col5,col6 = st.columns((15, 10, 10,10,15,10))
+            col1, col2,col3,col4,col5,col6,col7 = st.columns((10, 15, 10, 10,10,15,10))
+            col1.write(row['Titolo'])
             if row['Foto']!='':
-                col3.image(row['Foto'], width=100)
+                col2.image(row['Foto'], width=100)
             else:
                 with st.container():
-                    col1.write(row['Foto'])   
-            col2.write(row['Organizzatore'])
-            col3.write(row['Data'])
-            col4.write(row['Location'])
-            col5.write(row['Note'])
-            button_phold = col6.empty() 
+                    col2.write(row['Foto'])   
+            col3.write(row['Organizzatore'])
+            col4.write(row['Data'])
+            col5.write(row['Location'])
+            col6.write(row['Note'])
+            button_phold = col7.empty() 
             do_action = button_phold.button(key=index,label="Delete")
             if do_action:
                 mydict = {"_id":row["_id"]}
