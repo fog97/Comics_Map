@@ -135,7 +135,7 @@ if st.session_state.autenticazione:
 
 
     for index, row in presenze.iterrows():
-        if row['Nome'] in list_friend or row['Nome']==st.session_state.utente:
+        if row['Organizzatore'] in list_friend or row['Organizzatore']==st.session_state.utente:
             col1, col2,col3,col4,col5,col6 = st.columns((15, 10, 10,10,15,10))
             if row['Foto']!='':
                 col3.image(row['Foto'], width=100)
