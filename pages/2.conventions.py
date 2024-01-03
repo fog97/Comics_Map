@@ -107,7 +107,6 @@ if st.session_state.autenticazione:
 
 
         db = client.PresenzeComics
-        collection = db.db_name
         presenze = pd.DataFrame(list(db["Convention"].find()))
 
 
@@ -126,7 +125,7 @@ if st.session_state.autenticazione:
 
         for index, row in presenze.iterrows():
             if row['Organizzatore'] in list_friend or row['Organizzatore']==st.session_state.utente:
-                col1, col2,col3,col4,col5,col6,col7 = st.columns((10, 15, 10, 10,10,15,10,10))
+                col1, col2,col3,col4,col5,col6,col7,col8 = st.columns((10, 15, 10, 10,10,15,10,10))
                 col1.write(row['Titolo'])
                 if row['Foto']!='':
                     col2.image(row['Foto'], width=100)
@@ -146,7 +145,6 @@ if st.session_state.autenticazione:
                     mycol = db["Convention"]
                     mycol.delete_one(mydict)
                     db = client.PresenzeComics
-                    collection = db.db_name
 
 
         st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
