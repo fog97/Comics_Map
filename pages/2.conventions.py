@@ -155,31 +155,25 @@ if st.session_state.autenticazione:
     partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
     
     st.markdown("**Conferma Partecipazione e lascia note**")
-    Conv_Selector=''
-    if Conv_Selector=='':
-        st.write("Seleziona una Convention")
-        Conv_Selector= st.selectbox(
-            'Convention Disponibili',
-            partecipazioni_keys["Nome_Conv"].unique())
-    else:
-        st.write("Per Cambiare Convention")
-        Conv_Selector= st.selectbox('COnvention Disponibili',lista_conv)
-        col1, col2 = st.columns((10, 10))
-        button_phold = col1.empty() 
-        do_action = st.button(key=index,label="Conferma Presenza")
-        if do_action:
-            mydict = {"_id":row["_id"]}
-            db = client.PresenzeComics
-            mycol = db["Convention"]
-            db = client.PresenzeComics
-            mycol.update_one()
-        button_phold = col2.empty() 
-        do_action = st.button(key=index,label="Conferma Presenza")
-        if do_action:
-            mydict = {"_id":row["_id"]}
-            db = client.PresenzeComics
-            mycol = db["Convention"]
-            db = client.PresenzeComics
+    st.write("Per Cambiare Convention")
+    Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
+    Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
+    col1, col2 = st.columns((10, 10))
+    button_phold = col1.empty() 
+    do_action = st.button(key=index,label="Conferma Presenza")
+    if do_action:
+        mydict = {"_id":row["_id"]}
+        db = client.PresenzeComics
+        mycol = db["Convention"]
+        db = client.PresenzeComics
+        mycol.update_one()
+    button_phold = col2.empty() 
+    do_action = st.button(key=index,label="Conferma Presenza")
+    if do_action:
+        mydict = {"_id":row["_id"]}
+        db = client.PresenzeComics
+        mycol = db["Convention"]
+        db = client.PresenzeComics
 
 
 else:
