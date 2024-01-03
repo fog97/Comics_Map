@@ -150,17 +150,16 @@ if st.session_state.autenticazione:
         st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
 
     lista_conv=[]
-    for index, row in presenze.iterrows():
-        if row['Organizzatore'] in list_friend:
-            lista_conv.append(row['Organizzatore']+" -- "+row['Titolo'])
+    partecipazioni_keys=presenze.copy()
+    partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
     
-    st.markdown("***Conferma Partecipazione e lascia note***")
+    st.markdown("**Conferma Partecipazione e lascia note**")
     Fiera_Selector=''
     if Fiera_Selector=='':
         st.write("Seleziona una Convention")
         Fiera_Selector= st.selectbox(
             'Convention Disponibili',
-            lista_conv)
+            partecipazioni_keys["Nome_Conv"].unique())
     else:
         st.write("Per Cambiare Convention")
         Fiera_Selector= st.selectbox('COnvention Disponibili',lista_conv)
@@ -172,6 +171,7 @@ if st.session_state.autenticazione:
             db = client.PresenzeComics
             mycol = db["Convention"]
             db = client.PresenzeComics
+            mycol.update_one()
         button_phold = col2.empty() 
         do_action = st.button(key=index,label="Conferma Presenza")
         if do_action:
