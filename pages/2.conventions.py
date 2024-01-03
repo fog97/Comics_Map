@@ -125,8 +125,8 @@ if st.session_state.autenticazione:
 
     #text_pass = st.text_input("Password per Eliminazione",key='1AB') 
 
-    col1, col2,col3,col4,col5 = st.columns((10, 10, 15,10))
-    col1.write('Cosplay')
+    col1, col2,col3,col4,col5 = st.columns((15, 10, 10,15,10))
+    col1.write('Foto')
     col2.write('Organizzatore')
     col3.write('Data')
     col5.write('Note')
