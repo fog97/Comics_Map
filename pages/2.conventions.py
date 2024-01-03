@@ -140,7 +140,7 @@ if st.session_state.autenticazione:
             if do_action:
                 mydict = {"_id":row["_id"]}
                 db = client.PresenzeComics
-                mycol = db[Fiera_Selector]
+                mycol = db["Convention"]
                 mycol.delete_one(mydict)
                 db = client.PresenzeComics
                 collection = db.db_name
