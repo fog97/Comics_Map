@@ -98,7 +98,7 @@ if not _RELEASE:
         try:
             security =pd.DataFrame(list(collection_secs.find(filter_friends)))
             if len(security)==0:
-                pin=st.text_input("Primo accesso, inserisci un PIN di 4 cifre. Serve per cambiare password, ricordalo !")
+                pin=st.text_input("Primo accesso, inserisci un PIN di 4 cifre. Serve per recuperare la password, ricordalo !")
                 if pin!="":
                     sec_data={'user': username, 'pin': pin}
                     collection_secs.insert_one(sec_data)

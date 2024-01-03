@@ -23,7 +23,7 @@ st.header(f" **PAGINA IN COSTRUZIONE** ")
 
 
 from pymongo import MongoClient
-st.header(f" _Crea la Convetion!!_ ")
+
 
 us_name=st.secrets["mongo"]["db_username"]
 us_pw=st.secrets["mongo"]["db_pswd"]
@@ -53,7 +53,7 @@ if st.session_state.autenticazione:
  
     from datetime import datetime
     from io import StringIO
-
+with st.expander("Crea la tua Convention", expanded=False):
     titolo=st.text_input("Inserisci il Titolo della Convention : ")
     
     data = st.date_input("Data Presenza",
@@ -110,8 +110,9 @@ if st.session_state.autenticazione:
     collection = db.db_name
     presenze = pd.DataFrame(list(db["Convention"].find()))
 
-    #text_pass = st.text_input("Password per Eliminazione",key='1AB') 
 
+
+with st.expander("Visualizza le Convention tue e dei tuoi amici", expanded=False):
     col1, col2,col3,col4,col5,col6,col7 = st.columns((10, 15, 10, 10,10,15,10))
     col1.write('Titolo')
     col2.write('Foto')
