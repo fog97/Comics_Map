@@ -107,13 +107,13 @@ if st.session_state.autenticazione:
     except NameError:
         immagine=''
 
-        
+    location=st.text_input("Inserisci Location : ")
     note=st.text_input("Inserisci eventuali note : ")
 
     add = st.button('Aggiungi')
 
     if add:
-        mydict = { "Organizzatore": st.session_state.utente, "Data": data_def, "Foto":immagine,"Note":note }
+        mydict = { "Organizzatore": st.session_state.utente, "Data": data_def, "Foto":immagine,"Note":note ,"Location":location }
         db = client.PresenzeComics
         mycol = db["Convention"]
         mycol.insert_one(mydict)
