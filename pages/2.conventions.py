@@ -149,6 +149,36 @@ if st.session_state.autenticazione:
 
         st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
 
+    lista_conv=[]
+    for index, row in presenze.iterrows():
+        if row['Organizzatore'] in list_friend:
+            lista_conv.append(row['Organizzatore']+" -- "+row['Titolo'])
+    
+    st.write("Conferma Partecipazione e lascia note")
+    Fiera_Selector=''
+    if Fiera_Selector=='':
+        st.write("Seleziona una Convention")
+        Fiera_Selector= st.selectbox(
+            'COnvention Disponibili',
+            lista_conv)
+    else:
+        st.write("Per Cambiare Convention")
+        Fiera_Selector= st.selectbox('COnvention Disponibili',lista_conv)
+        col1, col2 = st.columns((10, 10))
+        button_phold = col1.empty() 
+        do_action = st.button(key=index,label="Conferma Presenza")
+        if do_action:
+            mydict = {"_id":row["_id"]}
+            db = client.PresenzeComics
+            mycol = db["Convention"]
+            db = client.PresenzeComics
+        button_phold = col2.empty() 
+        do_action = st.button(key=index,label="Conferma Presenza")
+        if do_action:
+            mydict = {"_id":row["_id"]}
+            db = client.PresenzeComics
+            mycol = db["Convention"]
+            db = client.PresenzeComics
 
 
 else:
