@@ -159,7 +159,7 @@ if st.session_state.autenticazione:
     if Fiera_Selector=='':
         st.write("Seleziona una Convention")
         Fiera_Selector= st.selectbox(
-            'COnvention Disponibili',
+            'Convention Disponibili',
             lista_conv)
     else:
         st.write("Per Cambiare Convention")
