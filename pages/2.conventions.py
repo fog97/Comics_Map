@@ -136,7 +136,7 @@ if st.session_state.autenticazione:
                 col4.write(row['Data'])
                 col5.write(row['Location'])
                 col6.write(row['Note'])
-                col7.write(row['Partecipanti'].split(";"))
+                col7.write(row['Partecipanti'].replace(";",""))
                 button_phold = col8.empty() 
                 do_action = button_phold.button(key=index,label="Delete")
                 if do_action and row['Organizzatore']==st.session_state.utente:
@@ -150,7 +150,6 @@ if st.session_state.autenticazione:
         st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
 
     lista_conv=[]
-    st.table(presenze.head())
     partecipazioni_keys=presenze.copy()
     partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
     
@@ -158,7 +157,7 @@ if st.session_state.autenticazione:
     st.write("Per Cambiare Convention")
     Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
-    col1, col2 = st.columns((10, 10))
+    col1, col2 = st.columns()
     button_phold = col1.empty() 
     do_action = st.button(key='1a',label="Conferma Presenza")
     if do_action:
