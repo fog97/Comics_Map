@@ -157,7 +157,7 @@ if st.session_state.autenticazione:
     st.write("Per Cambiare Convention")
     Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
-    col1, col2 = st.columns()
+    col1, col2 = st.columns((10,10))
     button_phold = col1.empty() 
     do_action = st.button(key='1a',label="Conferma Presenza")
     if do_action:
