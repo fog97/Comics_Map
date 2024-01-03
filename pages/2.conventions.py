@@ -154,7 +154,7 @@ if st.session_state.autenticazione:
         if row['Organizzatore'] in list_friend:
             lista_conv.append(row['Organizzatore']+" -- "+row['Titolo'])
     
-    st.markdown("**Conferma Partecipazione e lascia note**")
+    st.markdown("***Conferma Partecipazione e lascia note***")
     Fiera_Selector=''
     if Fiera_Selector=='':
         st.write("Seleziona una Convention")
