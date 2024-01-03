@@ -17,20 +17,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-Fiera_Selector='Novegro'
-Fiera_Selector= st.selectbox(
-    'Seleziona Fiera',
-    ('Novegro', 'Torino'))
-
-
-
-
-path=f'./{Fiera_Selector}/'
-conn = sqlite3.connect(path+f"{Fiera_Selector}.db")
-
-import streamlit as st
-
-
 
 st.header(f" **PAGINA IN COSTRUZIONE** ")
 
