@@ -136,7 +136,7 @@ if st.session_state.autenticazione:
                 col4.write(row['Data'])
                 col5.write(row['Location'])
                 col6.write(row['Note'])
-                col7.write(row['Partecipanti'].replace(";",""))
+                col7.write(row['Partecipanti'].replace(";",","))
                 button_phold = col8.empty() 
                 do_action = button_phold.button(key=index,label="Delete")
                 if do_action and row['Organizzatore']==st.session_state.utente:
