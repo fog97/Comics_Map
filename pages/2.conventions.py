@@ -178,6 +178,10 @@ if st.session_state.autenticazione:
         mycol.update_one(filter, newvalues)
 
     st.markdown("**Aggiungi Note o Foto**")
+
+    uploaded_files = st.file_uploader(key='Foto_appendice',label="Carica una Foto, accept_multiple_files=True)
+    for uploaded_file in uploaded_files:
+        bytes_data = uploaded_file.read()
     import gridfs
     from io import BytesIO
 
