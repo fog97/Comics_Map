@@ -122,7 +122,7 @@ if st.session_state.autenticazione:
         col7.write('Partecianti')
         col8.write('Elimina Convention')
 
-
+        st.markdown("**Dettagli Convetion**")
         for index, row in presenze.iterrows():
             if row['Organizzatore'] in list_friend or row['Organizzatore']==st.session_state.utente:
                 col1, col2,col3,col4,col5,col6,col7,col8 = st.columns((10, 15, 10, 10,10,15,10,10))
@@ -212,7 +212,19 @@ if st.session_state.autenticazione:
         mycol = db["Appendice_Convention"]
         mycol.insert_one(mydict)
 
-        
+    st.markdown("**Note dai Partecipanti**")
+    Note_appendice = pd.DataFrame(list(db["Appendice_Convention"].find()))
+    
+    for index, row in Note_appendice.iterrows():
+        if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].split(";"):
+            col1, col2,col3 = st.columns((10, 15, 15))
+            col1.write(row['Autore'])
+            if row['Foto']!='':
+                col2.image(row['Foto'], width=100)
+            else:
+                with st.container():
+                    col2.write(row['Foto'])   
+            col3.write(row['Nota'])
 
 else:
     st.write("Autenticati o registrati per favore")
