@@ -154,7 +154,7 @@ if st.session_state.autenticazione:
     partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
 
     
-    st.markdown("**Conferma Partecipazione e lascia note**")
+    st.markdown("**Conferma Partecipazione**")
     st.write("Selezione la Convention")
     Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
@@ -177,6 +177,38 @@ if st.session_state.autenticazione:
         newvalues={ "$set": { 'Partecipanti': partecipanti } }
         mycol.update_one(filter, newvalues)
 
+    st.markdown("**Aggiungi Note o Foto**")
+    import gridfs
+    from io import BytesIO
+
+    db = client.PresenzeComics
+
+    #Create an object of GridFs for the above database.
+    fs = gridfs.GridFS(db)
+
+    immagine=''
+    try:
+        with BytesIO(bytes_data) as f:
+            contents = f.read()
+            st.image(contents, caption='Immagine Caricata')
+            immagine=contents
+    except NameError:
+        immagine=''
+
+    note=st.text_input("Inserisci eventuali note : ")
+
+
+
+
+    add = st.button('Aggiungi')
+
+    if add:
+        mydict = { "Autore": st.session_state.utente, "nota": data_def, "Foto":immagine, "Id_Conv": partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
+        db = client.PresenzeComics
+        mycol = db["Appendice_Convention"]
+        mycol.insert_one(mydict)
+
+        
 
 else:
     st.write("Autenticati o registrati per favore")
