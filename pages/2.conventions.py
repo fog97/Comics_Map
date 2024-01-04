@@ -137,6 +137,8 @@ if st.session_state.autenticazione:
                 col5.write(row['Location'])
                 col6.write(row['Note'])
                 col7.write(row['Partecipanti'].replace(";",""))
+                mydict = {"_id":row["_id"]}
+                st.write(mydict)
                 button_phold = col8.empty() 
                 do_action = button_phold.button(key=index,label="Delete")
                 if do_action and row['Organizzatore']==st.session_state.utente:
@@ -165,7 +167,6 @@ if st.session_state.autenticazione:
     #newvalue={"$set" : {presenze:nuovepresenze}}
     st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0])
     st.write(filter)
-    st.write(mydict)
 
     do_action = st.button(key='1b',label="Conferma Presenza")
     if do_action:
