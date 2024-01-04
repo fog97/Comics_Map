@@ -225,6 +225,8 @@ if st.session_state.autenticazione:
                 with st.container():
                     col2.write(row['Foto'])   
             col3.write(row['Nota'])
+        else:
+            st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"))
 
 else:
     st.write("Autenticati o registrati per favore")
