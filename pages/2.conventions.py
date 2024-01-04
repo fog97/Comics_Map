@@ -139,6 +139,7 @@ if st.session_state.autenticazione:
                 col7.write(row['Partecipanti'].replace(";",""))
                 button_phold = col8.empty() 
                 do_action = button_phold.button(key=index,label="Delete")
+                st.write(row["_id"])
                 if do_action and row['Organizzatore']==st.session_state.utente:
                     mydict = {"_id":row["_id"]}
                     db = client.PresenzeComics
