@@ -200,7 +200,7 @@ if st.session_state.autenticazione:
 
 
 
-    add = st.button('Aggiungi')
+    add = st.button(key='Nota_Foto','Aggiungi')
 
     if add:
         mydict = { "Autore": st.session_state.utente, "nota": data_def, "Foto":immagine, "Id_Conv": partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
