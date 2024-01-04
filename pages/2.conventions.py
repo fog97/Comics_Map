@@ -149,27 +149,27 @@ if st.session_state.autenticazione:
 
         st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
 
-    # lista_conv=[]
-    # partecipazioni_keys=presenze.copy()
-    # partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
+    lista_conv=[]
+    partecipazioni_keys=presenze.copy()
+    partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
     
-    # st.markdown("**Conferma Partecipazione e lascia note**")
-    # st.write("Selezione la Convention")
-    # Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
-    # Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
-    # do_action = st.button(key='1a',label="Conferma Presenza")
-    # if do_action:
-    #     mydict = {"_id":row["_id"]}
-    #     db = client.PresenzeComics
-    #     mycol = db["Convention"]
-    #     db = client.PresenzeComics
-    #     mycol.update_one()
-    # do_action = st.button(key='1b',label="Elimina Presenza")
-    # if do_action:
-    #     mydict = {"_id":row["_id"]}
-    #     db = client.PresenzeComics
-    #     mycol = db["Convention"]
-    #     db = client.PresenzeComics
+    st.markdown("**Conferma Partecipazione e lascia note**")
+    st.write("Selezione la Convention")
+    Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
+    Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
+    do_action = st.button(key='1a',label="Conferma Presenza")
+    if do_action:
+        mydict = {"_id":row["_id"]}
+        db = client.PresenzeComics
+        mycol = db["Convention"]
+        db = client.PresenzeComics
+        mycol.update_one()
+    do_action = st.button(key='1b',label="Elimina Presenza")
+    if do_action:
+        mydict = {"_id":row["_id"]}
+        db = client.PresenzeComics
+        mycol = db["Convention"]
+        db = client.PresenzeComics
 
 
 else:
