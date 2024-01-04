@@ -216,7 +216,7 @@ if st.session_state.autenticazione:
     Note_appendice = pd.DataFrame(list(db["Appendice_Convention"].find()))
     
     for index, row in Note_appendice.iterrows():
-        if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].split(";"):
+        if  st.session_state.utente in list(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"]).split(";"):
             col1, col2,col3 = st.columns((10, 15, 15))
             col1.write(row['Autore'])
             if row['Foto']!='':
