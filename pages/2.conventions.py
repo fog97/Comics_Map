@@ -160,6 +160,8 @@ if st.session_state.autenticazione:
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
     do_action = st.button(key='1a',label="Conferma Presenza")
     #nuovepresenze=partecipazioni_keys["Nome_Conv"==Conv_Selector]["presenze"]+';'+st.session_state.utente
+    st.table(partecipazioni_keys)
+    st.write(Conv_Selector)
     filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
     #newvalue={"$set" : {presenze:nuovepresenze}}
     st.write(filter)
