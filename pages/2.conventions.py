@@ -165,7 +165,7 @@ if st.session_state.autenticazione:
     st.write(Conv_Selector)
     filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
     #newvalue={"$set" : {presenze:nuovepresenze}}
-    st.write(filter)
+    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0])
     if do_action:
         db = client.PresenzeComics
         mycol = db["Convention"]
