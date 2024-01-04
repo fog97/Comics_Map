@@ -164,7 +164,7 @@ if st.session_state.autenticazione:
         mycol = db["Convention"]
         db = client.PresenzeComics
         filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
-        partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0]+';'+st.session_state.utente
+        partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0]+st.session_state.utente+';'
         newvalues={ "$set": { 'Partecipanti': partecipanti } }
         mycol.update_one(filter, newvalues)
     do_action = st.button(key='1b',label="Elimina Presenza")
@@ -172,6 +172,10 @@ if st.session_state.autenticazione:
         db = client.PresenzeComics
         mycol = db["Convention"]
         db = client.PresenzeComics
+        filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
+        partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].replace(st.session_state.utente+';',"")
+        newvalues={ "$set": { 'Partecipanti': partecipanti } }
+        mycol.update_one(filter, newvalues)
 
 
 else:
