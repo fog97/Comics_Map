@@ -153,7 +153,7 @@ if st.session_state.autenticazione:
     partecipazioni_keys=presenze.copy()
     partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
 
-    st.table(partecipazioni_keyes)
+    st.table(partecipazioni_keys)
     
     st.markdown("**Conferma Partecipazione e lascia note**")
     st.write("Selezione la Convention")
