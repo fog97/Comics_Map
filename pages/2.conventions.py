@@ -153,22 +153,23 @@ if st.session_state.autenticazione:
     partecipazioni_keys=presenze.copy()
     partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
 
-    st.table(partecipazioni_keys)
     
     st.markdown("**Conferma Partecipazione e lascia note**")
     st.write("Selezione la Convention")
     Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
     do_action = st.button(key='1a',label="Conferma Presenza")
+    nuovepresenze=partecipazioni_keys["Nome_Conv"==Conv_Selector]["presenze"]+';'+st.session_state.utente
+    filter={"_id":partecipazioni_keys["Nome_Conv"==Conv_Selector]["_id"]}
+    newvalue={"$set" : {presenze:nuovepresenze}}
+    st.write(nuovepresenze,filter,newvalue)
     if do_action:
-        mydict = {"_id":row["_id"]}
         db = client.PresenzeComics
         mycol = db["Convention"]
         db = client.PresenzeComics
         mycol.update_one()
     do_action = st.button(key='1b',label="Elimina Presenza")
     if do_action:
-        mydict = {"_id":row["_id"]}
         db = client.PresenzeComics
         mycol = db["Convention"]
         db = client.PresenzeComics
