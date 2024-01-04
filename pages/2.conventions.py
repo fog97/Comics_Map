@@ -199,7 +199,7 @@ if st.session_state.autenticazione:
     except NameError:
         immagine=''
 
-    note=st.text_input(key='Note_appendice',label="Inserisci eventuali note : ")
+    note_appendice_text=st.text_input(key='Note_appendice',label="Inserisci eventuali note : ")
 
 
 
@@ -207,7 +207,7 @@ if st.session_state.autenticazione:
     add = st.button(key='Nota_Foto',label='Aggiungi')
 
     if add:
-        mydict = { "Autore": st.session_state.utente, "Nota": data_def, "Foto":immagine, "Id_Conv": partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
+        mydict = { "Autore": st.session_state.utente, "Nota": note_appendice_text, "Foto":immagine, "Id_Conv": partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
         db = client.PresenzeComics
         mycol = db["Appendice_Convention"]
         mycol.insert_one(mydict)
