@@ -195,7 +195,7 @@ if st.session_state.autenticazione:
     except NameError:
         immagine=''
 
-    note=st.text_input("Inserisci eventuali note : ")
+    note=st.text_input(key='Note_appendice',label="Inserisci eventuali note : ")
 
 
 
