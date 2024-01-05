@@ -32,7 +32,7 @@ import streamlit as st
 
 
 
-st.header(f" _Comics {Fiera_Selector}_ ")
+st.header(f" _Comics {Fiera_Selector}_ ", divider='rainbow')
 
 
 
