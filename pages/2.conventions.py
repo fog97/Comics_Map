@@ -112,6 +112,7 @@ if st.session_state.autenticazione:
 
 
     with st.expander("Visualizza le Convention tue e dei tuoi amici", expanded=False):
+        st.markdown("**Dettagli Convetion**")
         col1, col2,col3,col4,col5,col6,col7,col8 = st.columns((10, 15, 10, 10,10,15,10,10))
         col1.write('Titolo')
         col2.write('Foto')
@@ -122,7 +123,7 @@ if st.session_state.autenticazione:
         col7.write('Partecianti')
         col8.write('Elimina Convention')
 
-        st.markdown("**Dettagli Convetion**")
+        
         for index, row in presenze.iterrows():
             if row['Organizzatore'] in list_friend or row['Organizzatore']==st.session_state.utente:
                 col1, col2,col3,col4,col5,col6,col7,col8 = st.columns((10, 15, 10, 10,10,15,10,10))
@@ -216,13 +217,13 @@ if st.session_state.autenticazione:
     st.markdown("**Note dai Partecipanti**")
     Note_appendice = pd.DataFrame(list(db["Appendice_Convention"].find()))
     
-    for index, row in Note_appendice.iterrows():
-        if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"):
-            col1, col2,col3,col4 = st.columns((10, 15, 15,10))
-            col1.write('Autore')
-            col2.write('Foto')
-            col3.write('Nota')
-            col4.write('Elimina Nota')            
+    if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"):
+        col1, col2,col3,col4 = st.columns((10, 15, 15,10))
+        col1.write('Autore')
+        col2.write('Foto')
+        col3.write('Nota')
+        col4.write('Elimina Nota')    
+        for index, row in Note_appendice.iterrows():        
             col1, col2,col3,col4 = st.columns((10, 15, 15,10))
             col1.write(row['Autore'])
             if row['Foto']!='':
