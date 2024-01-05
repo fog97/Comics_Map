@@ -180,13 +180,13 @@ if st.session_state.autenticazione:
             db = client.PresenzeComics
             mycol = db["Convention"]
             db = client.PresenzeComics
-            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
-            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].replace(st.session_state.utente+';',"")
+            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"]}
+            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].replace(st.session_state.utente+';',"")
             newvalues={ "$set": { 'Partecipanti': partecipanti } }
             mycol.update_one(filter, newvalues)   
 
 
-    if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"):
+    if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].split(";"):
         st.markdown("**Aggiungi Note o Foto**")
 
         uploaded_files = st.file_uploader(key='Foto_appendice',label="Carica una Foto", accept_multiple_files=True)
