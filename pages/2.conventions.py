@@ -199,25 +199,26 @@ if st.session_state.autenticazione:
     except NameError:
         immagine=''
 
-    note_appendice_text=st.text_input(key='Note_appendice',label="Inserisci eventuali note : ")
+    note_appendice_text=st.text_input(key='Note_appendice',label="Inserisci nota : ")
 
 
 
 
-    add = st.button(key='Nota_Foto',label='Aggiungi')
+    add = st.button(key='Nota_Aggiunta',label='Aggiungi')
 
     if add:
         mydict = { "Autore": st.session_state.utente, "Nota": note_appendice_text, "Foto":immagine, "Id_Conv": partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
         db = client.PresenzeComics
         mycol = db["Appendice_Convention"]
         mycol.insert_one(mydict)
+    
 
     st.markdown("**Note dai Partecipanti**")
     Note_appendice = pd.DataFrame(list(db["Appendice_Convention"].find()))
     
     for index, row in Note_appendice.iterrows():
         if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"):
-            col1, col2,col3 = st.columns((10, 15, 15))
+            col1, col2,col3,col4 = st.columns((10, 15, 15,10))
             col1.write(row['Autore'])
             if row['Foto']!='':
                 col2.image(row['Foto'], width=100)
@@ -225,8 +226,15 @@ if st.session_state.autenticazione:
                 with st.container():
                     col2.write(row['Foto'])   
             col3.write(row['Nota'])
-        else:
-            st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"))
+            button_phold = col4.empty() 
+            do_action = button_phold.button(key='appendice_delete',label="Delete")
+            if do_action and row['Autore']==st.session_state.utente:
+                mydict = {"_id":row["_id"]}
+                db = client.PresenzeComics
+                mycol = db["Appendice_Convention"]
+                mycol.delete_one(mydict)
+                db = client.PresenzeComics
+
 
 else:
     st.write("Autenticati o registrati per favore")
