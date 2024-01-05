@@ -161,8 +161,10 @@ if st.session_state.autenticazione:
     Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
     st.write(Conv_Selector)
-    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"])
     st.write(partecipazioni_keys["Partecipanti"])
+    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector])   
+    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0])
+
     col1, col2 = st.columns((10, 10))
     with col1:
         do_action = st.button(key='1a',label="Conferma Presenza")
@@ -170,8 +172,8 @@ if st.session_state.autenticazione:
             db = client.PresenzeComics
             mycol = db["Convention"]
             db = client.PresenzeComics
-            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"]}
-            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"]+st.session_state.utente+';'
+            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
+            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0]+st.session_state.utente+';'
             newvalues={ "$set": { 'Partecipanti': partecipanti } }
             mycol.update_one(filter, newvalues)
     with col2:
@@ -180,13 +182,13 @@ if st.session_state.autenticazione:
             db = client.PresenzeComics
             mycol = db["Convention"]
             db = client.PresenzeComics
-            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"]}
-            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].replace(st.session_state.utente+';',"")
+            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
+            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].replace(st.session_state.utente+';',"")
             newvalues={ "$set": { 'Partecipanti': partecipanti } }
             mycol.update_one(filter, newvalues)   
 
 
-    if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].split(";"):
+    if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"):
         st.markdown("**Aggiungi Note o Foto**")
 
         uploaded_files = st.file_uploader(key='Foto_appendice',label="Carica una Foto", accept_multiple_files=True)
