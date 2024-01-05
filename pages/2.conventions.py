@@ -54,6 +54,7 @@ if st.session_state.autenticazione:
  
     from datetime import datetime
     from io import StringIO
+    st.header(f" *Catalogo Convetions* ", divider='red')
     with st.expander("Crea la tua Convention", expanded=False):
         titolo=st.text_input("Inserisci il Titolo della Convention : ")
 
@@ -113,7 +114,6 @@ if st.session_state.autenticazione:
 
 
     with st.expander("Visualizza le Convention tue e dei tuoi amici", expanded=False):
-        st.markdown("**Dettagli Convetion**")
         col1, col2,col3,col4,col5,col6,col7,col8 = st.columns((10, 15, 10, 10,10,15,10,10))
         col1.write('Titolo')
         col2.write('Foto')
@@ -154,8 +154,7 @@ if st.session_state.autenticazione:
 
     
     
-    st.markdown("**Conferma Partecipazione**")
-    st.write("Selezione la Convention")
+    st.header(f" *Partecipazioni* ", divider='red')
     Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
 
@@ -210,8 +209,8 @@ if st.session_state.autenticazione:
 
 
 
-                    
-        st.markdown("**Aggiungi Note o Foto**")
+
+        st.header(f" *Bacheca* ", divider='red')
 
         uploaded_files = st.file_uploader(key='Foto_appendice',label="Carica una Foto", accept_multiple_files=True)
         for uploaded_file in uploaded_files:
