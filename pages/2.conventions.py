@@ -166,6 +166,7 @@ if st.session_state.autenticazione:
     st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]) 
     st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"]) 
     st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]])
+    
     col1, col2 = st.columns((10, 10))
     with col1:
         do_action = st.button(key='1a',label="Conferma Presenza")
@@ -173,8 +174,8 @@ if st.session_state.autenticazione:
             db = client.PresenzeComics
             mycol = db["Convention"]
             db = client.PresenzeComics
-            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].index]}
-            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].index]+st.session_state.utente+';'
+            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]]}
+            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]]+st.session_state.utente+';'
             newvalues={ "$set": { 'Partecipanti': partecipanti } }
             mycol.update_one(filter, newvalues)
     with col2:
@@ -183,13 +184,13 @@ if st.session_state.autenticazione:
             db = client.PresenzeComics
             mycol = db["Convention"]
             db = client.PresenzeComics
-            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].index]}
-            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].index].replace(st.session_state.utente+';',"")
+            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]]}
+            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]].replace(st.session_state.utente+';',"")
             newvalues={ "$set": { 'Partecipanti': partecipanti } }
             mycol.update_one(filter, newvalues)   
 
 
-    if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"].index].split(";"):
+    if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]].split(";"):
         st.markdown("**Aggiungi Note o Foto**")
 
         uploaded_files = st.file_uploader(key='Foto_appendice',label="Carica una Foto", accept_multiple_files=True)
@@ -220,7 +221,7 @@ if st.session_state.autenticazione:
         add = st.button(key='Nota_Aggiunta',label='Aggiungi')
 
         if add:
-            mydict = { "Autore": st.session_state.utente, "Nota": note_appendice_text, "Foto":immagine, "Id_Conv": partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
+            mydict = { "Autore": st.session_state.utente, "Nota": note_appendice_text, "Foto":immagine, "Id_Conv": partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]]}
             db = client.PresenzeComics
             mycol = db["Appendice_Convention"]
             mycol.insert_one(mydict)
