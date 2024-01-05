@@ -161,7 +161,8 @@ if st.session_state.autenticazione:
     Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
     st.write(Conv_Selector)
-    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"))
+    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"])
+    st.write(partecipazioni_keys["Partecipanti"])
     st.write(partecipazioni_keys)
     col1, col2 = st.columns((10, 10))
     with col1:
