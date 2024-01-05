@@ -227,7 +227,7 @@ if st.session_state.autenticazione:
                     col2.write(row['Foto'])   
             col3.write(row['Nota'])
             button_phold = col4.empty() 
-            do_action = button_phold.button(key='appendice_delete',label="Delete")
+            do_action = button_phold.button(key='appendice_delete'+index,label="Delete")
             if do_action and row['Autore']==st.session_state.utente:
                 mydict = {"_id":row["_id"]}
                 db = client.PresenzeComics
