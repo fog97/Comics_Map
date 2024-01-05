@@ -62,7 +62,9 @@ except:
 
 if st.session_state.autenticazione:
     with st.sidebar:
-        st.markdown("Powered by : *Foggy.cos*")
+        st.markdown("Powered by : **Foggy.cos**")
+        st.markdown("_NB : Refresh della pagina per rendere effettive le modifiche_")
+ 
     with st.container():
         st.markdown("## Mappa")
 

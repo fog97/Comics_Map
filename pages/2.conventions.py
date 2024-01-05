@@ -49,7 +49,8 @@ except:
 
 if st.session_state.autenticazione:
     with st.sidebar:
-        st.markdown("Powered by : *Foggy.cos*")
+        st.markdown("Powered by : **Foggy.cos**")
+        st.markdown("_NB : Refresh della pagina per rendere effettive le modifiche_")
  
     from datetime import datetime
     from io import StringIO
@@ -147,9 +148,6 @@ if st.session_state.autenticazione:
                     mycol.delete_one(mydict)
                     db = client.PresenzeComics
 
-
-        st.markdown("*Refresh della pagina per verificare l'effettiva cancellazione*")
-
     lista_conv=[]
     partecipazioni_keys = pd.DataFrame(list(db["Convention"].find()))
     partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
@@ -160,13 +158,7 @@ if st.session_state.autenticazione:
     st.write("Selezione la Convention")
     Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
-    st.write(Conv_Selector)
-    st.write(partecipazioni_keys["Partecipanti"])
-    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector])  
-    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]) 
-    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"]) 
-    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]])
-    
+
     col1, col2 = st.columns((10, 10))
     with col1:
         do_action = st.button(key='1a',label="Conferma Presenza")
