@@ -46,9 +46,10 @@ with col1:
     st.write(' ')
 
 with col2:
-    
+
+    st.header("**Come Together**", divider='rainbow')   
     st.image(image.imread('Copertina2.jpg'))
-    st.header("Come Together", divider='rainbow')
+
 
 with col3:
     st.write(' ')

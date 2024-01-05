@@ -18,7 +18,7 @@ st.set_page_config(
 )
 
 
-st.header(f" **PAGINA IN COSTRUZIONE** ", divider='rainbow')
+st.header(f" **Convetions** ", divider='rainbow')
 
 
 
