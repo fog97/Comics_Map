@@ -183,6 +183,34 @@ if st.session_state.autenticazione:
 
 
     if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector].index[0]].split(";"):
+        with st.expander("**Note dai Partecipanti**", expanded=False):
+            Note_appendice = pd.DataFrame(list(db["Appendice_Convention"].find()))
+            col1, col2,col3,col4 = st.columns((10, 15, 15,10))
+            col1.write('Autore')
+            col2.write('Foto')
+            col3.write('Nota')
+            col4.write('Elimina Nota')    
+            for index, row in Note_appendice.iterrows():        
+                col1, col2,col3,col4 = st.columns((10, 15, 15,10))
+                col1.write(row['Autore'])
+                if row['Foto']!='':
+                    col2.image(row['Foto'], width=100)
+                else:
+                    with st.container():
+                        col2.write(row['Foto'])   
+                col3.write(row['Nota'])
+                button_phold = col4.empty() 
+                do_action = button_phold.button(key='appendice_delete'+str(index),label="Delete")
+                if do_action and row['Autore']==st.session_state.utente:
+                    mydict = {"_id":row["_id"]}
+                    db = client.PresenzeComics
+                    mycol = db["Appendice_Convention"]
+                    mycol.delete_one(mydict)
+                    db = client.PresenzeComics
+
+
+
+                    
         st.markdown("**Aggiungi Note o Foto**")
 
         uploaded_files = st.file_uploader(key='Foto_appendice',label="Carica una Foto", accept_multiple_files=True)
@@ -217,40 +245,6 @@ if st.session_state.autenticazione:
             db = client.PresenzeComics
             mycol = db["Appendice_Convention"]
             mycol.insert_one(mydict)
-
-
-
-
-
-
-
-
-
-        with st.expander("**Note dai Partecipanti**", expanded=False):
-            Note_appendice = pd.DataFrame(list(db["Appendice_Convention"].find()))
-            col1, col2,col3,col4 = st.columns((10, 15, 15,10))
-            col1.write('Autore')
-            col2.write('Foto')
-            col3.write('Nota')
-            col4.write('Elimina Nota')    
-            for index, row in Note_appendice.iterrows():        
-                col1, col2,col3,col4 = st.columns((10, 15, 15,10))
-                col1.write(row['Autore'])
-                if row['Foto']!='':
-                    col2.image(row['Foto'], width=100)
-                else:
-                    with st.container():
-                        col2.write(row['Foto'])   
-                col3.write(row['Nota'])
-                button_phold = col4.empty() 
-                do_action = button_phold.button(key='appendice_delete'+str(index),label="Delete")
-                if do_action and row['Autore']==st.session_state.utente:
-                    mydict = {"_id":row["_id"]}
-                    db = client.PresenzeComics
-                    mycol = db["Appendice_Convention"]
-                    mycol.delete_one(mydict)
-                    db = client.PresenzeComics
-
 
 else:
     st.write("Autenticati o registrati per favore")
