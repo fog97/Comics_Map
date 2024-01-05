@@ -170,7 +170,7 @@ if st.session_state.autenticazione:
             db = client.PresenzeComics
             mycol = db["Convention"]
             db = client.PresenzeComics
-            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
+            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"]}
             partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"]+st.session_state.utente+';'
             newvalues={ "$set": { 'Partecipanti': partecipanti } }
             mycol.update_one(filter, newvalues)
