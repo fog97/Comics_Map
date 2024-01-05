@@ -180,45 +180,52 @@ if st.session_state.autenticazione:
             filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
             partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].replace(st.session_state.utente+';',"")
             newvalues={ "$set": { 'Partecipanti': partecipanti } }
-            mycol.update_one(filter, newvalues)
-
-    st.markdown("**Aggiungi Note o Foto**")
-
-    uploaded_files = st.file_uploader(key='Foto_appendice',label="Carica una Foto", accept_multiple_files=True)
-    for uploaded_file in uploaded_files:
-        bytes_data = uploaded_file.read()
-    import gridfs
-    from io import BytesIO
-
-    db = client.PresenzeComics
-
-    #Create an object of GridFs for the above database.
-    fs = gridfs.GridFS(db)
-
-    immagine=''
-    try:
-        with BytesIO(bytes_data) as f:
-            contents = f.read()
-            st.image(contents, caption='Immagine Caricata')
-            immagine=contents
-    except NameError:
-        immagine=''
-
-    note_appendice_text=st.text_input(key='Note_appendice',label="Inserisci nota : ")
-
-
-
-
-    add = st.button(key='Nota_Aggiunta',label='Aggiungi')
-
-    if add:
-        mydict = { "Autore": st.session_state.utente, "Nota": note_appendice_text, "Foto":immagine, "Id_Conv": partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
-        db = client.PresenzeComics
-        mycol = db["Appendice_Convention"]
-        mycol.insert_one(mydict)
-    
+            mycol.update_one(filter, newvalues)   
 
     if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"):
+        st.markdown("**Aggiungi Note o Foto**")
+
+        uploaded_files = st.file_uploader(key='Foto_appendice',label="Carica una Foto", accept_multiple_files=True)
+        for uploaded_file in uploaded_files:
+            bytes_data = uploaded_file.read()
+        import gridfs
+        from io import BytesIO
+
+        db = client.PresenzeComics
+
+        #Create an object of GridFs for the above database.
+        fs = gridfs.GridFS(db)
+
+        immagine=''
+        try:
+            with BytesIO(bytes_data) as f:
+                contents = f.read()
+                st.image(contents, caption='Immagine Caricata')
+                immagine=contents
+        except NameError:
+            immagine=''
+
+        note_appendice_text=st.text_input(key='Note_appendice',label="Inserisci nota : ")
+
+
+
+
+        add = st.button(key='Nota_Aggiunta',label='Aggiungi')
+
+        if add:
+            mydict = { "Autore": st.session_state.utente, "Nota": note_appendice_text, "Foto":immagine, "Id_Conv": partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
+            db = client.PresenzeComics
+            mycol = db["Appendice_Convention"]
+            mycol.insert_one(mydict)
+
+
+
+
+
+
+
+
+
         with st.expander("**Note dai Partecipanti**", expanded=False):
             Note_appendice = pd.DataFrame(list(db["Appendice_Convention"].find()))
             col1, col2,col3,col4 = st.columns((10, 15, 15,10))
