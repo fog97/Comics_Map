@@ -157,6 +157,7 @@ if st.session_state.autenticazione:
     st.markdown("**Conferma Partecipazione**")
     st.write("Selezione la Convention")
     Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
+    st.write(Conv_Selector)
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
 
     col1, col2 = st.columns((10, 10))
