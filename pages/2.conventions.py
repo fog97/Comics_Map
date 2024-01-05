@@ -153,6 +153,8 @@ if st.session_state.autenticazione:
     lista_conv=[]
     partecipazioni_keys = pd.DataFrame(list(db["Convention"].find()))
     partecipazioni_keys["Nome_Conv"]=partecipazioni_keys["Organizzatore"]+' -- '+partecipazioni_keys["Titolo"]
+
+    st.write(partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"))
     
     st.markdown("**Conferma Partecipazione**")
     st.write("Selezione la Convention")
