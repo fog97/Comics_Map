@@ -218,6 +218,11 @@ if st.session_state.autenticazione:
     
     for index, row in Note_appendice.iterrows():
         if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"):
+            col1, col2,col3,col4 = st.columns((10, 15, 10, 10,10,15,10,10))
+            col1.write('Autore')
+            col2.write('Foto')
+            col3.write('Nota')
+            col4.write('Elimina Nota')            
             col1, col2,col3,col4 = st.columns((10, 15, 15,10))
             col1.write(row['Autore'])
             if row['Foto']!='':
