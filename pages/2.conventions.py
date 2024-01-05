@@ -100,7 +100,7 @@ if st.session_state.autenticazione:
         add = st.button('Aggiungi')
 
         if add:
-            mydict = {"Titolo":titolo, "Organizzatore": st.session_state.utente, "Data": data_def, "Foto":immagine,"Note":note ,"Location":location,'Partecipanti':st.session_state.utente+";" }
+            mydict = {"Titolo":titolo.replace(" ","_"), "Organizzatore": st.session_state.utente, "Data": data_def, "Foto":immagine,"Note":note ,"Location":location,'Partecipanti':st.session_state.utente+";" }
             db = client.PresenzeComics
             mycol = db["Convention"]
             mycol.insert_one(mydict)
@@ -127,7 +127,7 @@ if st.session_state.autenticazione:
         for index, row in presenze.iterrows():
             if row['Organizzatore'] in list_friend or row['Organizzatore']==st.session_state.utente:
                 col1, col2,col3,col4,col5,col6,col7,col8 = st.columns((10, 15, 10, 10,10,15,10,10))
-                col1.write(row['Titolo'])
+                col1.write(row['Titolo'].replace("_"," "))
                 if row['Foto']!='':
                     col2.image(row['Foto'], width=100)
                 else:
