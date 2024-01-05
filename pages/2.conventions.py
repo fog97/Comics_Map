@@ -183,8 +183,6 @@ if st.session_state.autenticazione:
             mycol.update_one(filter, newvalues)   
 
 
-    st.table(partecipazioni_keys)
-
     if  st.session_state.utente in partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].split(";"):
         st.markdown("**Aggiungi Note o Foto**")
 
