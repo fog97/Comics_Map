@@ -159,24 +159,28 @@ if st.session_state.autenticazione:
     st.write("Selezione la Convention")
     Conv_Selector=partecipazioni_keys["Nome_Conv"].unique()[0]
     Conv_Selector= st.selectbox('Convention Disponibili',partecipazioni_keys["Nome_Conv"].unique())
-    do_action = st.button(key='1a',label="Conferma Presenza")
-    if do_action:
-        db = client.PresenzeComics
-        mycol = db["Convention"]
-        db = client.PresenzeComics
-        filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
-        partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0]+st.session_state.utente+';'
-        newvalues={ "$set": { 'Partecipanti': partecipanti } }
-        mycol.update_one(filter, newvalues)
-    do_action = st.button(key='1b',label="Elimina Presenza")
-    if do_action:
-        db = client.PresenzeComics
-        mycol = db["Convention"]
-        db = client.PresenzeComics
-        filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
-        partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].replace(st.session_state.utente+';',"")
-        newvalues={ "$set": { 'Partecipanti': partecipanti } }
-        mycol.update_one(filter, newvalues)
+
+    col1, col2 = st.columns((10, 10))
+    with col1:
+        do_action = st.button(key='1a',label="Conferma Presenza")
+        if do_action:
+            db = client.PresenzeComics
+            mycol = db["Convention"]
+            db = client.PresenzeComics
+            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
+            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0]+st.session_state.utente+';'
+            newvalues={ "$set": { 'Partecipanti': partecipanti } }
+            mycol.update_one(filter, newvalues)
+    with col2:
+        do_action = st.button(key='1b',label="Elimina Presenza")
+        if do_action:
+            db = client.PresenzeComics
+            mycol = db["Convention"]
+            db = client.PresenzeComics
+            filter={"_id":partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["_id"][0]}
+            partecipanti=partecipazioni_keys[partecipazioni_keys.Nome_Conv==Conv_Selector]["Partecipanti"][0].replace(st.session_state.utente+';',"")
+            newvalues={ "$set": { 'Partecipanti': partecipanti } }
+            mycol.update_one(filter, newvalues)
 
     st.markdown("**Aggiungi Note o Foto**")
 
