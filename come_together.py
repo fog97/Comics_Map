@@ -89,7 +89,7 @@ if not _RELEASE:
             st.error(e)
 
     # creating a login widget
-    name, authentication_status, username = authenticator.login('Login', 'main')
+    name, authentication_status, username = authenticator.login('main',{'Form name':'Login'})
     if authentication_status:
         st.session_state.utente=username
         
